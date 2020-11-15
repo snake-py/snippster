@@ -1,0 +1,17 @@
+@import './_variables.scss';
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.App {
+    background-color: $main-bg-color;
+    width: 100vw;
+    height: 100vh;
+    color: $common-font-color;
+    display: flex;
+    overflow: hidden;
+}
+

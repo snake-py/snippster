@@ -1,0 +1,52 @@
+{
+    "snippets": [
+        {
+            "id": 1,
+            "title": "Redux Set Up",
+            "description": "How to set up redux",
+            "technology": [{"react": "", "js": ""}],
+            "tags": ["js", "react", "redux"],
+            "date": "2020-10-03"
+        },
+        {
+            "id": 2,
+            "title": "Redux Set Up",
+            "description": "How to set up redux",
+            "technology": [{"react": "", "js": ""}],
+            "tags": ["js", "react", "redux"],
+            "date": "2020-10-03"
+        },
+        {
+            "id": 3,
+            "title": "Redux Set Up",
+            "description": "How to set up redux",
+            "technology": [{"react": "", "js": ""}],
+            "tags": ["js", "react", "redux"],
+            "date": "2020-10-03"
+        },
+        {
+            "id": 4,
+            "title": "Redux Set Up",
+            "description": "How to set up redux",
+            "technology": [{"react": "", "js": ""}],
+            "tags": ["js", "react", "redux"],
+            "date": "2020-10-03"
+        },
+        {
+            "id": 5,
+            "title": "Redux Set Up",
+            "description": "How to set up redux",
+            "technology": [{"react": "", "js": ""}],
+            "tags": ["js", "react", "redux"],
+            "date": "2020-10-03"
+        },
+        {
+            "id": 6,
+            "title": "Redux Set Up",
+            "description": "How to set up redux",
+            "technology": [{"react": "", "js": ""}],
+            "tags": ["js", "react", "redux"],
+            "date": "2020-10-03"
+        }
+    ]
+}
