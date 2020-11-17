@@ -1,52 +1,157 @@
 {
-    "snippets": [
+  "snippets": [
+    {
+      "id": 1,
+      "title": "Redux Set Up",
+      "description": "How to set up redux",
+      "technology": [
         {
-            "id": 1,
-            "title": "Redux Set Up",
-            "description": "How to set up redux",
-            "technology": [{"react": "", "js": ""}],
-            "tags": ["js", "react", "redux"],
-            "date": "2020-10-03"
-        },
-        {
-            "id": 2,
-            "title": "Redux Set Up",
-            "description": "How to set up redux",
-            "technology": [{"react": "", "js": ""}],
-            "tags": ["js", "react", "redux"],
-            "date": "2020-10-03"
-        },
-        {
-            "id": 3,
-            "title": "Redux Set Up",
-            "description": "How to set up redux",
-            "technology": [{"react": "", "js": ""}],
-            "tags": ["js", "react", "redux"],
-            "date": "2020-10-03"
-        },
-        {
-            "id": 4,
-            "title": "Redux Set Up",
-            "description": "How to set up redux",
-            "technology": [{"react": "", "js": ""}],
-            "tags": ["js", "react", "redux"],
-            "date": "2020-10-03"
-        },
-        {
-            "id": 5,
-            "title": "Redux Set Up",
-            "description": "How to set up redux",
-            "technology": [{"react": "", "js": ""}],
-            "tags": ["js", "react", "redux"],
-            "date": "2020-10-03"
-        },
-        {
-            "id": 6,
-            "title": "Redux Set Up",
-            "description": "How to set up redux",
-            "technology": [{"react": "", "js": ""}],
-            "tags": ["js", "react", "redux"],
-            "date": "2020-10-03"
+          "react": "",
+          "js": ""
         }
-    ]
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-10-03"
+    },
+    {
+      "id": 2,
+      "title": "Redux Set Up",
+      "description": "How to set up redux",
+      "technology": [
+        {
+          "react": "",
+          "js": ""
+        }
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-10-03"
+    },
+    {
+      "id": 3,
+      "title": "Redux Set Up",
+      "description": "How to set up redux",
+      "technology": [
+        {
+          "react": "",
+          "js": ""
+        }
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-10-03"
+    },
+    {
+      "id": 4,
+      "title": "Redux Set Up",
+      "description": "How to set up redux",
+      "technology": [
+        {
+          "react": "",
+          "js": ""
+        }
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-10-03"
+    },
+    {
+      "id": 5,
+      "title": "Redux Set Up",
+      "description": "How to set up redux",
+      "technology": [
+        {
+          "react": "",
+          "js": ""
+        }
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-10-03"
+    },
+    {
+      "id": 6,
+      "title": "Redux Set Up",
+      "description": "How to set up redux",
+      "technology": [
+        {
+          "react": "",
+          "js": ""
+        }
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-10-03"
+    },
+    {
+      "id": 7,
+      "title": "New Snippet",
+      "description": "I am the new snippet",
+      "technology": [
+        {
+          "react": "",
+          "js": ""
+        }
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-11-03"
+    },
+    {
+      "id": 8,
+      "title": "New Snippet",
+      "description": "I am the new snippet",
+      "technology": [
+        {
+          "react": "",
+          "js": ""
+        }
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-11-03"
+    },
+    {
+      "id": 9,
+      "title": "New Snippet",
+      "description": "I am the new snippet",
+      "technology": [
+        {
+          "react": "",
+          "js": ""
+        }
+      ],
+      "tags": [
+        "js",
+        "react",
+        "redux"
+      ],
+      "date": "2020-11-03"
+    }
+  ]
 }

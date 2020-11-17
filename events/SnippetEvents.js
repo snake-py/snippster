@@ -2,16 +2,14 @@ const { ipcMain } = require('electron');
 const SnippetController = require('../controller/SnippetController');
 
 class SnippetEvents {
-  constructor(mainWindow) {
-    this.mainWindow = mainWindow;
-  }
   getSnippets() {
-    ipcMain.on('get:snippets', () => {
-        this.mainWindow.webContents.send('get:snippets', SnippetController.get_snippets());
-    });
-    
+    return SnippetController.getSnippets()
+  }
+   addSnippet(snippet) {
+     console.log(`SnippetEventClass ${snippet.data}`);
+    SnippetController.addSnippet(snippet)
+    return SnippetController.getSnippets()
   }
 }
 
-
-module.exports = SnippetEvents
+module.exports = SnippetEvents;
