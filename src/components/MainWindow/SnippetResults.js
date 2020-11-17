@@ -14,8 +14,7 @@ export default function SnippetResults() {
 
   return (
     <div className="window">
-      hi
-      {snippets.map(snippet => <Card key={snippet.id} />)}
+      {snippets.map(snippet => <Card active={false} snippet={snippet} key={snippet.id} />)}
     </div>
   );
 }
