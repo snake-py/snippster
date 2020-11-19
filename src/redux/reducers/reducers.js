@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-
+import { snippetReducer } from './snippetsReducer';
+const { ipcRenderer } = window.require('electron');
 
 const reducers = combineReducers({
-    // counter: counterReducer, loggedReducer 
+  snippets: snippetReducer,
 });
-
 
 export default reducers;
