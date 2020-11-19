@@ -7,15 +7,19 @@ const { ipcRenderer } = window.require('electron');
 export default function SnippetResults() {
   const snippets = useSelector((state) => state.snippets);
   const dispatch = useDispatch();
-
+  console.log(snippets);
+  if (snippets.snippets) {
+    console.log(snippets.snippets);
+  }
   useEffect(() => {
+    console.log('useEffectCalled');
     dispatch(setInitialSnippets());
   }, []);
 
 
   return (
     <div className="window">
-      {snippets[1] ? snippets.map((snippet) => <Card snippet={snippet} key={snippet.id} />) : 'No Snippets are currently found'}
+      {snippets.snippets ? snippets.snippets.map((snippet) => <Card snippet={snippet} key={snippet.id} />) : 'No Snippets are currently found'}
     </div>
   );
 }

@@ -9,20 +9,21 @@ import SvgImages from '../../static/icons/images.svg';
 import {activateSnippet} from '../../redux/actions/snippetsActions.js'
 
 export default function Card(props) {
-  const [snippet, setSnippet] = useState(props.snippet);
+  console.log(props);
+  
   const dispatch = useDispatch()    
   return (
     <div className="card-wrapper">
-      <div onClick={() => dispatch(activateSnippet(snippet))}  className={`card ${snippet.active ? "card-active" : ""}`}>
+      <div onClick={() => dispatch(activateSnippet(props.snippet))}  className={`card ${props.snippet.active ? "card-active" : ""}`}>
         <div className="card-head">
-          <h2 className="card-title">{snippet.title}</h2>
+          <h2 className="card-title">{props.snippet.title}</h2>
         </div>
         <div className="card-body">
-          <p>{snippet.description}</p>
+          <p>{props.snippet.description}</p>
         </div>
         <div className="card-foot">
           <div className="left-foot">
-            <div className="imgCounter">{snippet.tags.length}</div>
+            <div className="imgCounter">6</div>
             <ReactSVG
               src={SvgImages}
               beforeInjection={(svg) => {
