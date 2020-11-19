@@ -1,3 +1,24 @@
+@import './_variables.scss';
+
 .side-menu-wrapper {
-    width: 10vw;
+  width: 5vw;
+}
+
+.side-menu {
+  text-align: center;
+  width: 100%;
+}
+
+.side-menu li {
+  display: block;
+  padding: 10px 20px;
+}
+
+.side-menu .side-menu-icon {
+  width: 50px;
+}
+
+.side-menu .side-menu-icon:hover {
+    color: $card-bg-color;
+    transition: 150ms;
 }

@@ -9,7 +9,7 @@ import SvgImages from '../../static/icons/images.svg';
 import {activateSnippet} from '../../redux/actions/snippetsActions.js'
 
 export default function Card(props) {
-  console.log(props);
+  // console.log(props);
   
   const dispatch = useDispatch()    
   return (

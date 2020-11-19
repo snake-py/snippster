@@ -1,0 +1,37 @@
+@import './_variables.scss';
+
+.current-snippet {
+  width: 100%;
+}
+
+.current-snippet .title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  outline: none;
+border-bottom: 2px solid #fff;
+}
+.current-snippet .title:focus{
+    border-bottom: 2px solid $card-bg-color;
+}
+
+.current-snippet .title::placeholder {
+  color: gray;
+}
+
+.current-snippet .description {
+  font-size: 1.1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 75vh;
+  max-width: 100%;
+  outline: none;
+  resize: none;
+}
+
+.current-snippet .description:empty:before {
+  content: attr(data-placeholder);
+  color: gray;
+}
+
+.current-snippet .save-btn {
+  float: right;
+}
