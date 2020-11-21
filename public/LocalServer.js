@@ -6,7 +6,7 @@ const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
 // const fs = require('fs'); // reads json file
 // const {CREATE_TABLES} = require('../db/db')
-const {test} = require('../db/test')
+const {CREATE_TABLES} = require('../db/test')
 // CREATE_TABLES()
 
 
@@ -15,7 +15,7 @@ try {
   require('electron-reloader')(module);
 } catch (_) {}
 
-test()
+CREATE_TABLES()
 
 let mainWindow;
 
