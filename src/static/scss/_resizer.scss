@@ -1,0 +1,18 @@
+.resizer {
+    height: 100vh;
+    cursor: col-resize;
+    width: 10px;
+    background-color: #fff;
+}
+
+.resizer:hover {
+    height: 100vh;
+    cursor: col-resize;
+    background-color: red;
+}
+
+.resizer:focus {
+    height: 100vh;
+    cursor: col-resize;
+    background-color: blue;
+}

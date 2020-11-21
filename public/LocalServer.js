@@ -5,6 +5,9 @@ const isDev = require('electron-is-dev');
 const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
 // const fs = require('fs'); // reads json file
+// const {CREATE_TABLES} = require('../db/db')
+// CREATE_TABLES()
+
 
 try {
   require('electron-reloader')(module);

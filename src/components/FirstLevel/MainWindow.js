@@ -5,7 +5,7 @@ import SnippetView from '../MainWindow/SnippetView';
 import { useSelector, useDispatch } from 'react-redux';
 import { setInitialSnippets } from '../../redux/actions/snippetsActions.js';
 import '../../static/scss/_mainWindow.scss';
-const { ipcRenderer } = window.require('electron');
+import Resizer from '../utilities/Resizer';
 
 export default function MainWindow() {
   const logging = useSelector((state) => console.log(state));
@@ -23,7 +23,9 @@ export default function MainWindow() {
   return (
     <div className="main-window-wrapper">
       {snippets.snippets ? <SnippetResults snippets={snippets.snippets} /> : ''}
+      <Resizer />
       {snippets.snippets ? <SnippetView snippet={activeSnippet} /> : ''}
+      <Resizer />
       <SnippetCodeEditor />
     </div>
   );
