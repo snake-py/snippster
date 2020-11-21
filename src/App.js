@@ -6,12 +6,8 @@ function App() {
 
   return (
     <div className="App">
-      <div>
         <SideMenu />
-      </div>
-      <div>
         <MainWindow />
-      </div>
     </div>
   );
 }
