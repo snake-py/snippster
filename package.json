@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
     "ace-builds": "^1.4.12",
+    "better-sqlite3": "^7.1.1",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "electron": "^10.1.5",
@@ -26,6 +27,8 @@
   },
   "scripts": {
     "react-start": "react-scripts start",
+    "rebuild": "electron-rebuild -f -w better-sqlit3",
+    "postinstall": "electron-builder install-app-deps",
     "react-build": "react-scripts build",
     "react-test": "react-scripts test --env=jsdom",
     "react-eject": "react-scripts eject",
@@ -53,6 +56,7 @@
     ]
   },
   "devDependencies": {
+    "electron-rebuild": "^2.3.2",
     "electron-reloader": "^1.0.1"
   }
 }
