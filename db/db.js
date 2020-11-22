@@ -1,7 +1,7 @@
 const Database = require('better-sqlite3');
-const { languages, frameworks } = require('./db_seeder');
+const { languages, frameworks, snippets, projects } = require('./db_seeder');
 
-const create_db = () => {
+const CREATE_DB = () => {
   return new Database('db/snippster.db', { verbose: console.log });
 };
 
@@ -17,37 +17,35 @@ const create_db = () => {
 // projects
 // title - root path - path to icon
 
-const CREATE_TABLES = () => {
-  const db = create_db();
+const CREATE_TABLES = (db) => {
   const sql = `
     CREATE TABLE IF NOT EXISTS languages (
-        id INTEGER AUTO INCREMENT,
-        long CHAR(50) PRIMARY KEY NOT NULL, 
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        long CHAR(50) UNIQUE NOT NULL, 
         short CHAR(10) NOT NULL, 
-        path CHAR(100) 
+        icon CHAR(100) 
         );
 
     CREATE TABLE IF NOT EXISTS frameworks (
-      id INTEGER AUTO INCREMENT,
-      long CHAR(50) NOT NULL PRIMARY KEY NOT NULL, 
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      long CHAR(50) UNIQUE NOT NULL NOT NULL, 
       short CHAR(10) NOT NULL, 
-      path CHAR(100),
-      language CHAR(50),
-      FOREIGN KEY(language) REFERENCES languages(long)
+      icon CHAR(100),
+      language_id INTEGER,
+      FOREIGN KEY(language_id) REFERENCES languages(id)
       );
 
     CREATE TABLE IF NOT EXISTS projects (
-      id INTEGER PRIMARY KEY,
-      title CHAR(50) NOT NULL,
-      root CHAR(100) NOT NULL,
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title CHAR(50) NOT NULL UNIQUE,
+      root CHAR(100) NOT NULL UNIQUE,
       icon CHAR(100)
       );
 
     CREATE TABLE IF NOT EXISTS snippets (
-      id INTEGER PRIMARY KEY,
-      title CHAR(50) NOT NULL, 
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title CHAR(50) NOT NULL UNIQUE, 
       description TEXT, 
-      path CHAR(100),
       project_id INTEGER NOT NULL,
       language_id INTEGER NOT NULL,
       framework_id INTEGER,
@@ -64,34 +62,74 @@ const CREATE_TABLES = () => {
   return db;
 };
 
-const SEED_DATA = (db) => {
-  const languageStmt = db.prepare(`INSERT INTO languages (
+const seed_languages = (db) => {
+  const stmt = db.prepare(`INSERT INTO languages (
     long,
     short,
-    path
-    ) VALUES (@long, @short, @path);`);
+    icon
+    ) VALUES (@long, @short, @icon);`);
 
   languages.forEach((language) => {
     try {
-      languageStmt.run(language);
+      stmt.run(language);
     } catch (error) {
       console.log(error);
     }
   });
-  const frameworkStmt = db.prepare(`INSERT INTO frameworks (
+};
+const seed_frameworks = (db) => {
+  const stmt = db.prepare(`INSERT INTO frameworks (
     long,
     short,
-    path,
-    language
-    ) VALUES (@long, @short, @path, @language);`);
+    icon,
+    language_id
+    ) VALUES (@long, @short, @icon, @language_id);`);
   frameworks.forEach((framework) => {
     try {
-      frameworkStmt.run(framework);
+      stmt.run(framework);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+};
+const seed_projects = (db) => {
+  const stmt = db.prepare(`INSERT INTO projects (
+    title,
+    root,
+    icon
+    ) VALUES (@title, @root, @icon);`);
+  projects.forEach((project) => {
+    try {
+      stmt.run(project);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+};
+const seed_snippets = (db) => {
+  const stmt = db.prepare(`INSERT INTO snippets (
+    title,
+    description,
+    project_id,
+    language_id,
+    framework_id
+    ) VALUES (@title, @description, @project_id, @language_id, @framework_id);`);
+  snippets.forEach((snippet) => {
+    try {
+      stmt.run(snippet);
     } catch (error) {
       console.log(error);
     }
   });
 };
 
+const SEED_DATA = (db) => {
+  seed_languages(db);
+  seed_frameworks(db);
+  seed_projects(db);
+  seed_snippets(db);
+};
+
 module.exports.CREATE_TABLES = CREATE_TABLES;
+module.exports.CREATE_DB = CREATE_DB;
 module.exports.SEED_DATA = SEED_DATA;
