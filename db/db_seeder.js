@@ -1,7 +1,8 @@
-const languages = [
-    {language: "JavaScript", short: "js", icon: "/icons/js.svg"},
-    {language: "Python", short: "py", icon: "/icons/py.svg"},
+module.exports.languages = [
+    {long: "JavaScript", short: "js", path: "/icons/js.svg"},
+    {long: "Python", short: "py", path: "/icons/py.svg"},
+    {long: "C++", short: "c++", path: ""},
 ]
-const frameworks = [
-    {language_id: 1, short: "react", icon: "/icons/react.svg"},
+module.exports.frameworks = [
+    {language: "JavaScript", long: "React", short: "react", path: "/icons/react.svg"},
 ]

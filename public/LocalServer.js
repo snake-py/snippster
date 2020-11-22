@@ -4,10 +4,10 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
-// const fs = require('fs'); // reads json file
-// const {CREATE_TABLES} = require('../db/db')
-const {CREATE_TABLES} = require('../db/test')
-// CREATE_TABLES()
+const {migrate} = require('../db/migrate')
+
+
+migrate()
 
 
 
@@ -15,7 +15,6 @@ try {
   require('electron-reloader')(module);
 } catch (_) {}
 
-CREATE_TABLES()
 
 let mainWindow;
 
