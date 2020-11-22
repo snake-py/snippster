@@ -2,7 +2,8 @@ const Database = require('better-sqlite3');
 const { languages, frameworks, snippets, projects } = require('./db_seeder');
 
 const CREATE_DB = () => {
-  return new Database('db/snippster.db', { verbose: console.log });
+  return new Database('db/snippster.db');
+  // return new Database('db/snippster.db', { verbose: console.log });
 };
 
 // Language
@@ -57,7 +58,7 @@ const CREATE_TABLES = (db) => {
   try {
     db.exec(sql);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
   return db;
 };
@@ -73,7 +74,7 @@ const seed_languages = (db) => {
     try {
       stmt.run(language);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   });
 };
@@ -88,7 +89,7 @@ const seed_frameworks = (db) => {
     try {
       stmt.run(framework);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   });
 };
@@ -102,7 +103,7 @@ const seed_projects = (db) => {
     try {
       stmt.run(project);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   });
 };

@@ -1,8 +1,23 @@
 const fs = require('fs'); // reads json file
+const { db } = require('../db/migrate');
 
 class SnippetController {
   getSnippets() {
-    return JSON.parse(fs.readFileSync('db/snippets.json'));
+    const stmt = db.prepare('SELECT * FROM SNIPPETS');
+    const snippets = stmt.all();
+    return { snippets: snippets };
+  }
+
+  editSnippet(snippet) {
+    console.log(snippet);
+    const stmt = db.prepare(`UPDATE snippets SET title='${snippet.title}', description='${snippet.description}' WHERE id = ${snippet.id}`);
+    try {
+      const updatedSnippet = stmt.run();
+    } catch (error) {
+      console.log(error);
+    }
+    const returnStmt = db.prepare(`SELECT * FROM SNIPPETS WHERE id = ${snippet.id}`);
+    return returnStmt.get();
   }
 
   async addSnippet(snippet) {

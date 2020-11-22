@@ -11,9 +11,9 @@ migrate()
 
 
 
-try {
-  require('electron-reloader')(module);
-} catch (_) {}
+// try {
+//   require('electron-reloader')(module);
+// } catch (_) {}
 
 
 let mainWindow;
