@@ -2,6 +2,13 @@
 
 .side-menu-wrapper {
   width: 5vw;
+  background-color: $black;
+  width: max-content;
+}
+
+.bottom-list {
+  position: fixed;
+  bottom: 10px;
 }
 
 .side-menu {
@@ -16,6 +23,11 @@
 
 .side-menu .side-menu-icon {
   width: 50px;
+  color: grey;
+}
+
+.active {
+  color: $card-bg-color;
 }
 
 .side-menu .side-menu-icon:hover {

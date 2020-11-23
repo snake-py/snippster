@@ -10,18 +10,18 @@ module.exports.projects = [{ title: 'root', root: '/files', icon: '' }];
 // path lodic for files ~/rootPath/language/framnework/snippetTitle
 
 module.exports.snippets = [
-  {
-    title: 'Redux with react',
-    description: 'Here I show how I set up react with redux',
-    project_id: 1,
-    language_id: 1,
-    framework_id: 1,
-  },
-  {
-    title: 'React Spring',
-    description: 'Example for react-spring',
-    project_id: 1,
-    language_id: 1,
-    framework_id: 1,
-  },
+  // {
+  //   title: 'Redux with react',
+  //   description: 'Here I show how I set up react with redux',
+  //   project_id: 1,
+  //   language_id: 1,
+  //   framework_id: 1,
+  // },
+  // {
+  //   title: 'React Spring',
+  //   description: 'Example for react-spring',
+  //   project_id: 1,
+  //   language_id: 1,
+  //   framework_id: 1,
+  // },
 ];

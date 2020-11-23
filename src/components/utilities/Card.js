@@ -19,7 +19,7 @@ export default function Card(props) {
           <h2 className="card-title">{props.snippet.title}</h2>
         </div>
         <div className="card-body">
-          <p>{props.snippet.description}</p>
+          <p>{props.snippet.description.substring(0,50)}</p>
         </div>
         <div className="card-foot">
           <div className="left-foot">

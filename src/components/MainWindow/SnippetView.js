@@ -25,15 +25,6 @@ export default function SnippetView(props) {
            value={activeSnippet.description}
            className="form-input description"
            onChange={(e) => dispatch(editDescription(activeSnippet, e.target.value))} />
-          {/* <input
-          suppressContentEditableWarning={true}
-          data-placeholder="Snippet description...."
-          contentEditable="true"
-          className="form-input description inputASTextarea"
-          onChange={e => dispatch(editDescription(activeSnippet, e.target.value))}
-          // onInput={e => dispatch(editDescription(activeSnippet, e.currentTarget.textContent))}
-          value={activeSnippet.description}
-          /> */}
           <a className="form-btn save-btn" onClick={() => dispatch(saveSnippet(activeSnippet))}>
             Save
           </a>

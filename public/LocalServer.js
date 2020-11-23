@@ -4,6 +4,7 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
+const ProjectEvents = require('../events/ProjectEvents');
 const {migrate} = require('../db/migrate')
 
 
@@ -18,9 +19,7 @@ try {
 
 let mainWindow;
 
-const queueEventToRegister = () => {
-  registerEvents(new SnippetEvents());
-};
+
 
 const creatMainWindow = () => {
   mainWindow = new BrowserWindow({
@@ -34,9 +33,15 @@ const creatMainWindow = () => {
   mainWindow.on('closed', () => (mainWindow = null));
   console.log('MAIN WINDOW LOAD');
 };
+const queueEventToRegister = async () => {
+  await registerEvents(new SnippetEvents());
+  await registerEvents(new ProjectEvents());
+  creatMainWindow()
+};
 
-app.on('ready', creatMainWindow);
+
 app.on('ready', queueEventToRegister);
+// app.on('ready', creatMainWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
