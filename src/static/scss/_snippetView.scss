@@ -4,6 +4,7 @@
   width: 100%;
 }
 
+
 .current-snippet .title {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -22,6 +23,7 @@ border-bottom: 2px solid #fff;
   font-size: 1.1rem;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 75vh;
+  height: auto;
   max-width: 100%;
   outline: none;
   resize: none;
@@ -34,4 +36,11 @@ border-bottom: 2px solid #fff;
 
 .current-snippet .save-btn {
   float: right;
+}
+
+
+
+.inputASTextarea {
+  border: 3px solid #fff;
+  word-break: break-word;
 }

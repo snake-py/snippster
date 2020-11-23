@@ -9,8 +9,12 @@ export const activateSnippet = (snippet) => {
   };
 };
 
-export const editSnippet = (snippet, title) => (dispatch) => {
-  dispatch({ type: 'EDIT', payload: { snippet: snippet, title: title } });
+export const editTitle = (snippet, title) => (dispatch) => {
+  dispatch({ type: 'EDIT_TITLE', payload: { snippet: snippet, title: title } });
+};
+
+export const editDescription = (snippet, description) => (dispatch) => {
+  dispatch({ type: 'EDIT_DESCRIPTION', payload: { snippet: snippet, description: description } });
 };
 
 export const setInitialSnippets = () => (dispatch) => {

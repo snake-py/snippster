@@ -23,15 +23,20 @@ export function snippetReducer(state = {}, action) {
         ),
         activeSnippet: { ...action.payload, active: true },
       };
-      case 'EDIT':
-        console.log(action);
-        return {
-          ...state,
-          snippets: state.snippets.map((snippet) =>
-            action.payload.snippet.id === snippet.id ? { ...snippet, title: action.payload.title, active: true } : { ...snippet, active: false }
-          ),
-          activeSnippet: { ...action.payload.snippet, title: action.payload.title,active: true },
-        };
+    case 'EDIT_TITLE':
+      console.log(action);
+      return {
+        ...state,
+        snippets: state.snippets.map((snippet) => (action.payload.snippet.id === snippet.id ? { ...snippet, title: action.payload.title, active: true } : { ...snippet, active: false })),
+        activeSnippet: { ...action.payload.snippet, title: action.payload.title, active: true },
+      };
+    case 'EDIT_DESCRIPTION':
+      console.log(action);
+      return {
+        ...state,
+        snippets: state.snippets.map((snippet) => (action.payload.snippet.id === snippet.id ? { ...snippet, description: action.payload.description, active: true } : { ...snippet, active: false })),
+        activeSnippet: { ...action.payload.snippet, description: action.payload.description, active: true },
+      };
     default:
       return state;
   }
