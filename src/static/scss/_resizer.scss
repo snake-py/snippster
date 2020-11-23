@@ -1,14 +1,17 @@
+@import './_variables.scss';
+
+
 .resizer {
     height: 100vh;
     cursor: col-resize;
     width: 10px;
-    background-color: #fff;
+    background-color: $card-bg-color;
 }
 
 .resizer:hover {
     height: 100vh;
     cursor: col-resize;
-    background-color: red;
+    background-color: $card-bg-color;
 }
 
 .resizer:focus {

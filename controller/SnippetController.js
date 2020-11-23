@@ -3,9 +3,24 @@ const { db } = require('../db/migrate');
 
 class SnippetController {
   getSnippets() {
-    const stmt = db.prepare('SELECT * FROM SNIPPETS');
-    const snippets = stmt.all();
-    return { snippets: snippets };
+    const stmt = db.prepare(`
+    SELECT 
+    snippets.id,
+    snippets.title,
+    snippets.description,
+    languages.long AS language,
+    languages.icon AS languageIcon,
+    frameworks.long AS framework,
+    frameworks.icon AS frameworkIcon
+    FROM snippets 
+    INNER JOIN languages ON snippets.language_id=languages.id 
+    INNER JOIN frameworks ON snippets.framework_id=frameworks.id;`);
+    try {
+      const snippets = stmt.all();
+      return { snippets: snippets };
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   editSnippet(snippet) {
