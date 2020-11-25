@@ -3,7 +3,6 @@
 .card-wrapper {
   margin: 20px 0px;
   width: 350px;
-
 }
 
 .card {
@@ -14,6 +13,10 @@
   flex-shrink: 0;
   flex-grow: 0;
   overflow: hidden;
+}
+
+.unsaved {
+  border: 3px solid white;
 }
 
 .card-active {

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { getProjects } from '../../redux/actions/appActions.js';
 import { useSelector, useDispatch } from 'react-redux';
+import { addSnippet } from '../../redux/actions/snippetsActions.js';
 
 import '../../static/scss/_sideMenu.scss';
 import { ReactSVG } from 'react-svg';
@@ -41,7 +42,7 @@ export default function SideMenu() {
       <div className="bottom-list">
         <ul className="side-menu">
           <li>
-            <ReactSVG
+            <ReactSVG onClick={(e) => dispatch(addSnippet())}
               src={SvgPlus}
               beforeInjection={(svg) => {
                 svg.classList.add('side-menu-icon');

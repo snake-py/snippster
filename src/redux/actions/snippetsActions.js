@@ -24,11 +24,16 @@ export const editCode = (snippet, code) => (dispatch) => {
 export const setInitialSnippets = () => (dispatch) => {
   ipcRenderer.invoke('getSnippets').then((res) => {
     const initialSnippets = res.snippets.map((snippet, index) => {
-      return index === 0 ? { ...snippet, active: true } : { ...snippet, active: false };
+      return index === 0 ? { ...snippet, active: true, isSaved: true } : { ...snippet, active: false, isSaved: true };
     });
     dispatch({ type: 'INITIAL', payload: initialSnippets });
   });
 };
+
+export const addSnippet = () => (dispatch) => {
+  dispatch({type: 'ADD', payload: ''})
+};
+
 
 export const saveSnippet = (snippet) => (dispatch) => {
   console.log(snippet);

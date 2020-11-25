@@ -14,7 +14,9 @@ export default function Card(props) {
   const dispatch = useDispatch()    
   return (
     <div className="card-wrapper">
-      <div onClick={() => dispatch(activateSnippet(props.snippet))}  className={`card ${props.snippet.active ? "card-active" : ""}`}>
+      <div
+      onClick={() => dispatch(activateSnippet(props.snippet))}
+      className={`card ${props.snippet.active ? "card-active" : ""} ${props.snippet.isSaved ? "" : "unsaved"}`}>
         <div className="card-head">
           <h2 className="card-title">{props.snippet.title}</h2>
         </div>

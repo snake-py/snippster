@@ -11,8 +11,12 @@ class SnippetEvents {
     return SnippetController.getSnippets();
   }
   editSnippet(snippet) {
-    // console.log(`SnippetEventClass ${snippet}`);
-    return SnippetController.editSnippet(snippet); 
+    if (snippet.id === 'new') {
+      console.log('hgi');
+      return SnippetController.addSnippet(snippet);
+    } else {
+      return SnippetController.editSnippet(snippet);
+    }
   }
 }
 
