@@ -37,6 +37,13 @@ export function snippetReducer(state = {}, action) {
         snippets: state.snippets.map((snippet) => (action.payload.snippet.id === snippet.id ? { ...snippet, description: action.payload.description, active: true } : { ...snippet, active: false })),
         activeSnippet: { ...action.payload.snippet, description: action.payload.description, active: true },
       };
+      case 'EDIT_CODE':
+        console.log(action);
+        return {
+          ...state,
+          snippets: state.snippets.map((snippet) => (action.payload.snippet.id === snippet.id ? { ...snippet, code: action.payload.code, active: true } : { ...snippet, active: false })),
+          activeSnippet: { ...action.payload.snippet, code: action.payload.code, active: true },
+        };
     default:
       return state;
   }

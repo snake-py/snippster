@@ -4,10 +4,9 @@ import '../../static/scss/_snippetView.scss';
 import { saveSnippet, editTitle, editDescription } from '../../redux/actions/snippetsActions.js';
 import TextareaAutosize from 'react-textarea-autosize';
 
-export default function SnippetView(props) {
+export default function SnippetView() {
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
   const dispatch = useDispatch();
-  console.log(props);
 
   function titleChange(e) {
     e.preventDefault();

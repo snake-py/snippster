@@ -8,6 +8,7 @@ class SnippetController {
     snippets.id,
     snippets.title,
     snippets.description,
+    snippets.code,
     languages.long AS language,
     languages.icon AS languageIcon,
     frameworks.long AS framework,
@@ -24,14 +25,22 @@ class SnippetController {
   }
 
   editSnippet(snippet) {
+    console.log('Incomming');
     console.log(snippet);
-    const stmt = db.prepare(`UPDATE snippets SET title='${snippet.title}', description='${snippet.description}' WHERE id = ${snippet.id}`);
+    console.log('\n');
+    const stmt = db.prepare(`UPDATE snippets SET title='${snippet.title}', code='${snippet.code}', description='${snippet.description}' WHERE id = ${snippet.id}`);
     try {
       const updatedSnippet = stmt.run();
+      console.log('DB Answer');
+      console.log(updatedSnippet);
+      console.log('\n');
     } catch (error) {
       console.log(error);
     }
     const returnStmt = db.prepare(`SELECT * FROM SNIPPETS WHERE id = ${snippet.id}`);
+    console.log('return stmt');
+    console.log(returnStmt);
+    console.log('\n');
     return returnStmt.get();
   }
 

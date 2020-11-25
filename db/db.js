@@ -47,6 +47,7 @@ const CREATE_TABLES = (db) => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title CHAR(50) NOT NULL UNIQUE, 
       description TEXT, 
+      code TEXT, 
       project_id INTEGER NOT NULL,
       language_id INTEGER NOT NULL,
       framework_id INTEGER,
@@ -111,10 +112,11 @@ const seed_snippets = (db) => {
   const stmt = db.prepare(`INSERT INTO snippets (
     title,
     description,
+    code,
     project_id,
     language_id,
     framework_id
-    ) VALUES (@title, @description, @project_id, @language_id, @framework_id);`);
+    ) VALUES (@title, @description, @code, @project_id, @language_id, @framework_id);`);
   snippets.forEach((snippet) => {
     try {
       stmt.run(snippet);

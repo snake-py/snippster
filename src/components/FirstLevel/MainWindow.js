@@ -26,7 +26,7 @@ export default function MainWindow() {
       <Resizer />
       {snippets.snippets ? <SnippetView snippet={activeSnippet} /> : ''}
       <Resizer />
-      <SnippetCodeEditor />
+      <SnippetCodeEditor snippet={activeSnippet} />
     </div>
   );
 }

@@ -17,6 +17,10 @@ export const editDescription = (snippet, description) => (dispatch) => {
   dispatch({ type: 'EDIT_DESCRIPTION', payload: { snippet: snippet, description: description } });
 };
 
+export const editCode = (snippet, code) => (dispatch) => {
+  dispatch({ type: 'EDIT_CODE', payload: { snippet: snippet, code: code } });
+};
+
 export const setInitialSnippets = () => (dispatch) => {
   ipcRenderer.invoke('getSnippets').then((res) => {
     const initialSnippets = res.snippets.map((snippet, index) => {
