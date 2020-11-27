@@ -5,18 +5,11 @@ class SnippetEvents {
   getSnippets() {
     return SnippetController.getSnippets();
   }
-  addSnippet(snippet) {
-    console.log(`SnippetEventClass ${snippet.data}`);
-    SnippetController.addSnippet(snippet);
-    return SnippetController.getSnippets();
+  addSnippet() {
+    return SnippetController.addSnippet();
   }
   editSnippet(snippet) {
-    if (snippet.id === 'new') {
-      console.log('hgi');
-      return SnippetController.addSnippet(snippet);
-    } else {
-      return SnippetController.editSnippet(snippet);
-    }
+    return SnippetController.editSnippet(snippet);
   }
 }
 

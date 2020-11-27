@@ -31,7 +31,16 @@ export const setInitialSnippets = () => (dispatch) => {
 };
 
 export const addSnippet = () => (dispatch) => {
-  dispatch({type: 'ADD', payload: ''})
+  console.log('adding');
+  ipcRenderer.invoke('addSnippet').then((res) => {
+    const snippet = {
+      ...res.snippet,
+      active: true,
+      isSaved: true
+    }
+    console.log(snippet);
+    dispatch({type: 'ADD', payload: snippet})
+  });
 };
 
 

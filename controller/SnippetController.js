@@ -2,7 +2,7 @@ const fs = require('fs'); // reads json file
 const { db } = require('../db/migrate');
 
 class SnippetController {
-  getSnippets() {
+  async getSnippets() {
     const stmt = db.prepare(`
     SELECT 
     snippets.id,
@@ -24,7 +24,7 @@ class SnippetController {
     }
   }
 
-  editSnippet(snippet) {
+  async editSnippet(snippet) {
     const stmt = db.prepare(`UPDATE snippets SET title='${snippet.title}', code='${snippet.code}', description='${snippet.description}' WHERE id = ${snippet.id}`);
     try {
       const updatedSnippet = stmt.run();
@@ -35,12 +35,12 @@ class SnippetController {
     return returnStmt.get();
   }
 
-  async addSnippet(snippet) {
+  async addSnippet() {
     console.log('add');
    const newSnippet = {
-      title: snippet.title,
-      description: snippet.description,
-      code: snippet.code,
+      title: '',
+      description: '',
+      code: '',
       language_id: 1,
       framework_id: 1,
       project_id: 1,
@@ -49,10 +49,10 @@ class SnippetController {
     const stmt = db.prepare(`INSERT INTO snippets (
     title,
     code,
-    language_id,
-    framework_id,
+    description,
     project_id,
-    description
+    language_id,
+    framework_id
     ) VALUES (@title, @description, @code, @project_id, @language_id, @framework_id);`);
     try {
       stmt.run(newSnippet);
@@ -60,8 +60,14 @@ class SnippetController {
       console.log(error);
     }
     const returnStmt = db.prepare(`SELECT * FROM snippets ORDER BY id DESC LIMIT 1`);
-    return returnStmt.get();
+    const snippet = returnStmt.get()
+    return snippet;
   }
+  
+  async deleteSnippet(id) {
+    console.log('deleting');   
+  }
+  
 }
 
 const snippetController = new SnippetController();

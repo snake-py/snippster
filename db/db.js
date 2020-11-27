@@ -45,11 +45,11 @@ const CREATE_TABLES = (db) => {
 
     CREATE TABLE IF NOT EXISTS snippets (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title CHAR(50) NOT NULL UNIQUE, 
+      title CHAR(50), 
       description TEXT, 
       code TEXT, 
       project_id INTEGER NOT NULL,
-      language_id INTEGER NOT NULL,
+      language_id INTEGER,
       framework_id INTEGER,
       FOREIGN KEY(language_id) REFERENCES languages(id),
       FOREIGN KEY(framework_id) REFERENCES frameworks(id),
