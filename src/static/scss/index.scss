@@ -5,6 +5,10 @@
   padding: 0px;
   box-sizing: border-box;
 }
+.flex {
+    display: flex;
+    align-content: space-between;
+}
 
 .App {
   background-color: $main-bg-color;
@@ -39,14 +43,6 @@
 
 .form-select {
   width: 50%;
-}
-
-// .form-select *{
-//     border: none;
-//     background-color: $secondary-bg-color;
-// }
-
-.custom-select-arrow {
 }
 
 @import './_card.scss';

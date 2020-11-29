@@ -10,13 +10,24 @@ export default function MainWindow() {
   const snippets = useSelector((state) => state.snippets);
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
 
+  const styleResults = {
+    width: '60vw'
+  }
+  const styleView = {
+
+  }
+  const styleEditor = {
+
+  }
+
+
   return (
     <div className="main-window-wrapper">
-      <SnippetResults snippets={snippets.snippets} />
+      <SnippetResults styles={styleResults} snippets={snippets.snippets} />
       <Resizer />
-      {activeSnippet ? <SnippetView snippet={activeSnippet} /> : ''}
+      {activeSnippet ? <SnippetView styles={styleView} snippet={activeSnippet} /> : ''}
       <Resizer />
-      <SnippetCodeEditor snippet={activeSnippet} />
+      <SnippetCodeEditor styles={styleEditor} snippet={activeSnippet} />
     </div>
   );
 }

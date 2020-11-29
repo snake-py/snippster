@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveSnippet } from '../../redux/actions/snippetsActions.js';
 import { updateLanguage, updateFramework } from '../../redux/actions/snippetsActions.js';
-import Option from '../utilities/Option';
 import Select from 'react-select';
 
 export default function SnippetViewFooter() {
@@ -47,19 +46,20 @@ export default function SnippetViewFooter() {
       ...provided,
       backgroundColor: '#3B3B3B',
     }),
-    
+
     control: (provided, state) => ({
       ...provided,
       backgroundColor: '#3B3B3B',
       color: 'white',
-      border: '2px solid #656565'
+      border: '2px solid #656565',
+      width: '90%'
     }),
-    
+
     indicatorSeparator: (provided, state) => ({
       ...provided,
       backgroundColor: '#656565',
     }),
-        
+
     singleValue: (provided, state) => ({
       ...provided,
       color: 'white',
@@ -70,7 +70,7 @@ export default function SnippetViewFooter() {
   return (
     <>
       <div>
-        <div>
+        <div className="flex">
           <Select
             styles={selectStyles}
             menuPlacement="top"
@@ -78,28 +78,22 @@ export default function SnippetViewFooter() {
             className="form-select"
             value={{ value: activeSnippet.language, label: activeSnippet.language }}
             options={appState.languages.map((language) => ({ value: language.language, label: language.language }))}
-            onChange={(e) => console.log(e)}
+            onChange={(e) => dispatch(updateLanguage(activeSnippet, e.value, appState.languages))}
           />
-          {/* <select className="form-select" value={activeSnippet.language} onChange={(e) => dispatch(updateLanguage(activeSnippet, e.target.value, appState.languages))}>
-            {appState.languages.map((language) => (
-              <Option key={language.id} language={language.language} icon={language.languageIcon} id={language.id} />
-            ))}
-            <span className="custom-select-arrow"></span>
-          </select>
+
           {currentFrameworks[0] ? (
-            <select
+            <Select
+              styles={selectStyles}
+              menuPlacement="top"
+              placeholder="Choose a framework"
               className="form-select"
-              value={activeSnippet.framework ? activeSnippet.framework : ''}
-              onChange={(e) => dispatch(updateFramework(activeSnippet, e.target.value, appState.languages))}
-            >
-              {currentFrameworks.map((framework) => (
-                <Option key={framework.id} framework={framework.framework} icon={framework.frameworkIcon} id={framework.id} />
-              ))}
-              <span className="custom-select-arrow"></span>
-            </select>
+              value={{ value: activeSnippet.framework, label: activeSnippet.framework }}
+              options={currentFrameworks.map((framework) => ({ value: framework.framework, label: framework.framework }))}
+              onChange={(e) => dispatch(updateFramework(activeSnippet, e.value, appState.languages))}
+            />
           ) : (
             ''
-          )} */}
+          )}
         </div>
         <div>
           <a className="form-btn save-btn" onClick={() => dispatch(saveSnippet(activeSnippet))}>

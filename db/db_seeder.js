@@ -39,26 +39,26 @@ module.exports.projects = [{ title: 'root', root: '/files', icon: '' }];
 // path lodic for files ~/rootPath/language/id
 
 module.exports.snippets = [
-  {
-    title: 'Redux with react',
-    description: 'Here I show how I set up react with redux',
-    code: `
-    <h1>Das ist ein test</h1>
-    <div>hey</div>
-    `,
-    project_id: 1,
-    language_id: 1,
-    framework_id: 1,
-  },
-  {
-    title: 'Flask',
-    description: 'Example for react-spring',
-    code: `
-    <h1>Das ist nummer 2 test</h1>
-    <div>hey</div>
-    `,
-    project_id: 1,
-    language_id: 3,
-    framework_id: null,
-  },
+  // {
+  //   title: 'Redux with react',
+  //   description: 'Here I show how I set up react with redux',
+  //   code: `
+  //   <h1>Das ist ein test</h1>
+  //   <div>hey</div>
+  //   `,
+  //   project_id: 1,
+  //   language_id: 1,
+  //   framework_id: 1,
+  // },
+  // {
+  //   title: 'Flask',
+  //   description: 'Example for react-spring',
+  //   code: `
+  //   <h1>Das ist nummer 2 test</h1>
+  //   <div>hey</div>
+  //   `,
+  //   project_id: 1,
+  //   language_id: 3,
+  //   framework_id: null,
+  // },
 ];
