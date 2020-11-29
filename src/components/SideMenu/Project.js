@@ -1,9 +1,8 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import SvgCode from '../../static/icons/file-code-solid.svg';
+import SvgCode from '../../static/icons/menu/code.svg';
 
 export default function Project(props) {
-  console.log(props);
   return (
     <li>
       <ReactSVG

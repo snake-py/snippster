@@ -1,4 +1,3 @@
-const { ipcMain } = require('electron');
 const SnippetController = require('../controller/SnippetController');
 
 class SnippetEvents {

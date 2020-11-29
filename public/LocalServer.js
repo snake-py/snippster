@@ -5,6 +5,7 @@ const isDev = require('electron-is-dev');
 const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
 const ProjectEvents = require('../events/ProjectEvents');
+const AppEvents = require('../events/AppEvents');
 const {migrate} = require('../db/migrate')
 
 
@@ -36,6 +37,7 @@ const creatMainWindow = () => {
 const queueEventToRegister = async () => {
   await registerEvents(new SnippetEvents());
   await registerEvents(new ProjectEvents());
+  await registerEvents(new AppEvents())
   creatMainWindow()
 };
 

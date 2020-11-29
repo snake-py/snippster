@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../../static/scss/_card.scss';
 import { ReactSVG } from 'react-svg';
-import SvgReact from '../../static/icons/react.svg';
-import SvgJs from '../../static/icons/js-square.svg';
-import SvgImages from '../../static/icons/images.svg';
+import SvgReact from '../../static/icons/frameworks/react.svg';
+import SvgJs from '../../static/icons/languages/js.svg';
+import SvgImages from '../../static/icons/utility/images.svg';
 
 import {activateSnippet} from '../../redux/actions/snippetsActions.js'
 

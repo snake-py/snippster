@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import SvgCubes from '../../static/icons/cubes.svg';
+import SvgCubes from '../../static/icons/menu/cubes.svg';
 
 export default function Market() {
   return (

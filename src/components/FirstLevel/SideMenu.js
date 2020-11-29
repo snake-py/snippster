@@ -6,18 +6,12 @@ import { addSnippet } from '../../redux/actions/snippetsActions.js';
 import { ReactSVG } from 'react-svg';
 import Project from '../SideMenu/Project';
 import Market from '../SideMenu/Market';
-import SvgPlus from '../../static/icons/plus.svg';
+import SvgPlus from '../../static/icons/menu/plus.svg';
 import '../../static/scss/_sideMenu.scss';
 
 export default function SideMenu() {
   const appState = useSelector((state) => state.app);
   const dispatch = useDispatch();
-  console.log(appState);
-
-  useEffect(() => {
-    console.log('useEffectCalled');
-    dispatch(getProjects());
-  }, []);
 
   return (
     <div className="side-menu-wrapper">
