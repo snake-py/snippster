@@ -1,6 +1,8 @@
 export function snippetReducer(state = {}, action) {
   switch (action.type) {
     case 'INITIAL':
+      console.log(action);
+
       return {
         ...state,
         snippets: [...action.payload],
@@ -13,6 +15,7 @@ export function snippetReducer(state = {}, action) {
         activeSnippet: { ...action.payload, active: true },
       };
     case 'UPDATE':
+      console.log(action);
       return {
         ...state,
         snippets: state.snippets.map((snippet) =>
@@ -49,7 +52,6 @@ export function snippetReducer(state = {}, action) {
         activeSnippet: { ...action.payload },
       };
     case 'UPDATE_LANGUAGE':
-      console.log(action);
       return {
         ...state,
         activeSnippet: { ...action.payload },
@@ -63,6 +65,20 @@ export function snippetReducer(state = {}, action) {
           }),
         ],
       };
+      case 'UPDATE_FRAMEWORK':
+        return {
+          ...state,
+          activeSnippet: { ...action.payload },
+          snippets: [
+            ...state.snippets.map((snippet) => {
+              if (action.payload.id === snippet.id) {
+                return { ...action.payload };
+              } else {
+                return { ...snippet };
+              }
+            }),
+          ],
+        };
     default:
       return state;
   }

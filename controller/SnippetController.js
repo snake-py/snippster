@@ -27,7 +27,6 @@ class SnippetController {
   }
 
   async editSnippet(snippet) {
-    console.log(snippet);
     const stmt = db.prepare(`UPDATE snippets
     SET
     title='${snippet.title}',
@@ -41,7 +40,22 @@ class SnippetController {
     } catch (error) {
       console.log(error);
     }
-    const returnStmt = db.prepare(`SELECT * FROM SNIPPETS WHERE id = ${snippet.id}`);
+    const returnStmt = db.prepare(`
+    SELECT
+    snippets.id,
+    snippets.title,
+    snippets.description,
+    snippets.code,
+    languages.id AS language_id,
+    languages.long AS language,
+    languages.icon AS languageIcon,
+    frameworks.id AS framework_id,
+    frameworks.long AS framework,
+    frameworks.icon AS frameworkIcon
+    FROM snippets 
+    LEFT JOIN languages ON snippets.language_id=languages.id 
+    LEFT JOIN frameworks ON snippets.framework_id=frameworks.id    
+    WHERE snippets.id = ${snippet.id};`);
     return returnStmt.get();
   }
 

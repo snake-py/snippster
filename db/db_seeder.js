@@ -3,7 +3,7 @@ module.exports.languages = [
   { long: 'TypeScript', short: 'ts', icon: 'icons/languages/typescript.svg' },
   { long: 'Python', short: 'py', icon: 'icons/languages/python.svg' },
   { long: 'Java', short: 'ja', icon: 'icons/languages/java.svg' },
-  { long: 'Ruby', short: 'rub', icon: 'icons/languages/rub.svg' },
+  { long: 'Ruby', short: 'rub', icon: 'icons/languages/ruby.svg' },
   { long: 'Markdown', short: 'mark', icon: 'icons/languages/markdown.svg' },
   { long: 'MySQL', short: 'mysql', icon: 'icons/languages/mysql.svg' },
   { long: 'JSON', short: 'json', icon: 'icons/languages/json.svg' },

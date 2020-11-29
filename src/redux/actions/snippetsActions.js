@@ -34,8 +34,15 @@ export const updateLanguage = (snippet, language, languages) => (dispatch) => {
   console.log(language);
   const newLanguage = languages.filter(lan => lan.language===language)[0]
   console.log(newLanguage.id);
-  snippet = {...snippet, language: language, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon ,framework: '', frameworkIcon: '', framework_id: null, isSaved: false}
+  snippet = {...snippet, language: language, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon ,framework: null, frameworkIcon: '', framework_id: null, isSaved: false}
   dispatch({type: 'UPDATE_LANGUAGE', payload: snippet})
+}
+
+export const updateFramework = (snippet, framework, languages) => (dispatch) => {
+  const frameworks = languages.filter(lan => lan.language===snippet.language)[0].framework
+  const fram = frameworks.filter(fw => fw.framework===framework)[0]
+  snippet = {...snippet, framework: fram.framework, frameworkIcon: fram.frameworkIcon, framework_id: fram.id, isSaved: false}
+  dispatch({type: 'UPDATE_FRAMEWORK', payload: snippet})
 }
 
 export const addSnippet = () => (dispatch) => {

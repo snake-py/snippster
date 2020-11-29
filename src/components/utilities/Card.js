@@ -13,8 +13,6 @@ export default function Card(props) {
   const [langaugeIcon, setLangaugeIcon] = useState('');
   const [frameworkIcon, setFrameworkIcon] = useState('');
   useEffect(async () => {
-    console.log('use');
-    console.log(props.snippet);
     if (props.snippet.frameworkIcon) {
       let frameworkIcon = await import(`../../static/${props.snippet.frameworkIcon}`);
       setFrameworkIcon(frameworkIcon.default);
