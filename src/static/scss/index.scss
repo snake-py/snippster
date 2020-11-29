@@ -37,3 +37,8 @@
 .form-btn:hover {
     color: $card-bg-color;
 }
+@import './_card.scss';
+@import './_editor.scss';
+@import './_mainWindow.scss';
+@import './_resizer.scss';
+@import './_snippetView.scss';

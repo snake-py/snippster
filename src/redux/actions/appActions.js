@@ -13,17 +13,14 @@ export const getProjects = () => (dispatch) => {
 
 export const getLanguages = () => (dispatch) => {
   console.log('getting Languages');
-
   ipcRenderer.invoke('getAppLanguages').then((res) => {
-    console.log('res:');
+    console.log('Languages');
     console.log(res);
-    // const projects = res.projects.map((project) => {
-    //   return project.id === activeProject ? { ...project, active: true } : { ...project, active: false };
-    // });
-    // dispatch({ type: 'Languages', payload: languages });
+    dispatch({ type: 'GET_LANGUAGES', payload: res.languages });
   });
-
 }
+
+
 
 export const makeAppReady = () => (dispatch) => {
   console.log('Making Ready');

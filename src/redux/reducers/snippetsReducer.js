@@ -1,8 +1,6 @@
 export function snippetReducer(state = {}, action) {
   switch (action.type) {
     case 'INITIAL':
-      // console.log(action.payload)
-      // console.log(action.payload.filter(snippet => snippet.active === true))
       return {
         ...state,
         snippets: [...action.payload],
@@ -15,7 +13,6 @@ export function snippetReducer(state = {}, action) {
         activeSnippet: { ...action.payload, active: true },
       };
     case 'UPDATE':
-      console.log(action);
       return {
         ...state,
         snippets: state.snippets.map((snippet) =>
@@ -24,7 +21,6 @@ export function snippetReducer(state = {}, action) {
         activeSnippet: { ...action.payload, active: true, isSaved: true },
       };
     case 'EDIT_TITLE':
-      console.log(action);
       return {
         ...state,
         snippets: state.snippets.map((snippet) =>
@@ -33,7 +29,6 @@ export function snippetReducer(state = {}, action) {
         activeSnippet: { ...action.payload.snippet, title: action.payload.title, active: true, isSaved: false },
       };
     case 'EDIT_DESCRIPTION':
-      console.log(action);
       return {
         ...state,
         snippets: state.snippets.map((snippet) =>
@@ -42,18 +37,31 @@ export function snippetReducer(state = {}, action) {
         activeSnippet: { ...action.payload.snippet, description: action.payload.description, active: true, isSaved: false },
       };
     case 'EDIT_CODE':
-      console.log(action);
       return {
         ...state,
         snippets: state.snippets.map((snippet) => (action.payload.snippet.id === snippet.id ? { ...snippet, code: action.payload.code, active: true, isSaved: false } : { ...snippet, active: false })),
         activeSnippet: { ...action.payload.snippet, code: action.payload.code, active: true, isSaved: false },
       };
     case 'ADD':
+      return {
+        ...state,
+        snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false })), { ...action.payload }],
+        activeSnippet: { ...action.payload },
+      };
+    case 'UPDATE_LANGUAGE':
       console.log(action);
       return {
         ...state,
-        snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false })), {...action.payload}],
-        activeSnippet: {...action.payload},
+        activeSnippet: { ...action.payload },
+        snippets: [
+          ...state.snippets.map((snippet) => {
+            if (action.payload.id === snippet.id) {
+              return { ...action.payload };
+            } else {
+              return { ...snippet };
+            }
+          }),
+        ],
       };
     default:
       return state;

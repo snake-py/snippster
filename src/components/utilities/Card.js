@@ -9,7 +9,23 @@ import SvgImages from '../../static/icons/utility/images.svg';
 import {activateSnippet} from '../../redux/actions/snippetsActions.js'
 
 export default function Card(props) {
-  // console.log(props);
+  const [langaugeIcon, setLangaugeIcon] = useState('')
+  const [frameworkIcon, setFrameworkIcon] = useState('')
+  console.log(props.snippet.frameworkIcon);
+  console.log(props.snippet.languageIcon);
+
+  useEffect( async () => {
+    
+    if (props.snippet.frameworkIcon) {
+      let frameworkIcon = await import(`../../static/${props.snippet.frameworkIcon}`)
+      setFrameworkIcon(frameworkIcon.default)
+    }
+    if (props.snippet.languageIcon) {
+      let languageIcon = await import(`../../static/${props.snippet.languageIcon}`)
+      setLangaugeIcon(languageIcon.default)
+    }
+
+  }, [langaugeIcon, frameworkIcon])
   
   const dispatch = useDispatch()    
   return (
@@ -25,23 +41,24 @@ export default function Card(props) {
         </div>
         <div className="card-foot">
           <div className="left-foot">
-            <div className="imgCounter">6</div>
+            {/* <div className="imgCounter">6</div>
             <ReactSVG
               src={SvgImages}
               beforeInjection={(svg) => {
                 svg.classList.add('card-icon');
               }}
-            />
+            /> */}
           </div>
           <div className="right-foot">
             <ReactSVG
-              src={SvgJs}
+              src={langaugeIcon}
+              // src={require(`../../static/${props.snippet.languageIcon}`)}
               beforeInjection={(svg) => {
                 svg.classList.add('card-icon');
               }}
             />
             <ReactSVG
-              src={SvgReact}
+              src={frameworkIcon}
               beforeInjection={(svg) => {
                 svg.classList.add('card-icon');
               }}

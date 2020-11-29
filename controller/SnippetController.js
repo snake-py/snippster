@@ -9,15 +9,18 @@ class SnippetController {
     snippets.title,
     snippets.description,
     snippets.code,
+    languages.id AS language_id,
     languages.long AS language,
     languages.icon AS languageIcon,
+    frameworks.id AS framework_id,
     frameworks.long AS framework,
     frameworks.icon AS frameworkIcon
     FROM snippets 
-    INNER JOIN languages ON snippets.language_id=languages.id 
-    INNER JOIN frameworks ON snippets.framework_id=frameworks.id;`);
+    LEFT JOIN languages ON snippets.language_id=languages.id 
+    LEFT JOIN frameworks ON snippets.framework_id=frameworks.id;`);
     try {
       const snippets = stmt.all();
+      console.log(snippets);
       return { snippets: snippets };
     } catch (error) {
       console.log(error);
@@ -25,7 +28,14 @@ class SnippetController {
   }
 
   async editSnippet(snippet) {
-    const stmt = db.prepare(`UPDATE snippets SET title='${snippet.title}', code='${snippet.code}', description='${snippet.description}' WHERE id = ${snippet.id}`);
+    const stmt = db.prepare(`UPDATE snippets
+    SET
+    title='${snippet.title}',
+    code='${snippet.code}',
+    description='${snippet.description}',
+    language_id='${snippet.language_id}',
+    framework_id='${snippet.framework_id}'
+    WHERE id = ${snippet.id}`);
     try {
       const updatedSnippet = stmt.run();
     } catch (error) {

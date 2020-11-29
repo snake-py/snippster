@@ -30,6 +30,13 @@ export const setInitialSnippets = () => (dispatch) => {
   });
 };
 
+export const updateLanguage = (snippet, language, languages) => (dispatch) => {
+  console.log(language);
+  const language_id = languages.filter(language => language===language)[0]
+  snippet = {...snippet, language: language, language_id: language_id.id ,framework: '', frameworkIcon: '', framework_id: '', isSaved: false}
+  dispatch({type: 'UPDATE_LANGUAGE', payload: snippet})
+}
+
 export const addSnippet = () => (dispatch) => {
   console.log('adding');
   ipcRenderer.invoke('addSnippet').then((res) => {
