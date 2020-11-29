@@ -11,6 +11,7 @@ class SnippetController {
     snippets.code,
     languages.id AS language_id,
     languages.long AS language,
+    languages.short AS language_short,
     languages.icon AS languageIcon,
     frameworks.id AS framework_id,
     frameworks.long AS framework,
@@ -48,6 +49,7 @@ class SnippetController {
     snippets.code,
     languages.id AS language_id,
     languages.long AS language,
+    languages.short AS language_short,
     languages.icon AS languageIcon,
     frameworks.id AS framework_id,
     frameworks.long AS framework,
@@ -65,8 +67,8 @@ class SnippetController {
       title: '',
       description: '',
       code: '',
-      language_id: 1,
-      framework_id: 1,
+      language_id: null,
+      framework_id: null,
       project_id: 1,
     };
 

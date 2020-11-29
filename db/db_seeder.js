@@ -1,15 +1,15 @@
 module.exports.languages = [
-  { long: 'JavaScript', short: 'js', icon: 'icons/languages/js.svg' },
-  { long: 'TypeScript', short: 'ts', icon: 'icons/languages/typescript.svg' },
-  { long: 'Python', short: 'py', icon: 'icons/languages/python.svg' },
-  { long: 'Java', short: 'ja', icon: 'icons/languages/java.svg' },
-  { long: 'Ruby', short: 'rub', icon: 'icons/languages/ruby.svg' },
-  { long: 'Markdown', short: 'mark', icon: 'icons/languages/markdown.svg' },
+  { long: 'JavaScript', short: 'javascript', icon: 'icons/languages/js.svg' },
+  { long: 'TypeScript', short: 'typescript', icon: 'icons/languages/typescript.svg' },
+  { long: 'Python', short: 'python', icon: 'icons/languages/python.svg' },
+  { long: 'Java', short: 'java', icon: 'icons/languages/java.svg' },
+  { long: 'Ruby', short: 'ruby', icon: 'icons/languages/ruby.svg' },
+  { long: 'Markdown', short: 'markdown', icon: 'icons/languages/markdown.svg' },
   { long: 'MySQL', short: 'mysql', icon: 'icons/languages/mysql.svg' },
   { long: 'JSON', short: 'json', icon: 'icons/languages/json.svg' },
   { long: 'GO', short: 'golang', icon: 'icons/languages/golang.svg' },
-  { long: 'C#', short: 'c#', icon: 'icons/languages/csharp.svg' },
-  { long: 'Elixir', short: 'elix', icon: 'icons/languages/elixir.svg' },
+  { long: 'C#', short: 'csharp', icon: 'icons/languages/csharp.svg' },
+  { long: 'Elixir', short: 'elixir', icon: 'icons/languages/elixir.svg' },
   { long: 'HTML', short: 'html', icon: 'icons/languages/html5.svg' },
   { long: 'CSS', short: 'css', icon: 'icons/languages/css3.svg' },
   { long: 'SASS', short: 'sass', icon: 'icons/languages/sass.svg' },
@@ -39,26 +39,26 @@ module.exports.projects = [{ title: 'root', root: '/files', icon: '' }];
 // path lodic for files ~/rootPath/language/id
 
 module.exports.snippets = [
-  // {
-  //   title: 'Redux with react',
-  //   description: 'Here I show how I set up react with redux',
-  //   code: `
-  //   <h1>Das ist ein test</h1>
-  //   <div>hey</div>
-  //   `,
-  //   project_id: 1,
-  //   language_id: 1,
-  //   framework_id: 1,
-  // },
-  // {
-  //   title: 'Flask',
-  //   description: 'Example for react-spring',
-  //   code: `
-  //   <h1>Das ist nummer 2 test</h1>
-  //   <div>hey</div>
-  //   `,
-  //   project_id: 1,
-  //   language_id: 3,
-  //   framework_id: null,
-  // },
+  {
+    title: 'Redux with react',
+    description: 'Here I show how I set up react with redux',
+    code: `
+    <h1>Das ist ein test</h1>
+    <div>hey</div>
+    `,
+    project_id: 1,
+    language_id: 1,
+    framework_id: 1,
+  },
+  {
+    title: 'Flask',
+    description: 'Example for react-spring',
+    code: `
+    <h1>Das ist nummer 2 test</h1>
+    <div>hey</div>
+    `,
+    project_id: 1,
+    language_id: 3,
+    framework_id: null,
+  },
 ];

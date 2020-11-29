@@ -13,7 +13,9 @@ export default function SnippetViewFooter() {
   console.log(currentFrameworks[0]);
   useEffect(() => {
     const currentLang = appState.languages.filter((lang) => lang.language === activeSnippet.language)[0];
-    setcurrentFrameworks(currentLang.framework);
+    if (currentLang) {
+      setcurrentFrameworks(currentLang.framework);
+    }
   });
 
   console.log(activeSnippet);
@@ -27,9 +29,7 @@ export default function SnippetViewFooter() {
             ))}
           </select>
           {currentFrameworks[0] ? (
-            <select 
-             value={activeSnippet.framework ? activeSnippet.framework : '' } onChange={(e) => dispatch(updateFramework(activeSnippet, e.target.value, appState.languages))}
-            >
+            <select value={activeSnippet.framework ? activeSnippet.framework : ''} onChange={(e) => dispatch(updateFramework(activeSnippet, e.target.value, appState.languages))}>
               {currentFrameworks.map((framework) => (
                 <Option key={framework.id} framework={framework.framework} icon={framework.frameworkIcon} id={framework.id} />
               ))}
