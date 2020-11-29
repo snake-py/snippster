@@ -32,8 +32,9 @@ export const setInitialSnippets = () => (dispatch) => {
 
 export const updateLanguage = (snippet, language, languages) => (dispatch) => {
   console.log(language);
-  const language_id = languages.filter(language => language===language)[0]
-  snippet = {...snippet, language: language, language_id: language_id.id ,framework: '', frameworkIcon: '', framework_id: '', isSaved: false}
+  const newLanguage = languages.filter(lan => lan.language===language)[0]
+  console.log(newLanguage.id);
+  snippet = {...snippet, language: language, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon ,framework: '', frameworkIcon: '', framework_id: null, isSaved: false}
   dispatch({type: 'UPDATE_LANGUAGE', payload: snippet})
 }
 

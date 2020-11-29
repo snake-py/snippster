@@ -20,7 +20,6 @@ class SnippetController {
     LEFT JOIN frameworks ON snippets.framework_id=frameworks.id;`);
     try {
       const snippets = stmt.all();
-      console.log(snippets);
       return { snippets: snippets };
     } catch (error) {
       console.log(error);
@@ -28,16 +27,17 @@ class SnippetController {
   }
 
   async editSnippet(snippet) {
+    console.log(snippet);
     const stmt = db.prepare(`UPDATE snippets
     SET
     title='${snippet.title}',
     code='${snippet.code}',
     description='${snippet.description}',
-    language_id='${snippet.language_id}',
-    framework_id='${snippet.framework_id}'
+    language_id=${snippet.language_id ? `'${snippet.language_id}'` : null},
+    framework_id=${snippet.framework_id ? `'${snippet.framework_id}'` : null}
     WHERE id = ${snippet.id}`);
     try {
-      const updatedSnippet = stmt.run();
+      stmt.run();
     } catch (error) {
       console.log(error);
     }

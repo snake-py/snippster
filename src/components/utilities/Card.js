@@ -6,38 +6,34 @@ import SvgReact from '../../static/icons/frameworks/react.svg';
 import SvgJs from '../../static/icons/languages/js.svg';
 import SvgImages from '../../static/icons/utility/images.svg';
 
-import {activateSnippet} from '../../redux/actions/snippetsActions.js'
+import { activateSnippet } from '../../redux/actions/snippetsActions.js';
 
 export default function Card(props) {
-  const [langaugeIcon, setLangaugeIcon] = useState('')
-  const [frameworkIcon, setFrameworkIcon] = useState('')
-  console.log(props.snippet.frameworkIcon);
-  console.log(props.snippet.languageIcon);
-
-  useEffect( async () => {
-    
+  const snippets = useSelector(state => state.snippets)
+  const [langaugeIcon, setLangaugeIcon] = useState('');
+  const [frameworkIcon, setFrameworkIcon] = useState('');
+  useEffect(async () => {
+    console.log('use');
+    console.log(props.snippet);
     if (props.snippet.frameworkIcon) {
-      let frameworkIcon = await import(`../../static/${props.snippet.frameworkIcon}`)
-      setFrameworkIcon(frameworkIcon.default)
+      let frameworkIcon = await import(`../../static/${props.snippet.frameworkIcon}`);
+      setFrameworkIcon(frameworkIcon.default);
     }
     if (props.snippet.languageIcon) {
-      let languageIcon = await import(`../../static/${props.snippet.languageIcon}`)
-      setLangaugeIcon(languageIcon.default)
+      let languageIcon = await import(`../../static/${props.snippet.languageIcon}`);
+      setLangaugeIcon(languageIcon.default);
     }
+  });
 
-  }, [langaugeIcon, frameworkIcon])
-  
-  const dispatch = useDispatch()    
+  const dispatch = useDispatch();
   return (
     <div className="card-wrapper">
-      <div
-      onClick={() => dispatch(activateSnippet(props.snippet))}
-      className={`card ${props.snippet.active ? "card-active" : ""} ${props.snippet.isSaved ? "" : "unsaved"}`}>
+      <div onClick={() => dispatch(activateSnippet(props.snippet))} className={`card ${props.snippet.active ? 'card-active' : ''} ${props.snippet.isSaved ? '' : 'unsaved'}`}>
         <div className="card-head">
           <h2 className="card-title">{props.snippet.title}</h2>
         </div>
         <div className="card-body">
-          <p>{props.snippet.description.substring(0,50)}</p>
+          <p>{props.snippet.description.substring(0, 50)}</p>
         </div>
         <div className="card-foot">
           <div className="left-foot">
