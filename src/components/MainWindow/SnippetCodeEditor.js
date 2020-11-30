@@ -17,7 +17,7 @@ export default function SnippetCodeEditor() {
     if (activeSnippet && activeSnippet.language ){
       await import(`ace-builds/src-noconflict/mode-${activeSnippet.language_short}`)
       setcurrentMode(activeSnippet.language_short)
-    }
+    } 
 
 
   })

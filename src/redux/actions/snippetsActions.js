@@ -34,7 +34,7 @@ export const updateLanguage = (snippet, language, languages) => (dispatch) => {
   console.log(language);
   const newLanguage = languages.filter(lan => lan.language===language)[0]
   console.log(newLanguage.id);
-  snippet = {...snippet, language: language, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon ,framework: null, frameworkIcon: '', framework_id: null, isSaved: false}
+  snippet = {...snippet, language: language, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon ,framework: '', frameworkIcon: '', framework_id: null, isSaved: false}
   dispatch({type: 'UPDATE_LANGUAGE', payload: snippet})
 }
 

@@ -13,15 +13,20 @@ export default function Card(props) {
   const [langaugeIcon, setLangaugeIcon] = useState('');
   const [frameworkIcon, setFrameworkIcon] = useState('');
   useEffect(async () => {
+    console.log('card useeffect');
     if (props.snippet.frameworkIcon) {
       let frameworkIcon = await import(`../../static/${props.snippet.frameworkIcon}`);
       setFrameworkIcon(frameworkIcon.default);
+    } else {
+      setFrameworkIcon('');
     }
     if (props.snippet.languageIcon) {
       let languageIcon = await import(`../../static/${props.snippet.languageIcon}`);
       setLangaugeIcon(languageIcon.default);
+    } else {
+      setLangaugeIcon('')
     }
-  });
+  }, [snippets, langaugeIcon, frameworkIcon]);
 
   const dispatch = useDispatch();
   return (
