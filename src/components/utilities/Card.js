@@ -10,6 +10,8 @@ import { activateSnippet } from '../../redux/actions/snippetsActions.js';
 
 export default function Card(props) {
   const snippets = useSelector(state => state.snippets)
+  const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
+
   const [langaugeIcon, setLangaugeIcon] = useState('');
   const [frameworkIcon, setFrameworkIcon] = useState('');
   useEffect(async () => {
@@ -26,7 +28,7 @@ export default function Card(props) {
     } else {
       setLangaugeIcon('')
     }
-  }, [snippets, langaugeIcon, frameworkIcon]);
+  }, [snippets, langaugeIcon, frameworkIcon, props]);
 
   const dispatch = useDispatch();
   return (

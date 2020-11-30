@@ -75,7 +75,7 @@ export const deleteSnippet = (snippet, snippets) => (dispatch) => {
   ipcRenderer
     .invoke('deleteSnippet', snippet)
     .then((res) => {
-      dispatch({ type: 'DELETE_SNIPPET', payload: {snippet: snippet, snippets: snippets} });
+      dispatch({ type: 'DELETE_SNIPPET', payload: snippet });
     })
     .catch((err) => console.log(err));
 };

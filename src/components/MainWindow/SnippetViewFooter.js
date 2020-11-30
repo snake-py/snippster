@@ -6,7 +6,6 @@ import Select from 'react-select';
 
 export default function SnippetViewFooter() {
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
-  const snippets = useSelector((state) => state.snippets);
   const appState = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
@@ -100,7 +99,7 @@ export default function SnippetViewFooter() {
           <a className="form-btn save-btn" onClick={() => dispatch(saveSnippet(activeSnippet))}>
             Save
           </a>
-          <a className="form-btn save-btn" onClick={() => dispatch(deleteSnippet(activeSnippet, snippets.snippets))}>
+          <a className="form-btn save-btn" onClick={() => dispatch(deleteSnippet(activeSnippet))}>
             Delte
           </a>
         </div>

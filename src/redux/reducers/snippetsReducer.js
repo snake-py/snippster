@@ -82,12 +82,31 @@ export function snippetReducer(state = {}, action) {
       };
     case 'DELETE_SNIPPET':
       console.log(action);
+      let index = 0;
+      for (let i = 0; i < state.snippets.length; i++) {
+        const snip = state.snippets[i];
+        if (snip.id === action.payload.id) {
+          console.log(i);
+          index = i;
+        }
+      }
+      const filtered = state.snippets.filter((snippet) => {
+        console.log(snippet.id);
+        console.log(state.snippets[index - 1].id);
+        if (action.payload.id !== snippet.id) {
+          return { ...snippet };
+        }
+      });
+      console.log(index);
+      console.log(state.snippets[index - 1]);
       return {
         ...state,
-        activeSnippet: { ...action.payload.snippets.filter((snip) => snip.id !== action.payload.snippet.id)[0],  active: true},
+        activeSnippet: { ...state.snippets[index - 1], active: true },
         snippets: [
-          ...state.snippets.filter((snippet) => {
-            if (action.payload.snippet.id !== snippet.id) {
+          ...filtered.map((snippet) => {
+            if (action.payload.id !== snippet.id && state.snippets[index - 1].id === snippet.id) {
+              return { ...snippet, active: true };
+            } else if (action.payload.id !== snippet.id) {
               return { ...snippet };
             }
           }),
