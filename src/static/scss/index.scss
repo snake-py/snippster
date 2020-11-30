@@ -45,6 +45,15 @@
   width: 50%;
 }
 
+.snippet-query-input {
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+  width: 350px;
+  padding: 10px 20px;
+  outline: none;
+}
+
 @import './_card.scss';
 @import './_editor.scss';
 @import './_mainWindow.scss';

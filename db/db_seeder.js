@@ -28,9 +28,9 @@ module.exports.frameworks = [
   // { language_id: 2, long: 'jquery', short: 'jq', icon: 'icons/frameworks/jquery.svg' },
   // { language_id: 2, long: 'express', short: 'ex', icon: 'icons/frameworks/express.svg' },
   // { language_id: 2, long: 'node', short: 'nd', icon: 'icons/frameworks/nodejs.svg' },
-  { language_id: 3, long: 'Flask', short: 'fl', icon: 'icons/frameworks/flask.svg' },
-  { language_id: 3, long: 'Django', short: 'dj', icon: 'icons/frameworks/django.svg' },
-  { language_id: 3, long: 'FAST API', short: 'fa', icon: 'icons/frameworks/FastApi.svg' },
+  { language_id: 2, long: 'Flask', short: 'fl', icon: 'icons/frameworks/flask.svg' },
+  { language_id: 2, long: 'Django', short: 'dj', icon: 'icons/frameworks/django.svg' },
+  { language_id: 2, long: 'FAST API', short: 'fa', icon: 'icons/frameworks/FastApi.svg' },
 
 ];
 

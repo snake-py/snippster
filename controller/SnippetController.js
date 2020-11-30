@@ -105,6 +105,48 @@ class SnippetController {
       console.log(error);
     }
   }
+
+    async filterSnippets(query, project_id) {
+      console.log(project_id);
+      const stmt = db.prepare(`
+      SELECT 
+      snippets.id,
+      snippets.title,
+      snippets.description,
+      snippets.code,
+      languages.id AS language_id,
+      languages.long AS language,
+      languages.short AS language_short,
+      languages.icon AS languageIcon,
+      frameworks.id AS framework_id,
+      frameworks.long AS framework,
+      frameworks.icon AS frameworkIcon
+      FROM snippets
+      LEFT JOIN languages ON snippets.language_id=languages.id 
+      LEFT JOIN frameworks ON snippets.framework_id=frameworks.id
+      WHERE snippets.project_id=${project_id}
+      ;`);
+      try {
+        const snippets = stmt.all();
+        return { snippets: snippets };
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 const snippetController = new SnippetController();

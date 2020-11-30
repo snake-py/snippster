@@ -37,3 +37,24 @@ export const switchProject = (project) => (dispatch) => {
     console.log(snippets);
   });
 };
+
+
+export const querySnippet = (query, project) => (dispatch) => {
+  const data = {
+    query: query,
+    project: project
+  }
+  console.log(query);
+  ipcRenderer.invoke('filterSnippets', data).then((res) => {
+    const snippets = res.snippets.map((snippet, index) => {
+      return index === 0 ? { ...snippet, active: true, isSaved: true } : { ...snippet, active: false, isSaved: true };
+    });
+    dispatch({ type: 'QUERY_SNIPPET', payload: query });
+    console.log(snippets);
+  });
+};
+
+
+
+
+

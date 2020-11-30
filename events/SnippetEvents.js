@@ -11,8 +11,15 @@ class SnippetEvents {
     return SnippetController.editSnippet(snippet);
   }
   deleteSnippet(snippet) {
-    SnippetController.deleteSnippet(snippet)
+    SnippetController.deleteSnippet(snippet);
     // return SnippetController.getSnippets();
+  }
+  filterSnippets(data) {
+    queryArray = data.query.split(' ');
+    if (queryArray[0] === 'g') {
+      return SnippetController.filterSnippetGlobal(query);
+    }
+    return SnippetController.filterSnippet(query, data.project.id);
   }
 }
 
