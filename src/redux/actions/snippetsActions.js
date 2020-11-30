@@ -32,18 +32,18 @@ export const setInitialSnippets = () => (dispatch) => {
 
 export const updateLanguage = (snippet, language, languages) => (dispatch) => {
   console.log(language);
-  const newLanguage = languages.filter(lan => lan.language===language)[0]
+  const newLanguage = languages.filter((lan) => lan.language === language)[0];
   console.log(newLanguage.id);
-  snippet = {...snippet, language: language, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon ,framework: '', frameworkIcon: '', framework_id: null, isSaved: false}
-  dispatch({type: 'UPDATE_LANGUAGE', payload: snippet})
-}
+  snippet = { ...snippet, language: language, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon, framework: '', frameworkIcon: '', framework_id: null, isSaved: false };
+  dispatch({ type: 'UPDATE_LANGUAGE', payload: snippet });
+};
 
 export const updateFramework = (snippet, framework, languages) => (dispatch) => {
-  const frameworks = languages.filter(lan => lan.language===snippet.language)[0].framework
-  const fram = frameworks.filter(fw => fw.framework===framework)[0]
-  snippet = {...snippet, framework: fram.framework, frameworkIcon: fram.frameworkIcon, framework_id: fram.id, isSaved: false}
-  dispatch({type: 'UPDATE_FRAMEWORK', payload: snippet})
-}
+  const frameworks = languages.filter((lan) => lan.language === snippet.language)[0].framework;
+  const fram = frameworks.filter((fw) => fw.framework === framework)[0];
+  snippet = { ...snippet, framework: fram.framework, frameworkIcon: fram.frameworkIcon, framework_id: fram.id, isSaved: false };
+  dispatch({ type: 'UPDATE_FRAMEWORK', payload: snippet });
+};
 
 export const addSnippet = () => (dispatch) => {
   console.log('adding');
@@ -51,13 +51,12 @@ export const addSnippet = () => (dispatch) => {
     const snippet = {
       ...res.snippet,
       active: true,
-      isSaved: true
-    }
+      isSaved: true,
+    };
     console.log(snippet);
-    dispatch({type: 'ADD', payload: snippet})
+    dispatch({ type: 'ADD', payload: snippet });
   });
 };
-
 
 export const saveSnippet = (snippet) => (dispatch) => {
   console.log(snippet);
@@ -66,6 +65,16 @@ export const saveSnippet = (snippet) => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch({ type: 'UPDATE', payload: res });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const deleteSnippet = (snippet, snippets) => (dispatch) => {
+  console.log(snippet);
+  ipcRenderer
+    .invoke('deleteSnippet', snippet)
+    .then((res) => {
+      dispatch({ type: 'DELETE_SNIPPET', payload: {snippet: snippet, snippets: snippets} });
     })
     .catch((err) => console.log(err));
 };

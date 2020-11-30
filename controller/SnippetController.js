@@ -63,7 +63,7 @@ class SnippetController {
 
   async addSnippet() {
     console.log('add');
-   const newSnippet = {
+    const newSnippet = {
       title: '',
       description: '',
       code: '',
@@ -86,14 +86,21 @@ class SnippetController {
       console.log(error);
     }
     const returnStmt = db.prepare(`SELECT * FROM snippets ORDER BY id DESC LIMIT 1`);
-    const snippet = returnStmt.get()
+    const snippet = returnStmt.get();
     return snippet;
   }
-  
-  async deleteSnippet(id) {
-    console.log('deleting');   
+
+  async deleteSnippet(snippet) {
+    console.log(snippet);
+    console.log(snippet.id);
+    const stmt = db.prepare(`DELETE FROM snippets WHERE id=${snippet.id};`);
+    try {
+      const res = stmt.run();
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   }
-  
 }
 
 const snippetController = new SnippetController();

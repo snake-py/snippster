@@ -65,20 +65,33 @@ export function snippetReducer(state = {}, action) {
           }),
         ],
       };
-      case 'UPDATE_FRAMEWORK':
-        return {
-          ...state,
-          activeSnippet: { ...action.payload },
-          snippets: [
-            ...state.snippets.map((snippet) => {
-              if (action.payload.id === snippet.id) {
-                return { ...action.payload };
-              } else {
-                return { ...snippet };
-              }
-            }),
-          ],
-        };
+    case 'UPDATE_FRAMEWORK':
+      return {
+        ...state,
+        activeSnippet: { ...action.payload },
+        snippets: [
+          ...state.snippets.map((snippet) => {
+            if (action.payload.id === snippet.id) {
+              return { ...action.payload };
+            } else {
+              return { ...snippet };
+            }
+          }),
+        ],
+      };
+    case 'DELETE_SNIPPET':
+      console.log(action);
+      return {
+        ...state,
+        activeSnippet: { ...action.payload.snippets.filter((snip) => snip.id + 1 === action.payload.snippet)[0] },
+        snippets: [
+          ...state.snippets.filter((snippet) => {
+            if (action.payload.snippet.id !== snippet.id) {
+              return { ...snippet };
+            }
+          }),
+        ],
+      };
     default:
       return state;
   }

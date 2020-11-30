@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { saveSnippet } from '../../redux/actions/snippetsActions.js';
+import { saveSnippet, deleteSnippet } from '../../redux/actions/snippetsActions.js';
 import { updateLanguage, updateFramework } from '../../redux/actions/snippetsActions.js';
 import Select from 'react-select';
 
 export default function SnippetViewFooter() {
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
+  const snippets = useSelector((state) => state.snippets);
   const appState = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
@@ -52,7 +53,7 @@ export default function SnippetViewFooter() {
       backgroundColor: '#3B3B3B',
       color: 'white',
       border: '2px solid #656565',
-      width: '90%'
+      width: '90%',
     }),
 
     indicatorSeparator: (provided, state) => ({
@@ -95,9 +96,12 @@ export default function SnippetViewFooter() {
             ''
           )}
         </div>
-        <div>
+        <div style={{marginTop: '20px'}} >
           <a className="form-btn save-btn" onClick={() => dispatch(saveSnippet(activeSnippet))}>
             Save
+          </a>
+          <a className="form-btn save-btn" onClick={() => dispatch(deleteSnippet(activeSnippet, snippets.snippets))}>
+            Delte
           </a>
         </div>
       </div>

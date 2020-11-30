@@ -10,6 +10,10 @@ class SnippetEvents {
   editSnippet(snippet) {
     return SnippetController.editSnippet(snippet);
   }
+  deleteSnippet(snippet) {
+    SnippetController.deleteSnippet(snippet)
+    // return SnippetController.getSnippets();
+  }
 }
 
 module.exports = SnippetEvents;
