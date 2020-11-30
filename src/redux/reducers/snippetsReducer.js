@@ -46,6 +46,7 @@ export function snippetReducer(state = {}, action) {
         activeSnippet: { ...action.payload.snippet, code: action.payload.code, active: true, isSaved: false },
       };
     case 'ADD':
+      console.log(action);
       return {
         ...state,
         snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false })), { ...action.payload }],
@@ -83,7 +84,7 @@ export function snippetReducer(state = {}, action) {
       console.log(action);
       return {
         ...state,
-        activeSnippet: { ...action.payload.snippets.filter((snip) => snip.id + 1 === action.payload.snippet)[0] },
+        activeSnippet: { ...action.payload.snippets.filter((snip) => snip.id !== action.payload.snippet.id)[0],  active: true},
         snippets: [
           ...state.snippets.filter((snippet) => {
             if (action.payload.snippet.id !== snippet.id) {

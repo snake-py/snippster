@@ -48,8 +48,9 @@ export const updateFramework = (snippet, framework, languages) => (dispatch) => 
 export const addSnippet = () => (dispatch) => {
   console.log('adding');
   ipcRenderer.invoke('addSnippet').then((res) => {
+    console.log(res);
     const snippet = {
-      ...res.snippet,
+      ...res,
       active: true,
       isSaved: true,
     };
