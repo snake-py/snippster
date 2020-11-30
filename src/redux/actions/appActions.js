@@ -20,8 +20,6 @@ export const getLanguages = () => (dispatch) => {
   });
 }
 
-
-
 export const makeAppReady = () => (dispatch) => {
   console.log('Making Ready');
   dispatch({ type: 'APP_READY', payload: '' });

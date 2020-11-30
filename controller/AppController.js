@@ -6,6 +6,7 @@ class AppController {
         SELECT 
         languages.id,
         languages.long AS language,
+        languages.short AS language_short,
         languages.icon AS languageIcon
         FROM languages
         ORDER BY languages.id;`);
