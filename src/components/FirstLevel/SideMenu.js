@@ -31,7 +31,7 @@ export default function SideMenu() {
         <ul className="side-menu">
           <li>
             <ReactSVG
-              onClick={(e) => dispatch(addSnippet())}
+              onClick={(e) => dispatch(addSnippet(appState.activeProject))}
               src={SvgPlus}
               beforeInjection={(svg) => {
                 svg.classList.add('side-menu-icon');

@@ -34,7 +34,10 @@ module.exports.frameworks = [
 
 ];
 
-module.exports.projects = [{ title: 'root', root: '/files', icon: '' }];
+module.exports.projects = [
+  { title: 'root', root: '/files', icon: '' },
+  { title: 'new', root: '/files/new', icon: '' }
+];
 
 // path lodic for files ~/rootPath/language/id
 
@@ -59,6 +62,17 @@ module.exports.snippets = [
   //   `,
   //   project_id: 1,
   //   language_id: 3,
+  //   framework_id: null,
+  // },
+  // {
+  //   title: 'Flask - NEW',
+  //   description: 'Example for new',
+  //   code: `
+  //   <h1>Das ist nummer 2 test</h1>
+  //   <div>in New</div>
+  //   `,
+  //   project_id: 2,
+  //   language_id: 1,
   //   framework_id: null,
   // },
 ];

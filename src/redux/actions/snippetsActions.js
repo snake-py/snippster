@@ -22,7 +22,8 @@ export const editCode = (snippet, code) => (dispatch) => {
 };
 
 export const setInitialSnippets = () => (dispatch) => {
-  ipcRenderer.invoke('getSnippets').then((res) => {
+  const activeProject = localStorage.getItem('lastActiveProject') ? localStorage.getItem('lastActiveProject') : 1;
+  ipcRenderer.invoke('getSnippets', activeProject).then((res) => {
     const initialSnippets = res.snippets.map((snippet, index) => {
       return index === 0 ? { ...snippet, active: true, isSaved: true } : { ...snippet, active: false, isSaved: true };
     });
@@ -44,9 +45,9 @@ export const updateFramework = (snippet, framework, languages) => (dispatch) => 
   dispatch({ type: 'UPDATE_FRAMEWORK', payload: snippet });
 };
 
-export const addSnippet = () => (dispatch) => {
-  console.log('adding');
-  ipcRenderer.invoke('addSnippet').then((res) => {
+export const addSnippet = (project) => (dispatch) => {
+  console.log(project);
+  ipcRenderer.invoke('addSnippet', project.id).then((res) => {
     console.log(res);
     const snippet = {
       ...res,
@@ -54,7 +55,7 @@ export const addSnippet = () => (dispatch) => {
       isSaved: true,
     };
     console.log(snippet);
-    dispatch({ type: 'ADD', payload: snippet });
+    dispatch({ type: 'ADD_SNIPPET', payload: snippet });
   });
 };
 

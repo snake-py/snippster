@@ -2,7 +2,8 @@ const fs = require('fs'); // reads json file
 const { db } = require('../db/migrate');
 
 class SnippetController {
-  async getSnippets() {
+  async getSnippets(project_id) {
+    console.log(project_id);
     const stmt = db.prepare(`
     SELECT 
     snippets.id,
@@ -16,9 +17,11 @@ class SnippetController {
     frameworks.id AS framework_id,
     frameworks.long AS framework,
     frameworks.icon AS frameworkIcon
-    FROM snippets 
+    FROM snippets
     LEFT JOIN languages ON snippets.language_id=languages.id 
-    LEFT JOIN frameworks ON snippets.framework_id=frameworks.id;`);
+    LEFT JOIN frameworks ON snippets.framework_id=frameworks.id
+    WHERE snippets.project_id=${project_id}
+    ;`);
     try {
       const snippets = stmt.all();
       return { snippets: snippets };
@@ -61,7 +64,7 @@ class SnippetController {
     return returnStmt.get();
   }
 
-  async addSnippet() {
+  async addSnippet(project_id) {
     console.log('add');
     const newSnippet = {
       title: '',
@@ -69,7 +72,7 @@ class SnippetController {
       code: '',
       language_id: null,
       framework_id: null,
-      project_id: 1,
+      project_id: project_id,
     };
 
     const stmt = db.prepare(`INSERT INTO snippets (

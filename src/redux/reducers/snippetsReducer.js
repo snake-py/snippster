@@ -43,7 +43,7 @@ export function snippetReducer(state = {}, action) {
         snippets: state.snippets.map((snippet) => (action.payload.snippet.id === snippet.id ? { ...snippet, code: action.payload.code, active: true, isSaved: false } : { ...snippet, active: false })),
         activeSnippet: { ...action.payload.snippet, code: action.payload.code, active: true, isSaved: false },
       };
-    case 'ADD':
+    case 'ADD_SNIPPET':
       return {
         ...state,
         snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false })), { ...action.payload }],

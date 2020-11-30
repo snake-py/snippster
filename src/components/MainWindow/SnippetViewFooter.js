@@ -65,7 +65,6 @@ export default function SnippetViewFooter() {
     }),
   };
 
-  console.log(activeSnippet);
   return (
     <>
       <div>

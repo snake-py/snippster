@@ -19,6 +19,13 @@ export function appReducer(state = { ready: false }, action) {
         activeProject: action.payload.filter((project) => project.active === true)[0],
       };
 
+    case 'SWITCH_PROJECT':
+      console.log(state.projects);
+      return {
+        ...state,
+        activeProject: {...action.payload},
+        projects:  [...state.projects.map((project) => (project.id === action.payload.id ? { ...project, active: true } : { ...project, active: false }))],
+      };
     default:
       return state;
   }
