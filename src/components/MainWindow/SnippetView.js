@@ -8,7 +8,7 @@ import SnippetViewFooter from './SnippetViewFooter';
 export default function SnippetView() {
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
   const dispatch = useDispatch();
-
+  
   return (
     <div className="window">
       <div className="current-snippet">

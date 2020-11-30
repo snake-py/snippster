@@ -6,6 +6,7 @@
     cursor: col-resize;
     width: 10px;
     background-color: $card-bg-color;
+    position: absolute;
 }
 
 .resizer:hover {
