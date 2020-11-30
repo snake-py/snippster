@@ -10,7 +10,6 @@ export default function SnippetViewFooter() {
   const dispatch = useDispatch();
 
   const [currentFrameworks, setcurrentFrameworks] = useState([]);
-  console.log(currentFrameworks[0]);
   useEffect(() => {
     const currentLang = appState.languages.filter((lang) => lang.language === activeSnippet.language)[0];
     if (currentLang) {

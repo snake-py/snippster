@@ -11,8 +11,6 @@ export default function SnippetCodeEditor() {
   const dispatch = useDispatch();
 
   const [currentMode, setcurrentMode] = useState('');
-  console.log(currentMode);
-
   useEffect(async () => {
     if (activeSnippet && activeSnippet.language) {
       await import(`ace-builds/src-noconflict/mode-${activeSnippet.language_short}`);

@@ -10,12 +10,9 @@ import { activateSnippet } from '../../redux/actions/snippetsActions.js';
 
 export default function Card(props) {
   const snippets = useSelector(state => state.snippets)
-  const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
-
   const [langaugeIcon, setLangaugeIcon] = useState('');
   const [frameworkIcon, setFrameworkIcon] = useState('');
   useEffect(async () => {
-    console.log('card useeffect');
     if (props.snippet.frameworkIcon) {
       let frameworkIcon = await import(`../../static/${props.snippet.frameworkIcon}`);
       setFrameworkIcon(frameworkIcon.default);

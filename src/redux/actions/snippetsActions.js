@@ -31,7 +31,6 @@ export const setInitialSnippets = () => (dispatch) => {
 };
 
 export const updateLanguage = (snippet, language, languages) => (dispatch) => {
-  console.log(language);
   const newLanguage = languages.filter((lan) => lan.language === language)[0];
   console.log(newLanguage.id);
   snippet = { ...snippet, language: language, language_short: newLanguage.language_short, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon, framework: '', frameworkIcon: '', framework_id: null, isSaved: false };
@@ -70,8 +69,7 @@ export const saveSnippet = (snippet) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const deleteSnippet = (snippet, snippets) => (dispatch) => {
-  console.log(snippet);
+export const deleteSnippet = (snippet) => (dispatch) => {
   ipcRenderer
     .invoke('deleteSnippet', snippet)
     .then((res) => {
