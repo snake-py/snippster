@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { getProjects } from '../../redux/actions/appActions.js';
+import { openQueryView } from '../../redux/actions/appActions.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { addSnippet } from '../../redux/actions/snippetsActions.js';
+import { addSnippet  } from '../../redux/actions/snippetsActions.js';
 
 import { ReactSVG } from 'react-svg';
 import Project from '../SideMenu/Project';
 import Market from '../SideMenu/Market';
 import SvgPlus from '../../static/icons/menu/plus.svg';
+import SvgSearch from '../../static/icons/menu/search.svg';
 import '../../static/scss/_sideMenu.scss';
 
 export default function SideMenu() {
@@ -17,13 +18,25 @@ export default function SideMenu() {
     <div className="side-menu-wrapper">
       <div className="top-list">
         <ul className="side-menu">
+          <li>
+            <ReactSVG
+              onClick={(e) => dispatch(openQueryView())}
+              src={SvgSearch}
+              beforeInjection={(svg) => {
+                {
+                  appState.queriedView ? svg.classList.add('side-menu-icon', 'active') : svg.classList.add('side-menu-icon');
+                }
+                svg.classList.add('side-menu-icon');
+              }}
+            />
+          </li>
 
           {appState.projects
             ? appState.projects.map((project) => {
-                return <Project project={project} key={project.id}/>;
+                return <Project project={project} key={project.id} />;
               })
             : ''}
-          
+
           <Market />
         </ul>
       </div>

@@ -8,18 +8,19 @@ import '../../static/scss/_mainWindow.scss';
 
 export default function MainWindow() {
   const snippets = useSelector((state) => state.snippets);
+  const appState = useSelector((state) => state.app);
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
 
   return (
     <div className="main-window-wrapper">
       <ResizePanel direction="e">
-        <SnippetResults snippets={snippets.snippets} />
+        <SnippetResults snippets={appState.queriedView ? snippets.queriedSnippets  : snippets.snippets} />
       </ResizePanel>
 
-        {activeSnippet ? <SnippetView snippet={activeSnippet} /> : ''}
+        {activeSnippet ? <SnippetView snippet={activeSnippet} /> : <></>}
 
       <ResizePanel direction="w">
-        <SnippetCodeEditor snippet={activeSnippet} />
+        {activeSnippet ? <SnippetCodeEditor snippet={activeSnippet} /> : <></>}
       </ResizePanel>
     </div>
   );

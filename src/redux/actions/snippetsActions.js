@@ -1,12 +1,17 @@
 const { ipcRenderer } = window.require('electron');
 
-export const activateSnippet = (snippet) => {
-  console.log('activate');
-  console.log(snippet);
-  return {
+export const activateSnippet = (snippet) => (dispatch) => {
+  dispatch({
     type: 'ACTIVATE',
     payload: snippet,
-  };
+  });
+};
+
+export const activateSnippetQuerieList = (snippet) => (dispatch) => {
+  dispatch({
+    type: 'ACTIVATE_IN_QUERIED_STATE',
+    payload: snippet,
+  });
 };
 
 export const editTitle = (snippet, title) => (dispatch) => {
@@ -34,7 +39,17 @@ export const setInitialSnippets = () => (dispatch) => {
 export const updateLanguage = (snippet, language, languages) => (dispatch) => {
   const newLanguage = languages.filter((lan) => lan.language === language)[0];
   console.log(newLanguage.id);
-  snippet = { ...snippet, language: language, language_short: newLanguage.language_short, language_id: newLanguage.id, languageIcon: newLanguage.languageIcon, framework: '', frameworkIcon: '', framework_id: null, isSaved: false };
+  snippet = {
+    ...snippet,
+    language: language,
+    language_short: newLanguage.language_short,
+    language_id: newLanguage.id,
+    languageIcon: newLanguage.languageIcon,
+    framework: '',
+    frameworkIcon: '',
+    framework_id: null,
+    isSaved: false,
+  };
   dispatch({ type: 'UPDATE_LANGUAGE', payload: snippet });
 };
 

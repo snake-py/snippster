@@ -31,30 +31,33 @@ export const switchProject = (project) => (dispatch) => {
     const snippets = res.snippets.map((snippet, index) => {
       return index === 0 ? { ...snippet, active: true, isSaved: true } : { ...snippet, active: false, isSaved: true };
     });
-    dispatch({ type: 'INITIAL', payload: snippets });
+    dispatch({ type: 'SWITCH_PROJECT_SNIPPETS', payload: snippets });
     dispatch({ type: 'SWITCH_PROJECT', payload: project });
-
-    console.log(snippets);
   });
 };
 
-
 export const querySnippet = (query, project) => (dispatch) => {
+  dispatch({type: 'QUERY_SNIPPET', payload: query})
   const data = {
     query: query,
-    project: project
-  }
+    project: project,
+  };
+  console.log(data);
   console.log(query);
   ipcRenderer.invoke('filterSnippets', data).then((res) => {
     const snippets = res.snippets.map((snippet, index) => {
       return index === 0 ? { ...snippet, active: true, isSaved: true } : { ...snippet, active: false, isSaved: true };
     });
-    dispatch({ type: 'QUERY_SNIPPET', payload: query });
-    console.log(snippets);
+    if (query.slice(0, 2) === '/g') {
+      dispatch({type: 'OPEN_QUERY_VIEW', payload: ''})
+      dispatch({ type: 'QUERY_SNIPPET_GLOBAL', payload: snippets });
+    } else {
+      dispatch({ type: 'QUERY_SNIPPET_IN_PROJECT', payload: snippets }); 
+    }
   });
 };
 
-
-
-
-
+export const openQueryView = () => (dispatch) =>{
+  dispatch({type: 'OPEN_QUERY_VIEW', payload: ''})
+  dispatch({type: 'DEACTIVATE_CURRENT_ACTIVE_SNIPPET', payload: ''})
+}

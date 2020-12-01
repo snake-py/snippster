@@ -15,11 +15,15 @@ class SnippetEvents {
     // return SnippetController.getSnippets();
   }
   filterSnippets(data) {
-    queryArray = data.query.split(' ');
-    if (queryArray[0] === 'g') {
-      return SnippetController.filterSnippetGlobal(query);
+    const command = data.query.slice(0, 2);
+    console.log(data.query.slice(3));
+    console.log(command);
+    if (command === '/g') {
+      console.log('run global');
+      console.log(data.query.slice(3));
+      return SnippetController.filterSnippetsGlobal(data.query.slice(3));
     }
-    return SnippetController.filterSnippet(query, data.project.id);
+    return SnippetController.filterSnippets(data.query, data.project.id);
   }
 }
 

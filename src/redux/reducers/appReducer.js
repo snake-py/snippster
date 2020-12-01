@@ -5,6 +5,7 @@ export function appReducer(state = { ready: false }, action) {
       return {
         ...state,
         query: '',
+        queriedView: false,
         ready: true,
       };
     case 'GET_LANGUAGES':
@@ -24,15 +25,22 @@ export function appReducer(state = { ready: false }, action) {
       console.log(state.projects);
       return {
         ...state,
-        activeProject: {...action.payload},
-        projects:  [...state.projects.map((project) => (project.id === action.payload.id ? { ...project, active: true } : { ...project, active: false }))],
+        queriedView: false,
+        activeProject: { ...action.payload },
+        projects: [...state.projects.map((project) => (project.id === action.payload.id ? { ...project, active: true } : { ...project, active: false }))],
       };
-      case 'QUERY_SNIPPET':
-        console.log(state.projects);
-        return {
-          ...state,
-          query: action.payload
-        };
+    case 'QUERY_SNIPPET':
+      return {
+        ...state,
+        query: action.payload,
+      };
+    case 'OPEN_QUERY_VIEW':
+      return {
+        ...state,
+        activeProject: {},
+        projects: [...state.projects.map((project) => ({ ...project, active: false }))],
+        queriedView: true,
+      };
     default:
       return state;
   }

@@ -7,6 +7,7 @@ class SnippetController {
     const stmt = db.prepare(`
     SELECT 
     snippets.id,
+    snippets.project_id,
     snippets.title,
     snippets.description,
     snippets.code,
@@ -47,6 +48,7 @@ class SnippetController {
     const returnStmt = db.prepare(`
     SELECT
     snippets.id,
+    snippets.project_id,
     snippets.title,
     snippets.description,
     snippets.code,
@@ -108,9 +110,12 @@ class SnippetController {
 
     async filterSnippets(query, project_id) {
       console.log(project_id);
+      console.log(query);
+
       const stmt = db.prepare(`
       SELECT 
       snippets.id,
+      snippets.project_id,
       snippets.title,
       snippets.description,
       snippets.code,
@@ -125,7 +130,9 @@ class SnippetController {
       LEFT JOIN languages ON snippets.language_id=languages.id 
       LEFT JOIN frameworks ON snippets.framework_id=frameworks.id
       WHERE snippets.project_id=${project_id}
-      ;`);
+      AND snippets.title LIKE '${query}%'
+      OR snippets.title LIKE '%${query}';
+      `);
       try {
         const snippets = stmt.all();
         return { snippets: snippets };
@@ -135,6 +142,35 @@ class SnippetController {
     }
 
 
+    async filterSnippetsGlobal(query) {
+      console.log(query);
+      const stmt = db.prepare(`
+      SELECT 
+      snippets.id,
+      snippets.project_id,
+      snippets.title,
+      snippets.description,
+      snippets.code,
+      languages.id AS language_id,
+      languages.long AS language,
+      languages.short AS language_short,
+      languages.icon AS languageIcon,
+      frameworks.id AS framework_id,
+      frameworks.long AS framework,
+      frameworks.icon AS frameworkIcon
+      FROM snippets
+      LEFT JOIN languages ON snippets.language_id=languages.id 
+      LEFT JOIN frameworks ON snippets.framework_id=frameworks.id
+      WHERE snippets.title LIKE '${query}%'
+      OR snippets.title LIKE '%${query}';
+      `);
+      try {
+        const snippets = stmt.all();
+        return { snippets: snippets };
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
 
 

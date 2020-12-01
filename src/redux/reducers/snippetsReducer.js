@@ -6,6 +6,7 @@ export function snippetReducer(state = {}, action) {
         ...state,
         snippets: [...action.payload],
         activeSnippet: action.payload.filter((snippet) => snippet.active === true)[0],
+        queriedSnippets: [],
       };
     case 'ACTIVATE':
       return {
@@ -13,6 +14,12 @@ export function snippetReducer(state = {}, action) {
         snippets: state.snippets.map((snippet) => (action.payload.id === snippet.id ? { ...snippet, active: true } : { ...snippet, active: false })),
         activeSnippet: { ...action.payload, active: true },
       };
+      case 'ACTIVATE_IN_QUERIED_STATE':
+        return {
+          ...state,
+          queriedSnippets: state.queriedSnippets.map((snippet) => (action.payload.id === snippet.id ? { ...snippet, active: true } : { ...snippet, active: false })),
+          activeSnippet: { ...action.payload, active: true },
+        };  
     case 'UPDATE':
       return {
         ...state,
@@ -105,6 +112,32 @@ export function snippetReducer(state = {}, action) {
           }),
         ],
       };
+    case 'QUERY_SNIPPET_IN_PROJECT':
+      return {
+        ...state,
+        activeSnippet: { ...action.payload.filter((snippet) => snippet.actie === true)[0] },
+        snippets: [...action.payload],
+        queriedSnippets: [...action.payload],
+      };
+    case 'QUERY_SNIPPET_GLOBAL':
+      return {
+        ...state,
+        activeSnippet: { ...action.payload.filter((snippet) => snippet.active === true)[0] },
+        queriedSnippets: [...action.payload],
+      };
+    case 'SWITCH_PROJECT_SNIPPETS':
+      return {
+        ...state,
+        snippets: [...action.payload],
+        activeSnippet: action.payload.filter((snippet) => snippet.active === true)[0],
+      };
+    case 'DEACTIVATE_CURRENT_ACTIVE_SNIPPET':
+      return {
+        ...state,
+        snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false }))],
+        activeSnippet: false,
+      };
+
     default:
       return state;
   }

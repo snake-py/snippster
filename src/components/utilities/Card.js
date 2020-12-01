@@ -6,10 +6,11 @@ import SvgReact from '../../static/icons/frameworks/react.svg';
 import SvgJs from '../../static/icons/languages/js.svg';
 import SvgImages from '../../static/icons/utility/images.svg';
 
-import { activateSnippet } from '../../redux/actions/snippetsActions.js';
+import { activateSnippet, activateSnippetQuerieList } from '../../redux/actions/snippetsActions.js';
 
 export default function Card(props) {
-  const snippets = useSelector(state => state.snippets)
+  const appState = useSelector((state) => state.app);
+  const snippets = useSelector((state) => state.snippets);
   const [langaugeIcon, setLangaugeIcon] = useState('');
   const [frameworkIcon, setFrameworkIcon] = useState('');
   useEffect(async () => {
@@ -23,14 +24,17 @@ export default function Card(props) {
       let languageIcon = await import(`../../static/${props.snippet.languageIcon}`);
       setLangaugeIcon(languageIcon.default);
     } else {
-      setLangaugeIcon('')
+      setLangaugeIcon('');
     }
   }, [snippets, langaugeIcon, frameworkIcon, props]);
 
   const dispatch = useDispatch();
   return (
     <div className="card-wrapper">
-      <div onClick={() => dispatch(activateSnippet(props.snippet))} className={`card ${props.snippet.active ? 'card-active' : ''} ${props.snippet.isSaved ? '' : 'unsaved'}`}>
+      <div
+        onClick={appState.queriedView ? () => dispatch(activateSnippetQuerieList(props.snippet)) : () => dispatch(activateSnippet(props.snippet))}
+        className={`card ${props.snippet.active ? 'card-active' : ''} ${props.snippet.isSaved ? '' : 'unsaved'}`}
+      >
         <div className="card-head">
           <h2 className="card-title">{props.snippet.title}</h2>
         </div>

@@ -9,9 +9,8 @@ export default function SnippetQuerier() {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      console.log(searchTerm);
       if (searchTerm != '') {
-        dispatch(querySnippet(searchTerm, appState.project));
+        dispatch(querySnippet(searchTerm, appState.activeProject));
       }
     }, 3000);
     return () => clearTimeout(delayDebounceFn);
