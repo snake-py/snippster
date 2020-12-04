@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { saveSnippet, deleteSnippet } from '../../redux/actions/snippetsActions.js';
-import { updateLanguage, updateFramework } from '../../redux/actions/snippetsActions.js';
+import { saveSnippet, deleteSnippet } from '../../../../redux/actions/snippetsActions.js';
+import { updateLanguage, updateFramework } from '../../../../redux/actions/snippetsActions.js';
 import Select from 'react-select';
 
 export default function SnippetViewFooter() {

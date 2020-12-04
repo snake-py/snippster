@@ -1,10 +1,10 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import SvgCode from '../../static/icons/menu/code.svg';
-import { switchProject } from '../../redux/actions/appActions';
+import SvgCode from '../../../static/icons/menu/code.svg';
+import { switchProject } from '../../../redux/actions/appActions';
 import { useSelector, useDispatch } from 'react-redux';
 
-export default function Project(props) {
+export default function ProjectIcon(props) {
   const dispatch = useDispatch();
   
   return (

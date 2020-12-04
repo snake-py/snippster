@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import '../../static/scss/_editor.scss';
-import AceEditor from 'react-ace';
-import 'ace-builds/src-noconflict/mode-javascript';
-import 'ace-builds/src-noconflict/theme-monokai';
-import { editCode } from '../../redux/actions/snippetsActions.js';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { editCode } from '../../../redux/actions/snippetsActions.js';
+
+import AceEditor from 'react-ace';
+import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/mode-javascript'; // Bug if not imported ?
 
 export default function SnippetCodeEditor() {
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);

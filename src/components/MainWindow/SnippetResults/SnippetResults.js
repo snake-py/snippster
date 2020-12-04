@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Card from '../utilities/Card';
-import SnippetQuerier from './SnippetQuerier'
+import Card from '../../Card';
+import SnippetQuerier from '../SnippetQuerier'
 
 export default function SnippetResults(props) {
 

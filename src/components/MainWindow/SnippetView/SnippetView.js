@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { editTitle, editDescription } from '../../redux/actions/snippetsActions.js';
+import { editTitle, editDescription } from '../../../redux/actions/snippetsActions.js';
 import TextareaAutosize from 'react-textarea-autosize';
 import SnippetViewFooter from './SnippetViewFooter';
 

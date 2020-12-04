@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import '../../static/scss/_card.scss';
 import { ReactSVG } from 'react-svg';
-import SvgReact from '../../static/icons/frameworks/react.svg';
-import SvgJs from '../../static/icons/languages/js.svg';
-import SvgImages from '../../static/icons/utility/images.svg';
-
 import { activateSnippet, activateSnippetQuerieList } from '../../redux/actions/snippetsActions.js';
 
 export default function Card(props) {
@@ -42,19 +37,18 @@ export default function Card(props) {
           <p>{props.snippet.description.substring(0, 50)}</p>
         </div>
         <div className="card-foot">
-          <div className="left-foot">
-            {/* <div className="imgCounter">6</div>
+          {/* <div className="left-foot">
+            <div className="imgCounter">6</div>
             <ReactSVG
               src={SvgImages}
               beforeInjection={(svg) => {
                 svg.classList.add('card-icon');
               }}
-            /> */}
-          </div>
+            /> 
+          </div> */}
           <div className="right-foot">
             <ReactSVG
               src={langaugeIcon}
-              // src={require(`../../static/${props.snippet.languageIcon}`)}
               beforeInjection={(svg) => {
                 svg.classList.add('card-icon');
               }}

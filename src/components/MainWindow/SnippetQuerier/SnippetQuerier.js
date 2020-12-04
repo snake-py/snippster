@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { querySnippet } from '../../redux/actions/appActions';
+import { querySnippet } from '../../../redux/actions/appActions';
 
 export default function SnippetQuerier() {
   const [searchTerm, setSearchTerm] = useState('');

@@ -1,4 +1,4 @@
-@import './_variables.scss';
+@import './variables.scss';
 
 * {
   margin: 0px;
@@ -54,8 +54,9 @@
   outline: none;
 }
 
-@import './_card.scss';
-@import './_editor.scss';
-@import './_mainWindow.scss';
-@import './_resizer.scss';
-@import './_snippetView.scss';
+@import './card.scss';
+@import './sideMenu.scss';
+@import './editor.scss';
+@import './mainWindow.scss';
+@import './resizer.scss';
+@import './snippetView.scss';

@@ -6,7 +6,7 @@ import { setInitialSnippets } from './redux/actions/snippetsActions.js';
 import { getProjects, makeAppReady, getLanguages } from './redux/actions/appActions.js';
 
 // Import components
-import LoadedApp from './components/LoadedApp'
+import LoadedApp from './components/AppTypes/LoadedApp'
 
 
 function App() {

@@ -1,6 +1,6 @@
 import React from 'react';
-import MainWindow from './FirstLevel/MainWindow';
-import SideMenu from './FirstLevel/SideMenu';
+import MainWindow from '../../MainWindow';
+import SideMenu from '../../SideMenu';
 
 export default function LoadedApp() {
   return (
