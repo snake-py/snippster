@@ -9,13 +9,13 @@ const AppEvents = require('../events/AppEvents');
 const {migrate} = require('../db/migrate')
 
 
-migrate()
+// migrate()
 
 
 
-try {
-  require('electron-reloader')(module);
-} catch (_) {}
+// try {
+//   require('electron-reloader')(module);
+// } catch (_) {}
 
 
 let mainWindow;

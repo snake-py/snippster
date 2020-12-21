@@ -24,6 +24,10 @@ export default function Card(props) {
   }, [snippets, langaugeIcon, frameworkIcon, props]);
 
   const dispatch = useDispatch();
+  
+  if (!props.snippet){
+    return null
+  }
   return (
     <div className="card-wrapper">
       <div
