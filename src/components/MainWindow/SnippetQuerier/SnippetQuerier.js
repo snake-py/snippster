@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { querySnippet } from '../../../redux/actions/appActions';
+import { querySnippet, resetQuery } from '../../../redux/actions/appActions';
 
 export default function SnippetQuerier() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,10 +9,12 @@ export default function SnippetQuerier() {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (searchTerm != '') {
+      if (searchTerm == '' && appState.query != '') {
+        dispatch(resetQuery(appState.activeProject));
+      } else if (searchTerm != '' && appState.query != searchTerm) {
         dispatch(querySnippet(searchTerm, appState.activeProject));
       }
-    }, 3000);
+    }, 500);
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
 

@@ -41,6 +41,13 @@ export function appReducer(state = { ready: false }, action) {
         projects: [...state.projects.map((project) => ({ ...project, active: false }))],
         queriedView: true,
       };
+    case 'RESET_QUERY':
+      console.log(state);
+      return {
+        ...state,
+        query: ''
+      };
+
     default:
       return state;
   }

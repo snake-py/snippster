@@ -14,12 +14,12 @@ export function snippetReducer(state = {}, action) {
         snippets: state.snippets.map((snippet) => (action.payload.id === snippet.id ? { ...snippet, active: true } : { ...snippet, active: false })),
         activeSnippet: { ...action.payload, active: true },
       };
-      case 'ACTIVATE_IN_QUERIED_STATE':
-        return {
-          ...state,
-          queriedSnippets: state.queriedSnippets.map((snippet) => (action.payload.id === snippet.id ? { ...snippet, active: true } : { ...snippet, active: false })),
-          activeSnippet: { ...action.payload, active: true },
-        };  
+    case 'ACTIVATE_IN_QUERIED_STATE':
+      return {
+        ...state,
+        queriedSnippets: state.queriedSnippets.map((snippet) => (action.payload.id === snippet.id ? { ...snippet, active: true } : { ...snippet, active: false })),
+        activeSnippet: { ...action.payload, active: true },
+      };
     case 'UPDATE':
       return {
         ...state,
@@ -137,7 +137,13 @@ export function snippetReducer(state = {}, action) {
         snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false }))],
         activeSnippet: false,
       };
-
+    case 'REMOVE_QUERIED_SNIPPET':
+      console.log(state);
+      return {
+        ...state,
+        queriedSnippets: '',
+        'snippets': ''
+      };
     default:
       return state;
   }

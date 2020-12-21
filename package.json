@@ -31,6 +31,7 @@
   },
   "scripts": {
     "test": "react-scripts test",
+    "test-spectron": "mocha --watch",
     "react-start": "react-scripts start",
     "rebuild": "electron-rebuild -f -w better-sqlit3",
     "postinstall": "electron-builder install-app-deps",
@@ -64,6 +65,8 @@
     "@babel/preset-react": "^7.12.7",
     "electron-rebuild": "^2.3.2",
     "electron-reloader": "^1.0.1",
-    "redux-mock-store": "^1.5.4"
+    "mocha": "^8.2.1",
+    "redux-mock-store": "^1.5.4",
+    "spectron": "^12.0.0"
   }
 }
