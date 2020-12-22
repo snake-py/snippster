@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { openQueryView, addProject } from '../../redux/actions/appActions.js';
+import { openQueryViewOnClick, addProject } from '../../redux/actions/appActions.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { addSnippet  } from '../../redux/actions/snippetsActions.js';
 
@@ -19,7 +19,7 @@ export default function SideMenu() {
         <ul className="side-menu">
           <li>
             <ReactSVG
-              onClick={(e) => dispatch(openQueryView())}
+              onClick={(e) => dispatch(openQueryViewOnClick())}
               src={SvgSearch}
               beforeInjection={(svg) => {
                 {

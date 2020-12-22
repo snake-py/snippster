@@ -1,27 +1,40 @@
+import { 
+  appReducerAppReady,
+  appReducerGetLang,
+  appReducerInitialProjects,
+  appReducerSwitchProject,
+  appReducerQuerySnippet,
+  appReducerOpenQueryView
+     } from './../_actions';
+
 export function appReducer(state = { ready: false }, action) {
   console.log(action);
   switch (action.type) {
-    case 'APP_READY':
+    case appReducerAppReady:
       return {
         ...state,
         query: '',
         queriedView: false,
         ready: true,
       };
-    case 'GET_LANGUAGES':
+    case appReducerGetLang:
+      console.log(`reducer gets projects ${action}`);
+      console.log(state)
       return {
         ...state,
         languages: [...action.payload],
       };
 
-    case 'INITIAL_PROJECTS':
+    case appReducerInitialProjects:
+      console.log(`reducer gets projects ${action}`);
+
       return {
         ...state,
         projects: [...action.payload],
         activeProject: action.payload.filter((project) => project.active === true)[0],
       };
 
-    case 'SWITCH_PROJECT':
+    case appReducerSwitchProject:
       console.log(state.projects);
       return {
         ...state,
@@ -29,12 +42,12 @@ export function appReducer(state = { ready: false }, action) {
         activeProject: { ...action.payload },
         projects: [...state.projects.map((project) => (project.id === action.payload.id ? { ...project, active: true } : { ...project, active: false }))],
       };
-    case 'QUERY_SNIPPET':
+    case appReducerQuerySnippet:
       return {
         ...state,
         query: action.payload,
       };
-    case 'OPEN_QUERY_VIEW':
+    case appReducerOpenQueryView:
       return {
         ...state,
         activeProject: {},
@@ -45,13 +58,13 @@ export function appReducer(state = { ready: false }, action) {
       console.log(state);
       return {
         ...state,
-        query: ''
+        query: '',
       };
-      case 'addProjectMain':
-        return {
-          ...state,
-          test: action.payload
-        }
+    case 'addProjectMain':
+      return {
+        ...state,
+        test: action.payload,
+      };
 
     default:
       return state;

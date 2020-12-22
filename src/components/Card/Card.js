@@ -31,7 +31,7 @@ export default function Card(props) {
   return (
     <div className="card-wrapper">
       <div
-        onClick={appState.queriedView ? () => dispatch(activateSnippetQuerieList(props.snippet)) : () => dispatch(activateSnippet(props.snippet))}
+        onClick={() => dispatch(activateSnippet(props.snippet))}
         className={`card ${props.snippet.active ? 'card-active' : ''} ${props.snippet.isSaved ? '' : 'unsaved'}`}
       >
         <div className="card-head">

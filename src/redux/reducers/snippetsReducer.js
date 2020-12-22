@@ -1,26 +1,40 @@
+import {
+  snippetsReducerInitialSnippets,
+  snippetsReducerActivate,
+  snippetsReducerActivateSnippetQueriedState,
+  snippetsReducerUpdate,
+  snippetsReducerEditTitle,
+  snippetsReducerEditCode,
+  snippetsReducerEditDescription,
+  snippetsReducerAddSnippet,
+  snippetsReducerDeleteSnippet,
+  snippetsReducerQueryProject,
+  snippetsReducerProjectSwitch,
+  snippetsReducerQueryGlobal,
+} from './../_actions';
+
 export function snippetReducer(state = {}, action) {
   console.log(action);
   switch (action.type) {
-    case 'INITIAL':
+    case snippetsReducerInitialSnippets:
       return {
         ...state,
         snippets: [...action.payload],
         activeSnippet: action.payload.filter((snippet) => snippet.active === true)[0],
-        queriedSnippets: [],
       };
-    case 'ACTIVATE':
+    case snippetsReducerActivate:
       return {
         ...state,
         snippets: state.snippets.map((snippet) => (action.payload.id === snippet.id ? { ...snippet, active: true } : { ...snippet, active: false })),
         activeSnippet: { ...action.payload, active: true },
       };
-    case 'ACTIVATE_IN_QUERIED_STATE':
+    case snippetsReducerActivateSnippetQueriedState:
       return {
         ...state,
         queriedSnippets: state.queriedSnippets.map((snippet) => (action.payload.id === snippet.id ? { ...snippet, active: true } : { ...snippet, active: false })),
         activeSnippet: { ...action.payload, active: true },
       };
-    case 'UPDATE':
+    case snippetsReducerUpdate:
       return {
         ...state,
         snippets: state.snippets.map((snippet) =>
@@ -28,7 +42,8 @@ export function snippetReducer(state = {}, action) {
         ),
         activeSnippet: { ...action.payload, active: true, isSaved: true },
       };
-    case 'EDIT_TITLE':
+
+    case snippetsReducerEditTitle:
       return {
         ...state,
         snippets: state.snippets.map((snippet) =>
@@ -36,7 +51,8 @@ export function snippetReducer(state = {}, action) {
         ),
         activeSnippet: { ...action.payload.snippet, title: action.payload.title, active: true, isSaved: false },
       };
-    case 'EDIT_DESCRIPTION':
+
+    case snippetsReducerEditDescription:
       return {
         ...state,
         snippets: state.snippets.map((snippet) =>
@@ -44,17 +60,11 @@ export function snippetReducer(state = {}, action) {
         ),
         activeSnippet: { ...action.payload.snippet, description: action.payload.description, active: true, isSaved: false },
       };
-    case 'EDIT_CODE':
+    case snippetsReducerEditCode:
       return {
         ...state,
         snippets: state.snippets.map((snippet) => (action.payload.snippet.id === snippet.id ? { ...snippet, code: action.payload.code, active: true, isSaved: false } : { ...snippet, active: false })),
         activeSnippet: { ...action.payload.snippet, code: action.payload.code, active: true, isSaved: false },
-      };
-    case 'ADD_SNIPPET':
-      return {
-        ...state,
-        snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false })), { ...action.payload }],
-        activeSnippet: { ...action.payload },
       };
     case 'UPDATE_LANGUAGE':
       return {
@@ -84,7 +94,13 @@ export function snippetReducer(state = {}, action) {
           }),
         ],
       };
-    case 'DELETE_SNIPPET':
+    case snippetsReducerAddSnippet:
+      return {
+        ...state,
+        snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false })), { ...action.payload }],
+        activeSnippet: { ...action.payload },
+      };
+    case snippetsReducerDeleteSnippet:
       console.log(action);
       let index = 0;
       for (let i = 0; i < state.snippets.length; i++) {
@@ -112,38 +128,40 @@ export function snippetReducer(state = {}, action) {
           }),
         ],
       };
-    case 'QUERY_SNIPPET_IN_PROJECT':
-      return {
-        ...state,
-        activeSnippet: { ...action.payload.filter((snippet) => snippet.actie === true)[0] },
-        snippets: [...action.payload],
-        queriedSnippets: [...action.payload],
-      };
-    case 'QUERY_SNIPPET_GLOBAL':
-      return {
-        ...state,
-        activeSnippet: { ...action.payload.filter((snippet) => snippet.active === true)[0] },
-        queriedSnippets: [...action.payload],
-      };
-    case 'SWITCH_PROJECT_SNIPPETS':
+    case snippetsReducerProjectSwitch:
       return {
         ...state,
         snippets: [...action.payload],
         activeSnippet: action.payload.filter((snippet) => snippet.active === true)[0],
       };
-    case 'DEACTIVATE_CURRENT_ACTIVE_SNIPPET':
+    case snippetsReducerQueryProject:
       return {
         ...state,
-        snippets: [...state.snippets.map((snippet) => ({ ...snippet, active: false }))],
-        activeSnippet: false,
+        activeSnippet: { ...action.payload.filter((snippet) => snippet.active === true)[0] },
+        snippets: [...action.payload],
+        // queriedSnippets: [...action.payload],
       };
+    case snippetsReducerQueryGlobal:
+      return {
+        ...state,
+        activeSnippet: { ...action.payload.filter((snippet) => snippet.active === true)[0] },
+        snippets: [...action.payload],
+      };
+
     case 'REMOVE_QUERIED_SNIPPET':
       console.log(state);
       return {
         ...state,
-        queriedSnippets: '',
-        'snippets': ''
+        snippets: [],
+        activeSnippet: false,
       };
+      case 'QUERY_RETURNED_NULL':
+        console.log(state);
+        return {
+          ...state,
+          snippets: [],
+          activeSnippet: false,
+        };
     default:
       return state;
   }

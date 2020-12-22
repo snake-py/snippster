@@ -8,16 +8,15 @@ import ResizePanel from 'react-resize-panel';
 
 export default function MainWindow() {
   const snippets = useSelector((state) => state.snippets);
-  const appState = useSelector((state) => state.app);
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
 
-  return (
-    <div className="main-window-wrapper">
+  
+    return (
+      <div className="main-window-wrapper">
+        <SnippetResults snippets={snippets.snippets} />
+        {activeSnippet ? <SnippetView snippet={activeSnippet} /> : <></>}
+        {activeSnippet ? <SnippetCodeEditor snippet={activeSnippet} /> : <></>}
+      </div>
+    );
+  }
 
-      <SnippetResults snippets={appState.queriedView ? snippets.queriedSnippets : snippets.snippets} />
-
-      {activeSnippet ? <SnippetView snippet={activeSnippet} /> : <></>}
-      {activeSnippet ? <SnippetCodeEditor snippet={activeSnippet} /> : <></>}
-    </div>
-  );
-}
