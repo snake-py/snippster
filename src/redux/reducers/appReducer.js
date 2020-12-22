@@ -47,6 +47,11 @@ export function appReducer(state = { ready: false }, action) {
         ...state,
         query: ''
       };
+      case 'addProjectMain':
+        return {
+          ...state,
+          test: action.payload
+        }
 
     default:
       return state;

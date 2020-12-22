@@ -9,11 +9,11 @@ export default function SnippetViewFooter() {
   const appState = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
-  const [currentFrameworks, setcurrentFrameworks] = useState([]);
+  const [currentFrameworks, setCurrentFrameworks] = useState([]);
   useEffect(() => {
     const currentLang = appState.languages.filter((lang) => lang.language === activeSnippet.language)[0];
     if (currentLang) {
-      setcurrentFrameworks(currentLang.framework);
+      setCurrentFrameworks(currentLang.framework);
     }
   });
 
@@ -98,7 +98,7 @@ export default function SnippetViewFooter() {
             Save
           </a>
           <a className="form-btn save-btn" onClick={() => dispatch(deleteSnippet(activeSnippet))}>
-            Delte
+            Delete
           </a>
         </div>
       </div>

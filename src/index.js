@@ -4,6 +4,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import './static/scss/index.scss'
 import store from './createStore'
+import ipcListners from './ipcListeners'
 
 
 

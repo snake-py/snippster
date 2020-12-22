@@ -84,3 +84,11 @@ export const resetQuery = (activeProject) => (dispatch) => {
     dispatch({ type: 'REMOVE_QUERIED_SNIPPET', payload: '' });
   }
 };
+
+export const addProject = () => (dispatch) => {
+  console.log('adding project');
+  ipcRenderer.invoke('addProject').then(res => {
+    console.log(res);
+  })
+}
+
