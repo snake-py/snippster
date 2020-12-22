@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { openQueryViewOnClick, addProject } from '../../redux/actions/appActions.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { addSnippet  } from '../../redux/actions/snippetsActions.js';
+import { addSnippet } from '../../redux/actions/snippetsActions.js';
 
 import { ReactSVG } from 'react-svg';
 import Project from './ProjectIcon';
@@ -41,24 +41,19 @@ export default function SideMenu() {
       </div>
       <div className="bottom-list">
         <ul className="side-menu">
-        <li>
-            <ReactSVG
-              onClick={(e) => dispatch(addProject())}
-              src={SvgPlus}
-              beforeInjection={(svg) => {
-                svg.classList.add('side-menu-icon');
-              }}
-            />
-          </li>
-          <li>
-            <ReactSVG
-              onClick={(e) => dispatch(addSnippet(appState.activeProject))}
-              src={SvgPlus}
-              beforeInjection={(svg) => {
-                svg.classList.add('side-menu-icon');
-              }}
-            />
-          </li>
+          {appState.queriedView ? (
+            <></>
+          ) : (
+            <li>
+              <ReactSVG
+                onClick={(e) => dispatch(addSnippet(appState.activeProject))}
+                src={SvgPlus}
+                beforeInjection={(svg) => {
+                  svg.classList.add('side-menu-icon');
+                }}
+              />
+            </li>
+          )}
         </ul>
       </div>
     </div>
