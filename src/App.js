@@ -1,9 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-// Import Actions
-import { setInitialSnippets } from './redux/actions/snippetsActions.js';
-import { getProjects, makeAppReady, getLanguages } from './redux/actions/appActions.js';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 // Import components
 import LoadedApp from './components/AppTypes/LoadedApp';

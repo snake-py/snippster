@@ -1,10 +1,12 @@
 import store from './createStore';
+import registerIPCListners from "./ipcListeners";
 const { ipcRenderer } = window.require('electron');
 
 export default () => {
   getLanguages();
   getProjects();
   setInitialSnippets();
+  registerIPCListners()
   makeAppReady();
   return { msg: 'test', store: store };
 };

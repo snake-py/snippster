@@ -6,6 +6,7 @@ import './static/scss/index.scss';
 import store from './utility/createStore';
 import initApp from './utility/initApp';
 
+
 const start = () => {
   initApp();
   ReactDOM.render(
