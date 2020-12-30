@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
-import { activateSnippet, activateSnippetQuerieList } from '../../redux/actions/snippetsActions.js';
+import { activateSnippet } from '../../redux/actions/snippetsActions.js';
 
 export default function Card(props) {
-  const appState = useSelector((state) => state.app);
   const snippets = useSelector((state) => state.snippets);
   const [langaugeIcon, setLangaugeIcon] = useState('');
   const [frameworkIcon, setFrameworkIcon] = useState('');

@@ -1,4 +1,12 @@
 @import './variables.scss';
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/raleway/static/Raleway-Regular.ttf");
+}
+body {
+  font-family: 'Raleway';
+  // letter-spacing: 2px;
+}
 
 * {
   margin: 0px;

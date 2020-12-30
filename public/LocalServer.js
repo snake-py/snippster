@@ -15,9 +15,9 @@ const { migrate } = require('../db/migrate');
 
 // migrate()
 
-// try {
-//   require('electron-reloader')(module);
-// } catch (_) {}
+try {
+  require('electron-reloader')(module);
+} catch (_) {}
 
 process.env.NODE_ENV = '';
 

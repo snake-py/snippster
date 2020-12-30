@@ -68,8 +68,8 @@ function makeMenuTemplate(mainWindow) {
               });
 
               ipcMain.handle('addProjectToMain', (e, input) => {
-                console.log(input);
-                // let project = menuEvents.addProject(input)
+                let project = menuEvents.addProject(input)
+                
                 // mainWindow.webContents.send('addProjectMain', project);
                 // addWindow.close();
               });

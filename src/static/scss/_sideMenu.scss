@@ -17,13 +17,17 @@
 }
 
 .side-menu li {
-  display: block;
+  display: table;
   padding: 10px 20px;
 }
 
 .side-menu .side-menu-icon {
+  display: table-cell;
+  vertical-align: middle;
+  height: 66px;
   width: 50px;
   color: grey;
+  transition: all 150ms;
 }
 
 .side-menu .active {
@@ -31,6 +35,8 @@
 }
 
 .side-menu .side-menu-icon:hover {
-    color: $card-bg-color;
-    transition: 150ms;
+  color: $card-bg-color;
+  cursor: pointer;
+  margin-top: -5px;
+  margin-bottom: 5px;
 }

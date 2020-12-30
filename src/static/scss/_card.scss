@@ -14,6 +14,7 @@
   flex-grow: 0;
   overflow: hidden;
   height: 140px;
+  transition: all ease-in-out 150ms;
 }
 
 .unsaved {
@@ -26,7 +27,7 @@
 
 .card:hover {
   background-color: $card-bg-color;
-  transition: ease-in-out 450ms;
+  transform: translateY(-5px);
 }
 
 .card .card-foot {
