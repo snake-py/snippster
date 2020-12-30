@@ -25,9 +25,22 @@ function registerEvents(obj) {
     keys.forEach((key) => {
       if (!inheritedMethods.includes(key)) {
         ipcMain.handle(key, (event, data) => {
-            const response = EventObject[key](data);
+          const response = EventObject[key](data);
           return response;
         });
+      }
+    });
+  }
+}
+
+function registerSender(ob) {
+  let methods = [];
+  const EventObject = obj;
+  while ((obj = Reflect.getPrototypeOf(obj))) {
+    let keys = Reflect.ownKeys(obj);
+    keys.forEach((key) => {
+      if (!inheritedMethods.includes(key)) {
+        mainWindow.webContents.send(key, EventObject[key]());
       }
     });
   }

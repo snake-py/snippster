@@ -31,7 +31,7 @@
   },
   "scripts": {
     "test": "react-scripts test",
-    "test-spectron": "mocha --watch",
+    "test-spectron": "mocha --watch --timeout 10000",
     "react-start": "react-scripts start",
     "rebuild": "electron-rebuild -f -w better-sqlit3",
     "postinstall": "electron-builder install-app-deps",

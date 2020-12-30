@@ -5,7 +5,7 @@ const url = require('url');
 
 const isDev = require('electron-is-dev');
 
-const mainMenu = require('../Utility/MenuCreator');
+const makeMenuTemplate = require('../Utility/MenuCreator');
 const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
 const ProjectEvents = require('../events/ProjectEvents');
@@ -23,8 +23,7 @@ process.env.NODE_ENV = '';
 
 let mainWindow;
 let addWindow;
-let menuEvents;
-
+let mainMenu;
 const isMac = process.platform === 'darwin';
 
 const createMainWindow = () => {
@@ -45,8 +44,10 @@ const queueEventToRegister = () => {
   registerEvents(new AppEvents());
   createMainWindow();
   console.log(mainWindow);
-  menuEvents = new MenuEvents(mainWindow);
-  
+  // menuEvents = new MenuEvents(mainWindow);
+  mainMenu = Menu.buildFromTemplate(makeMenuTemplate(mainWindow));
+  Menu.setApplicationMenu(mainMenu);
+
   // globalShortcut.register('CommandOrControl+k', () => {
   //   console.log('Electron loves global shortcuts!');
   //   menuEvents.addSnippet();
@@ -54,8 +55,6 @@ const queueEventToRegister = () => {
 };
 
 app.on('ready', queueEventToRegister);
-
-Menu.setApplicationMenu(mainMenu);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -94,4 +93,3 @@ ipcMain.handle('addProjectToMain', (e, input) => {
   mainWindow.webContents.send('addProjectMain', input);
   addWindow.close();
 });
-
