@@ -101,7 +101,6 @@ export function snippetReducer(state = {}, action) {
         activeSnippet: { ...action.payload },
       };
     case snippetsReducerDeleteSnippet:
-      console.log(action);
       let index = 0;
       for (let i = 0; i < state.snippets.length; i++) {
         const snip = state.snippets[i];

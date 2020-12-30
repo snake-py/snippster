@@ -94,10 +94,10 @@ export default function SnippetViewFooter() {
           )}
         </div>
         <div style={{marginTop: '20px'}} >
-          <a className="form-btn save-btn" onClick={() => dispatch(saveSnippet(activeSnippet))}>
+          <a className="form-btn save-btn" onClick={() => dispatch(saveSnippet())}>
             Save
           </a>
-          <a className="form-btn save-btn" onClick={() => dispatch(deleteSnippet(activeSnippet))}>
+          <a className="form-btn save-btn" onClick={() => dispatch(deleteSnippet())}>
             Delete
           </a>
         </div>

@@ -1,8 +1,12 @@
 const MenuEvents = require('../events/MenuEvents');
 const isMac = process.platform === 'darwin';
+const { BrowserWindow, ipcMain } = require('electron');
+const url = require('url');
+const path = require('path');
 
 function makeMenuTemplate(mainWindow) {
-  const menuEvents = new MenuEvents(mainWindow)
+  let addWindow;
+  const menuEvents = new MenuEvents(mainWindow);
   const mainMenuTemplate = [
     // { role: 'appMenu' }
     ...(isMac
@@ -30,25 +34,60 @@ function makeMenuTemplate(mainWindow) {
         {
           label: 'Add Project',
           click() {
-            console.log('Add');
-            // menuEvents.addProject()
+            let addWindowIsOpen = false;
+            const wins = BrowserWindow.getAllWindows();
+            for (const key in wins) {
+              if (wins[key].name === 'PROJECT_ADD_WINDOW') {
+                addWindowIsOpen = true;
+                wins[key].focus()
+              }
+            }
+            if (!addWindowIsOpen) {
+              addWindow = new BrowserWindow({
+                width: 300,
+                height: 200,
+                title: 'Add Item',
+                webPreferences: {
+                  nodeIntegration: true,
+                },
+              });
+              addWindow.name = 'PROJECT_ADD_WINDOW';
+              addWindow.setMenu(null);
+              // LOAD THE HTML FILE
+              addWindow.loadURL(
+                url.format({
+                  pathname: path.join(__dirname, '../public/addWindow.html'),
+                  protocol: 'file',
+                  slashes: true,
+                })
+              );
+
+              addWindow.on('closed', function () {
+                ipcMain.removeHandler('addProjectToMain');
+                addWindow = null;
+              });
+
+              ipcMain.handle('addProjectToMain', (e, input) => {
+                console.log(input);
+                mainWindow.webContents.send('addProjectMain', input);
+                addWindow.close();
+              });
+            } else {
+
+            }
           },
         },
         {
           label: 'Delete Project',
           click() {
-            console.log('Delete');
-            // menuEvents.addProject()
+            console.log('Delete Project');
           },
         },
         {
           label: 'Add Snippet',
           accelerator: isMac ? 'Command+SHIFT+A' : 'ctrl+shift+a',
           click() {
-            console.log('Add Snippet');
-            console.log(menuEvents);
-            menuEvents.addSnippet();
-            mainWindow.webContents.send('menuAddSnippet', 'Hi from menuEvents');
+            mainWindow.webContents.send('menuAddSnippet');
           },
         },
         {
@@ -56,14 +95,14 @@ function makeMenuTemplate(mainWindow) {
           accelerator: isMac ? 'Command+S' : 'ctrl+s',
           click() {
             console.log('Save Snippet');
-            // menuEvents.addProject()
+            mainWindow.webContents.send('menuSaveSnippet');
           },
         },
         {
           label: 'Delete Snippet',
           click() {
             console.log('Delete Snippet');
-            // menuEvents.addProject()
+            mainWindow.webContents.send('menuDeleteSnippet');
           },
         },
         { type: 'separator' },
@@ -107,14 +146,14 @@ function makeMenuTemplate(mainWindow) {
           label: 'Project Query',
           accelerator: isMac ? 'Command+q' : 'ctrl+q',
           click() {
-            console.log('focus query tool');
+            mainWindow.webContents.send('menuQueryProject');
           },
         },
         {
           label: 'Global Query',
           accelerator: isMac ? 'Command+shift+q' : 'ctrl+shift+q',
           click() {
-            console.log('focus global query tool');
+            mainWindow.webContents.send('menuQueryGlobal');
           },
         },
         { type: 'separator' },

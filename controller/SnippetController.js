@@ -108,11 +108,11 @@ class SnippetController {
     }
   }
 
-    async filterSnippets(query, project_id) {
-      console.log(project_id);
-      console.log(query);
+  async filterSnippets(query, project_id) {
+    console.log(project_id);
+    console.log(query);
 
-      const stmt = db.prepare(`
+    const stmt = db.prepare(`
       SELECT 
       snippets.id,
       snippets.project_id,
@@ -130,21 +130,19 @@ class SnippetController {
       LEFT JOIN languages ON snippets.language_id=languages.id 
       LEFT JOIN frameworks ON snippets.framework_id=frameworks.id
       WHERE snippets.project_id=${project_id}
-      AND snippets.title LIKE '${query}%'
-      OR snippets.title LIKE '%${query}';
+      AND snippets.title LIKE '%${query}%';
       `);
-      try {
-        const snippets = stmt.all();
-        return { snippets: snippets };
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const snippets = stmt.all();
+      return { snippets: snippets };
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-
-    async filterSnippetsGlobal(query) {
-      console.log(query);
-      const stmt = db.prepare(`
+  async filterSnippetsGlobal(query) {
+    console.log(query);
+    const stmt = db.prepare(`
       SELECT 
       snippets.id,
       snippets.project_id,
@@ -161,28 +159,15 @@ class SnippetController {
       FROM snippets
       LEFT JOIN languages ON snippets.language_id=languages.id 
       LEFT JOIN frameworks ON snippets.framework_id=frameworks.id
-      WHERE snippets.title LIKE '${query}%'
-      OR snippets.title LIKE '%${query}';
+      WHERE snippets.title LIKE '%${query}%';
       `);
-      try {
-        const snippets = stmt.all();
-        return { snippets: snippets };
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const snippets = stmt.all();
+      return { snippets: snippets };
+    } catch (error) {
+      console.log(error);
     }
-
-
-
-
-
-
-
-
-
-
-
-
+  }
 }
 
 const snippetController = new SnippetController();

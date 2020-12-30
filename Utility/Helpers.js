@@ -33,18 +33,6 @@ function registerEvents(obj) {
   }
 }
 
-function registerSender(ob) {
-  let methods = [];
-  const EventObject = obj;
-  while ((obj = Reflect.getPrototypeOf(obj))) {
-    let keys = Reflect.ownKeys(obj);
-    keys.forEach((key) => {
-      if (!inheritedMethods.includes(key)) {
-        mainWindow.webContents.send(key, EventObject[key]());
-      }
-    });
-  }
-}
 
 module.exports = {
   registerEvents,

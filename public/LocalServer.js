@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { app, BrowserWindow, Menu, ipcMain, globalShortcut } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 const path = require('path');
 const url = require('url');
 
@@ -22,7 +22,6 @@ const { migrate } = require('../db/migrate');
 process.env.NODE_ENV = '';
 
 let mainWindow;
-let addWindow;
 let mainMenu;
 const isMac = process.platform === 'darwin';
 
@@ -30,7 +29,6 @@ const createMainWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1400,
     height: 700,
-    // frame: false,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -44,14 +42,8 @@ const queueEventToRegister = () => {
   registerEvents(new AppEvents());
   createMainWindow();
   console.log(mainWindow);
-  // menuEvents = new MenuEvents(mainWindow);
   mainMenu = Menu.buildFromTemplate(makeMenuTemplate(mainWindow));
   Menu.setApplicationMenu(mainMenu);
-
-  // globalShortcut.register('CommandOrControl+k', () => {
-  //   console.log('Electron loves global shortcuts!');
-  //   menuEvents.addSnippet();
-  // });
 };
 
 app.on('ready', queueEventToRegister);
@@ -63,33 +55,32 @@ app.on('window-all-closed', () => {
 });
 
 // test stuff
-ipcMain.handle('addProject', () => {
-  // create new Window
-  addWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
-    title: 'Add Item',
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-  // LOAD THE HTML FILE
-  addWindow.loadURL(
-    url.format({
-      pathname: path.join(__dirname, 'addWindow.html'),
-      protocol: 'file',
-      slashes: true,
-    })
-  );
+// ipcMain.handle('addProject', () => {
+//   // create new Window
+//   addWindow = new BrowserWindow({
+//     width: 300,
+//     height: 200,
+//     title: 'Add Item',
+//     webPreferences: {
+//       nodeIntegration: true,
+//     },
+//   });
+//   // LOAD THE HTML FILE
+//   addWindow.loadURL(
+//     url.format({
+//       pathname: path.join(__dirname, 'addWindow.html'),
+//       protocol: 'file',
+//       slashes: true,
+//     })
+//   );
 
-  addWindow.on('closed', function () {
-    addWindow = null;
-  });
-});
+//   addWindow.on('closed', function () {
+//     addWindow = null;
+//   });
+// });
 
-ipcMain.handle('addProjectToMain', (e, input) => {
-  console.log(input);
-
-  mainWindow.webContents.send('addProjectMain', input);
-  addWindow.close();
-});
+// ipcMain.handle('addProjectToMain', (e, input) => {
+//   console.log(input);
+//   mainWindow.webContents.send('addProjectMain', input);
+//   addWindow.close();
+// });

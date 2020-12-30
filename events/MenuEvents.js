@@ -1,13 +1,11 @@
-class MenuEvents {
-  // constructor(mainWindow) {
-  //   this.mainWindow = mainWindow;
-  // }
+const SnippetController = require('../controller/SnippetController');
 
-  addSnippet() {
-    console.log('moin');
-    return 'hi';
-    // this.mainWindow.webContents.send('menuAddSnippet', 'Hi from menuEvents');
-  }
+
+class MenuEvents {
+  // addSnippet() {
+  //   console.log('moin');
+  //   return SnippetController.addSnippet(project_id);
+  // }
 }
 
 module.exports = MenuEvents;
