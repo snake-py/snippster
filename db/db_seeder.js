@@ -39,7 +39,7 @@ module.exports.projects = [
   { title: 'root', root: '/files', icon: '' },
 ];
 
-// path lodic for files ~/rootPath/language/id
+// path logic for files ~/rootPath/language/id
 
 module.exports.snippets = [
   // {

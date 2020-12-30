@@ -3,10 +3,10 @@ const isMac = process.platform === 'darwin';
 const { BrowserWindow, ipcMain } = require('electron');
 const url = require('url');
 const path = require('path');
-
+const fs = require('fs');
 function makeMenuTemplate(mainWindow) {
   let addWindow;
-  const menuEvents = new MenuEvents(mainWindow);
+  const menuEvents = new MenuEvents();
   const mainMenuTemplate = [
     // { role: 'appMenu' }
     ...(isMac
@@ -44,8 +44,8 @@ function makeMenuTemplate(mainWindow) {
             }
             if (!addWindowIsOpen) {
               addWindow = new BrowserWindow({
-                width: 300,
-                height: 200,
+                width: 500,
+                height: 400,
                 title: 'Add Item',
                 webPreferences: {
                   nodeIntegration: true,
@@ -69,8 +69,9 @@ function makeMenuTemplate(mainWindow) {
 
               ipcMain.handle('addProjectToMain', (e, input) => {
                 console.log(input);
-                mainWindow.webContents.send('addProjectMain', input);
-                addWindow.close();
+                // let project = menuEvents.addProject(input)
+                // mainWindow.webContents.send('addProjectMain', project);
+                // addWindow.close();
               });
             } else {
 

@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>test</h1>
-    <input type="text" name="project">
-    <button>Add</button>
-    <script src="addWindow.js" ></script>
+  <head>
+    <meta charset="UTF-8" />
 
-</body>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Make a new project</h1>
+    <div class="form-group">
+      <input id="project-input" type="text" name="project" placeholder="Project title" />
+      <label for="project-input">Project Title</label>
+    </div>
+    <div class="form-group">
+      <input type="file" name="file" id="icon" />
+      <label for="project-input">Project Title</label>
+    </div>
+    <button>Add</button>
+
+    <script src="addWindow.js"></script>
+  </body>
 </html>

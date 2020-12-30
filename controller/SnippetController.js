@@ -92,7 +92,6 @@ class SnippetController {
     }
     const returnStmt = db.prepare(`SELECT * FROM snippets ORDER BY id DESC LIMIT 1`);
     const snippet = returnStmt.get();
-    console.log(snippet);
     return snippet;
   }
 

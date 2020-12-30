@@ -1,11 +1,11 @@
 const SnippetController = require('../controller/SnippetController');
+const ProjectController = require('../controller/ProjectController');
 
 
 class MenuEvents {
-  // addSnippet() {
-  //   console.log('moin');
-  //   return SnippetController.addSnippet(project_id);
-  // }
+  addProject(data) {
+    return ProjectController.addProject(data);
+  }
 }
 
 module.exports = MenuEvents;
