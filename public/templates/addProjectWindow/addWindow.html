@@ -2,29 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
 
     <title>Document</title>
   </head>
-  <style>
-    .invis {
-      display: none;
-    }
-  </style>
 
   <body>
-    <h1>Make a new project</h1>
-    <div class="form-group">
-      <div class="title-warning invis">Project Title is not unique</div>
-      <input id="project-input" type="text" name="project" placeholder="Project title" />
-      <label for="project-input">Project Title</label>
+    <div class="form-block add-form">
+      <h1 class="add-form__title" >Make a new project</h1>
+      <div class="form-group">
+        <div class="title-warning-1 invis">Project Title is not unique</div>
+        <div class="title-warning-2 invis">Project Title should not be empty</div>
+        <input id="project-input" class="form-input" type="text" name="project" placeholder="Project title" />
+        <label for="project-input">Project Title</label>
+      </div>
+      <div class="form-group">
+        <input type="file" name="file" id="icon" accept=".svg" />
+        <label for="project-input"></label>
+        <div style="margin-top: 10px;">You can provide your own <b>SVG</b> icon.</div>
+      </div>
+      <button class="form-btn ">Add</button>
     </div>
-    <div class="form-group">
-      <input type="file" name="file" id="icon" accept=".svg" />
-      <label for="project-input">Project Title</label>
-      <div>You can provide your own <b>SVG</b> icon.</div>
-    </div>
-    <button>Add</button>
-
     <script src="addWindow.js"></script>
   </body>
 </html>

@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Raleway';
+  src: url('../../../src/static/fonts/raleway/static/Raleway-Regular.ttf');
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Raleway';
+  letter-spacing: 2px;
+  color: #fff;
+  background-color: #3b3b3b;
+}
+
+.invis {
+  display: none;
+}
+
+.form-block {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+}
+.add-form__title {
+  margin-bottom: 20px;
+}
+
+
+.form-input {
+  width: 100%;
+  color: black;
+  border: none;
+  padding: 2px 12px;
+}
+.form-group {
+  width: 100%;
+  margin: 10px 0;
+}
+.form-btn {
+  margin-top: 20px;
+  font-size: 1rem;
+  padding: 3px 15px;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: hsla(0, 0%, 100%, 0);
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  
+}
+
+.form-btn:hover {
+  color: #00bfd8;
+  border: 2px solid #00bfd8;
+}

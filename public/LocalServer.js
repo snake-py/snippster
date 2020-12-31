@@ -13,7 +13,7 @@ const AppEvents = require('../events/AppEvents');
 const MenuEvents = require('../events/MenuEvents');
 const { migrate } = require('../db/migrate');
 
-// migrate()
+migrate()
 
 // try {
 //   require('electron-reloader')(module);

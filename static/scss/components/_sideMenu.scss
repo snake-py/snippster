@@ -1,0 +1,56 @@
+@import './_variables.scss';
+
+.side-menu-wrapper {
+  width: 5vw;
+  background-color: $black;
+  width: max-content;
+}
+
+.bottom-list {
+  position: fixed;
+  bottom: 10px;
+}
+
+.side-menu {
+  text-align: center;
+  width: 100%;
+  &--top {
+    overflow-y: auto;
+    height: 80vh;
+
+    &::-webkit-scrollbar {
+      opacity: 0;
+    }
+    &::-webkit-scrollbar-track {
+      background: $black;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $secondary-bg-color;
+    }
+  }
+}
+
+.side-menu li {
+  display: table;
+  padding: 10px 20px;
+}
+
+.side-menu .side-menu-icon {
+  display: table-cell;
+  vertical-align: middle;
+  height: 66px;
+  width: 50px;
+  color: grey;
+  transition: all 150ms;
+}
+
+.side-menu .active {
+  color: $card-bg-color;
+}
+
+.side-menu .side-menu-icon:hover {
+  color: $card-bg-color;
+  cursor: pointer;
+  margin-top: -5px;
+  margin-bottom: 5px;
+}

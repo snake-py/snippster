@@ -18,14 +18,20 @@ file.addEventListener('change', () => {
 });
 
 btn.addEventListener('click', () => {
-  console.log('click');
-  ipcRenderer.invoke('addProjectToMain', { title: input.value, icon: file.value ? file.files[0].path : '' });
+  if (input.value !== '') {
+    ipcRenderer.invoke('addProjectToMain', { title: input.value, icon: file.value ? file.files[0].path : '' });
+  } else {
+    document.querySelector('.title-warning-2').classList.toggle('invis');
+    setTimeout(() => {
+      document.querySelector('.title-warning-2').classList.toggle('invis');
+    }, 3000);
+  }
 });
 
 ipcRenderer.on('projectTitleIsNotUnique', (e) => {
-  document.querySelector('.title-warning').classList.toggle('invis');
+  document.querySelector('.title-warning-1').classList.toggle('invis');
   setTimeout(() => {
-    document.querySelector('.title-warning').classList.toggle('invis');
+    document.querySelector('.title-warning-1').classList.toggle('invis');
   }, 3000);
 });
 
