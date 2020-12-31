@@ -40,23 +40,3 @@ class AppController {
 
 const appController = new AppController();
 module.exports = appController;
-
-
-
-// SELECT
-// languages.id,
-// languages.long AS language,
-// languages.icon AS languageIcon,
-// GROUP_CONCAT(frameworks.id, ',') AS frameworksid
-// FROM languages
-// LEFT JOIN frameworks ON languages.id=frameworks.language_id
-// GROUP BY languages.id;`);
-
-// SELECT
-// languages.id,
-// languages.long AS language,
-// languages.icon AS languageIcon,
-// frameworks.long AS framework,
-// frameworks.icon AS frameworkIcon
-// FROM languages
-// LEFT JOIN frameworks ON languages.id=frameworks.language_id

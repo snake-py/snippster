@@ -41,7 +41,6 @@ const queueEventToRegister = () => {
   registerEvents(new ProjectEvents());
   registerEvents(new AppEvents());
   createMainWindow();
-  console.log(mainWindow);
   mainMenu = Menu.buildFromTemplate(makeMenuTemplate(mainWindow));
   Menu.setApplicationMenu(mainMenu);
 };

@@ -3,7 +3,6 @@ const { db } = require('../db/migrate');
 
 class SnippetController {
   async getSnippets(project_id) {
-    console.log(project_id);
     const stmt = db.prepare(`
     SELECT 
     snippets.id,
@@ -67,7 +66,6 @@ class SnippetController {
   }
 
   async addSnippet(project_id) {
-    console.log('add');
     const newSnippet = {
       title: '',
       description: '',
@@ -96,8 +94,6 @@ class SnippetController {
   }
 
   async deleteSnippet(snippet) {
-    console.log(snippet);
-    console.log(snippet.id);
     const stmt = db.prepare(`DELETE FROM snippets WHERE id=${snippet.id};`);
     try {
       const res = stmt.run();
@@ -108,9 +104,6 @@ class SnippetController {
   }
 
   async filterSnippets(query, project_id) {
-    console.log(project_id);
-    console.log(query);
-
     const stmt = db.prepare(`
       SELECT 
       snippets.id,
@@ -140,7 +133,6 @@ class SnippetController {
   }
 
   async filterSnippetsGlobal(query) {
-    console.log(query);
     const stmt = db.prepare(`
       SELECT 
       snippets.id,

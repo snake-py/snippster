@@ -39,7 +39,6 @@ class ProjectController {
     SELECT * FROM projects WHERE title='${data.title}';
     `);
     const project = stmt.get();
-    console.log(project);
     if (project) {
       return true;
     } else {

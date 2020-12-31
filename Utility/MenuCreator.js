@@ -69,7 +69,6 @@ function makeMenuTemplate(mainWindow) {
 
               ipcMain.handle('addProjectToMain', (e, input) => {
                 let project = menuEvents.addProject(input);
-                console.log(project);
                 if (project) {
                   mainWindow.webContents.send('addProjectMain', project);
                   addWindow.close();
@@ -98,14 +97,12 @@ function makeMenuTemplate(mainWindow) {
           label: 'Save Snippet',
           accelerator: isMac ? 'Command+S' : 'ctrl+s',
           click() {
-            console.log('Save Snippet');
             mainWindow.webContents.send('menuSaveSnippet');
           },
         },
         {
           label: 'Delete Snippet',
           click() {
-            console.log('Delete Snippet');
             mainWindow.webContents.send('menuDeleteSnippet');
           },
         },

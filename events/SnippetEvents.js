@@ -12,15 +12,10 @@ class SnippetEvents {
   }
   deleteSnippet(snippet) {
     SnippetController.deleteSnippet(snippet);
-    // return SnippetController.getSnippets();
   }
   filterSnippets(data) {
     const command = data.query.slice(0, 2);
-    console.log(data.query.slice(3));
-    console.log(command);
     if (command === '/g') {
-      console.log('run global');
-      console.log(data.query.slice(3));
       return SnippetController.filterSnippetsGlobal(data.query.slice(3));
     }
     return SnippetController.filterSnippets(data.query, data.project.id);
