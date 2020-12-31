@@ -6,7 +6,7 @@ const file = document.querySelector('#icon');
 const btn = document.querySelector('button');
 
 file.addEventListener('change', () => {
-  if (file.value.slice(-4) !== '.svg') {
+  if (file.value.slice(-4) !== '.svg' && file.value !== '') {
     displayMessage();
     btn.removeEventListener('click');
   } else {
@@ -18,7 +18,15 @@ file.addEventListener('change', () => {
 });
 
 btn.addEventListener('click', () => {
-  ipcRenderer.invoke('addProjectToMain', { title: input.value, icon: file.files[0].path });
+  console.log('click');
+  ipcRenderer.invoke('addProjectToMain', { title: input.value, icon: file.value ? file.files[0].path : '' });
+});
+
+ipcRenderer.on('projectTitleIsNotUnique', (e) => {
+  document.querySelector('.title-warning').classList.toggle('invis');
+  setTimeout(() => {
+    document.querySelector('.title-warning').classList.toggle('invis');
+  }, 3000);
 });
 
 function displayMessage() {}

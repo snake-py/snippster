@@ -63,7 +63,8 @@ export function appReducer(state = { ready: false }, action) {
     case 'addProjectMain':
       return {
         ...state,
-        test: action.payload,
+        projects: [...state.projects.map((project) => ({ ...project, active: false })), {... action.payload, active: true }],
+        activeProject: {... action.payload, active: true}
       };
 
     default:

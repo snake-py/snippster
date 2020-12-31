@@ -39,7 +39,7 @@ function makeMenuTemplate(mainWindow) {
             for (const key in wins) {
               if (wins[key].name === 'PROJECT_ADD_WINDOW') {
                 addWindowIsOpen = true;
-                wins[key].focus()
+                wins[key].focus();
               }
             }
             if (!addWindowIsOpen) {
@@ -52,11 +52,11 @@ function makeMenuTemplate(mainWindow) {
                 },
               });
               addWindow.name = 'PROJECT_ADD_WINDOW';
-              addWindow.setMenu(null);
+              // addWindow.setMenu(null);
               // LOAD THE HTML FILE
               addWindow.loadURL(
                 url.format({
-                  pathname: path.join(__dirname, '../public/addWindow.html'),
+                  pathname: path.join(__dirname, '../public/templates/addProjectWindow/addWindow.html'),
                   protocol: 'file',
                   slashes: true,
                 })
@@ -68,13 +68,16 @@ function makeMenuTemplate(mainWindow) {
               });
 
               ipcMain.handle('addProjectToMain', (e, input) => {
-                let project = menuEvents.addProject(input)
-                
-                // mainWindow.webContents.send('addProjectMain', project);
-                // addWindow.close();
+                let project = menuEvents.addProject(input);
+                console.log(project);
+                if (project) {
+                  mainWindow.webContents.send('addProjectMain', project);
+                  addWindow.close();
+                } else {
+                  addWindow.webContents.send('projectTitleIsNotUnique')
+                }
               });
             } else {
-
             }
           },
         },

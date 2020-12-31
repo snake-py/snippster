@@ -5,22 +5,23 @@
 
     <title>Document</title>
   </head>
+  <style>
+    .invis {
+      display: none;
+    }
+  </style>
+
   <body>
     <h1>Make a new project</h1>
     <div class="form-group">
+      <div class="title-warning invis">Project Title is not unique</div>
       <input id="project-input" type="text" name="project" placeholder="Project title" />
       <label for="project-input">Project Title</label>
     </div>
     <div class="form-group">
       <input type="file" name="file" id="icon" accept=".svg" />
       <label for="project-input">Project Title</label>
-      <div>
-        You can provide your own icon. Icon Specs:
-        <ul>
-          <li>Type svg</li>
-          <li>dimension 5 width to 7 times height</li>
-        </ul>
-      </div>
+      <div>You can provide your own <b>SVG</b> icon.</div>
     </div>
     <button>Add</button>
 

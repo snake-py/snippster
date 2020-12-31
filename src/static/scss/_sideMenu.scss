@@ -14,6 +14,20 @@
 .side-menu {
   text-align: center;
   width: 100%;
+  &--top {
+    overflow-y: auto;
+    height: 80vh;
+
+    &::-webkit-scrollbar {
+      opacity: 0;
+    }
+    &::-webkit-scrollbar-track {
+      background: $black;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $secondary-bg-color;
+    }
+  }
 }
 
 .side-menu li {

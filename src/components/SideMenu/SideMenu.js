@@ -16,7 +16,7 @@ export default function SideMenu() {
   return (
     <div className="side-menu-wrapper">
       <div className="top-list">
-        <ul className="side-menu">
+        <ul className="side-menu side-menu--top">
           <li>
             <ReactSVG
               onClick={(e) => dispatch(openQueryViewOnClick())}
