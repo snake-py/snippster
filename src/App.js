@@ -6,6 +6,7 @@ import LoadedApp from './components/AppTypes/LoadedApp';
 
 function App() {
   const appState = useSelector((state) => state.app);
+  console.log(appState);
 
   return (
     <>

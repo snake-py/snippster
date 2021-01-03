@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 export default function MainWindow() {
   const snippets = useSelector((state) => state.snippets);
   const activeSnippet = useSelector((state) => state.snippets.activeSnippet);
-
   return (
     <div className="main-window-wrapper">
       <SnippetResults snippets={snippets.snippets} />

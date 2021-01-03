@@ -10,7 +10,7 @@ export default function ProjectIcon(props) {
 
   useEffect(async () => {
     if (props.project.icon) {
-      let projectIcon = await import(`../../../static/${props.project.icon}`);
+      let projectIcon = await import(`../../../../user/files/projects/icon/${props.project.icon}`);
       setProjectIcon(projectIcon.default)
     }
   }, []);

@@ -26,8 +26,6 @@ export function appReducer(state = { ready: false }, action) {
       };
 
     case appReducerInitialProjects:
-      console.log(`reducer gets projects ${action}`);
-
       return {
         ...state,
         projects: [...action.payload],

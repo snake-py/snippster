@@ -20,6 +20,7 @@ const CREATE_DB = () => {
 
 const CREATE_TABLES = (db) => {
   const sql = `
+    PRAGMA foreign_keys = ON;
     CREATE TABLE IF NOT EXISTS languages (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         long CHAR(50) UNIQUE NOT NULL, 
@@ -33,7 +34,7 @@ const CREATE_TABLES = (db) => {
       short CHAR(10) NOT NULL, 
       icon CHAR(100),
       language_id INTEGER,
-      FOREIGN KEY(language_id) REFERENCES languages(id)
+      FOREIGN KEY(language_id) REFERENCES languages(id) ON DELETE CASCADE 
       );
 
     CREATE TABLE IF NOT EXISTS projects (
@@ -51,9 +52,9 @@ const CREATE_TABLES = (db) => {
       project_id INTEGER NOT NULL,
       language_id INTEGER,
       framework_id INTEGER,
-      FOREIGN KEY(language_id) REFERENCES languages(id),
-      FOREIGN KEY(framework_id) REFERENCES frameworks(id),
-      FOREIGN KEY(project_id) REFERENCES projects(id)
+      FOREIGN KEY(language_id) REFERENCES languages(id) ON DELETE SET NULL,
+      FOREIGN KEY(framework_id) REFERENCES frameworks(id) ON DELETE SET NULL,
+      FOREIGN KEY(project_id) REFERENCES projects(id) ON DELETE CASCADE 
       );
         `;
   try {

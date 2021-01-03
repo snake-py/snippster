@@ -93,7 +93,7 @@ class SnippetController {
     return snippet;
   }
 
-  async deleteSnippet(snippet) {
+  deleteSnippet(snippet) {
     const stmt = db.prepare(`DELETE FROM snippets WHERE id=${snippet.id};`);
     try {
       const res = stmt.run();
@@ -103,7 +103,7 @@ class SnippetController {
     }
   }
 
-  async filterSnippets(query, project_id) {
+  filterSnippets(query, project_id) {
     const stmt = db.prepare(`
       SELECT 
       snippets.id,
@@ -132,7 +132,7 @@ class SnippetController {
     }
   }
 
-  async filterSnippetsGlobal(query) {
+  filterSnippetsGlobal(query) {
     const stmt = db.prepare(`
       SELECT 
       snippets.id,

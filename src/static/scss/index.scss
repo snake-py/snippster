@@ -1,7 +1,7 @@
 @import './variables.scss';
 @font-face {
-  font-family: "Raleway";
-  src: url("../fonts/raleway/static/Raleway-Regular.ttf");
+  font-family: 'Raleway';
+  src: url('../fonts/raleway/static/Raleway-Regular.ttf');
 }
 body {
   font-family: 'Raleway';
@@ -14,8 +14,8 @@ body {
   box-sizing: border-box;
 }
 .flex {
-    display: flex;
-    align-content: space-between;
+  display: flex;
+  align-content: space-between;
 }
 
 .App {
@@ -60,6 +60,17 @@ body {
   width: 350px;
   padding: 10px 20px;
   outline: none;
+}
+
+.message__empty-window {
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  & div {
+    text-align: center;
+  }
 }
 
 @import './card.scss';

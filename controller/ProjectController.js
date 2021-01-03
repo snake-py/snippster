@@ -12,7 +12,7 @@ class ProjectController {
     const newProject = {
       title: data.title,
       root: data.title,
-      icon: data.iconPath,
+      icon: data.icon,
     };
 
     const stmt = db.prepare(`
@@ -34,6 +34,20 @@ class ProjectController {
     return project;
   }
 
+  deleteProject(project) {
+    const stmt = db.prepare(`
+    DELETE FROM projects WHERE id=${project.id};
+    `);
+    try {
+      const res = stmt.run();
+      console.log(res);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
   isProjectInDB(data) {
     const stmt = db.prepare(`
     SELECT * FROM projects WHERE title='${data.title}';
@@ -42,6 +56,16 @@ class ProjectController {
     if (project) {
       return true;
     } else {
+      return false;
+    }
+  }
+
+  getLastInsertedProject() {
+    const returnStmt = db.prepare(`SELECT * FROM projects ORDER BY id DESC LIMIT 1;`);
+    try {
+      const project = returnStmt.get();
+      return project;
+    } catch (error) {
       return false;
     }
   }

@@ -3,8 +3,8 @@ const { ipcRenderer } = window.require('electron');
 
 export const getProjects = () => (dispatch) => {
   ipcRenderer.invoke('getProjects').then((res) => {
-    const activeProject = localStorage.getItem('lastActiveProject') ? localStorage.getItem('lastActiveProject') : 1;
-    const projects = res.projects.map((project) => {
+    const activeProject = localStorage.getItem('lastActiveProject') ? localStorage.getItem('lastActiveProject') : res.toActivate;
+    const projects = res.all.projects.map((project) => {
       return project.id === activeProject ? { ...project, active: true } : { ...project, active: false };
     });
     dispatch({ type: 'INITIAL_PROJECTS', payload: projects });
@@ -12,7 +12,6 @@ export const getProjects = () => (dispatch) => {
 };
 
 export const getLanguages = () => (dispatch) => {
-  console.log('getting Languages');
   ipcRenderer.invoke('getAppLanguages').then((res) => {
     console.log('Languages');
     console.log(res);
@@ -21,7 +20,6 @@ export const getLanguages = () => (dispatch) => {
 };
 
 export const makeAppReady = () => (dispatch) => {
-  console.log('Making Ready');
   dispatch({ type: 'APP_READY', payload: '' });
 };
 
@@ -41,8 +39,6 @@ export const querySnippet = (query, project) => (dispatch) => {
     query: query,
     project: project,
   };
-  console.log(data);
-  console.log(query);
   ipcRenderer.invoke('filterSnippets', data).then((res) => {
     if (res.snippets.length > 0) {
       const snippets = res.snippets.map((snippet, index) => {
@@ -119,10 +115,18 @@ export const openQueryViewOnClick = () => (dispatch) => {
   dispatch({ type: 'REMOVE_QUERIED_SNIPPET', payload: '' });
 };
 
-export const addProject = () => (dispatch) => {
-  console.log('adding project');
-  ipcRenderer.invoke('addProject').then((res) => {
-    console.log(res);
+// export const addProject = () => (dispatch) => {
+//   console.log('adding project');
+//   ipcRenderer.invoke('addProject').then((res) => {
+//     console.log(res);
+//   });
+// };
+
+export const deleteProject = () => (dispatch) => {
+  ipcRenderer.invoke('deleteProject', store.getState().app.activeProject).then((res) => {
+    dispatch({ type: 'INITIAL_PROJECTS', payload: res.remaining.projects });
+    if (res.toActivate) {
+      dispatch(switchProject(res.toActivate));
+    }
   });
 };
-

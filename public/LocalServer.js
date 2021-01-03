@@ -13,7 +13,7 @@ const AppEvents = require('../events/AppEvents');
 const MenuEvents = require('../events/MenuEvents');
 const { migrate } = require('../db/migrate');
 
-migrate()
+// migrate()
 
 // try {
 //   require('electron-reloader')(module);
@@ -41,7 +41,7 @@ const queueEventToRegister = () => {
   registerEvents(new ProjectEvents());
   registerEvents(new AppEvents());
   createMainWindow();
-  mainMenu = Menu.buildFromTemplate(makeMenuTemplate(mainWindow));
+  mainMenu = Menu.buildFromTemplate(makeMenuTemplate(mainWindow, addWindowFunc, new MenuEvents()));
   Menu.setApplicationMenu(mainMenu);
 };
 
@@ -53,33 +53,48 @@ app.on('window-all-closed', () => {
   }
 });
 
-// test stuff
-// ipcMain.handle('addProject', () => {
-//   // create new Window
-//   addWindow = new BrowserWindow({
-//     width: 300,
-//     height: 200,
-//     title: 'Add Item',
-//     webPreferences: {
-//       nodeIntegration: true,
-//     },
-//   });
-//   // LOAD THE HTML FILE
-//   addWindow.loadURL(
-//     url.format({
-//       pathname: path.join(__dirname, 'addWindow.html'),
-//       protocol: 'file',
-//       slashes: true,
-//     })
-//   );
+const addWindowFunc = (menuEvents) => {
+  let addWindowIsOpen = false;
+  const wins = BrowserWindow.getAllWindows();
+  for (const key in wins) {
+    if (wins[key].name === 'PROJECT_ADD_WINDOW') {
+      addWindowIsOpen = true;
+      wins[key].focus();
+    }
+  }
+  if (!addWindowIsOpen) {
+    let addWindow = new BrowserWindow({
+      width: 500,
+      height: 400,
+      title: 'Add Item',
+      webPreferences: {
+        nodeIntegration: true,
+      },
+    });
+    addWindow.name = 'PROJECT_ADD_WINDOW';
+    // addWindow.setMenu(null);
+    // LOAD THE HTML FILE
+    addWindow.loadURL(
+      url.format({
+        pathname: path.join(__dirname, '../public/templates/addProjectWindow/addWindow.html'),
+        protocol: 'file',
+        slashes: true,
+      })
+    );
 
-//   addWindow.on('closed', function () {
-//     addWindow = null;
-//   });
-// });
+    addWindow.on('closed', function () {
+      ipcMain.removeHandler('addProjectToMain');
+      addWindow = null;
+    });
 
-// ipcMain.handle('addProjectToMain', (e, input) => {
-//   console.log(input);
-//   mainWindow.webContents.send('addProjectMain', input);
-//   addWindow.close();
-// });
+    ipcMain.handle('addProjectToMain', (e, input) => {
+      let project = menuEvents.addProject(input);
+      if (project) {
+        mainWindow.webContents.send('addProjectMain', project);
+        addWindow.close();
+      } else {
+        addWindow.webContents.send('projectTitleIsNotUnique');
+      }
+    });
+  }
+};

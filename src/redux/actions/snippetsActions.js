@@ -59,6 +59,9 @@ export const updateFramework = (snippet, framework, languages) => (dispatch) => 
 };
 
 export const addSnippet = () => (dispatch) => {
+  if (!store.getState().app.activeProject) {
+    return;
+  }
   ipcRenderer.invoke('addSnippet', store.getState().app.activeProject.id).then((res) => {
     console.log(res);
     const snippet = {

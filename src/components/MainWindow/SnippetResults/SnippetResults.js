@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import Card from '../../Card';
-import SnippetQuerier from '../SnippetQuerier'
+import SnippetQuerier from '../SnippetQuerier';
 
 export default function SnippetResults(props) {
-
-
-
   return (
     <div className="window">
-    <SnippetQuerier />
-      {props.snippets ? props.snippets.map((snippet) => <Card snippet={snippet} key={snippet.id} />) : 'No Snippets are currently found'}
+      <SnippetQuerier />
+      {props.snippets ? props.snippets.map((snippet) => <Card snippet={snippet} key={snippet.id} />) : <div className="message__empty-window">No Snippets are currently found</div>}
     </div>
   );
 }
