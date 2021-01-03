@@ -1,6 +1,8 @@
 {
   "name": "snippster",
   "version": "0.1.0",
+  "author": "Fabio Batti",
+  "description": "Snippster helps to organize your code!",
   "private": true,
   "main": "public/LocalServer.js",
   "dependencies": {

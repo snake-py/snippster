@@ -35,45 +35,45 @@ module.exports.frameworks = [
 ];
 
 module.exports.projects = [
-  { title: 'new', root: '/files/new', icon: '' },
-  { title: 'root', root: '/files', icon: '' },
-  { title: 'test', root: '/files/bam', icon: 'icons/utility/npmLogo.svg' },
+  // { title: 'new', root: '/files/new', icon: '' },
+  // { title: 'root', root: '/files', icon: '' },
+  // { title: 'test', root: '/files/bam', icon: 'icons/utility/npmLogo.svg' },
 ];
 
 // path logic for files ~/rootPath/language/id
 
 module.exports.snippets = [
-  {
-    title: 'Redux with react',
-    description: 'Here I show how I set up react with redux',
-    code: `
-    <h1>Das ist ein test</h1>
-    <div>hey</div>
-    `,
-    project_id: 1,
-    language_id: 1,
-    framework_id: null,
-  },
-  {
-    title: 'Flask',
-    description: 'Example for react-spring',
-    code: `
-    <h1>Das ist nummer 1 test</h1>
-    <div>hey</div>
-    `,
-    project_id: 1,
-    language_id: 3,
-    framework_id: null,
-  },
-  {
-    title: 'Flask - NEW',
-    description: 'Example for new',
-    code: `
-    <h1>Das ist nummer 1 test</h1>
-    <div>in New</div>
-    `,
-    project_id: 2,
-    language_id: 1,
-    framework_id: null,
-  },
+  // {
+  //   title: 'Redux with react',
+  //   description: 'Here I show how I set up react with redux',
+  //   code: `
+  //   <h1>Das ist ein test</h1>
+  //   <div>hey</div>
+  //   `,
+  //   project_id: 1,
+  //   language_id: 1,
+  //   framework_id: null,
+  // },
+  // {
+  //   title: 'Flask',
+  //   description: 'Example for react-spring',
+  //   code: `
+  //   <h1>Das ist nummer 1 test</h1>
+  //   <div>hey</div>
+  //   `,
+  //   project_id: 1,
+  //   language_id: 3,
+  //   framework_id: null,
+  // },
+  // {
+  //   title: 'Flask - NEW',
+  //   description: 'Example for new',
+  //   code: `
+  //   <h1>Das ist nummer 1 test</h1>
+  //   <div>in New</div>
+  //   `,
+  //   project_id: 2,
+  //   language_id: 1,
+  //   framework_id: null,
+  // },
 ];
