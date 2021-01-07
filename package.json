@@ -1,10 +1,11 @@
 {
   "name": "snippster",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "Fabio Batti",
   "description": "Snippster helps to organize your code!",
   "private": true,
-  "main": "public/LocalServer.js",
+  "main": "public/electron.js",
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.2",
@@ -45,6 +46,25 @@
     "build": "npm run react-build && npm run electron-build",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
+  "build": {
+    "appId": "com.electron.Snippster",
+    "productName": "Snippster",
+    "directories": {
+      "buildResources": "C:/Users/vabis/Desktop/Playground/projects/snippster",
+      "output": "C:/Users/vabis/Desktop/Playground/projects/snippster/dist",
+      "app": "C:/Users/vabis/Desktop/Playground/projects/snippster"
+    },
+    "mac": {
+      "icon": "assets/mac/icon.icns"
+    },
+    "linux": {
+      "icon": "assets/png/icon.png"
+    },
+    "win": {
+      "icon": "assets/win/icon.ico"
+    },
+    "extends": null
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -65,6 +85,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.12.7",
+    "devtron": "^1.4.0",
     "electron": "^10.1.5",
     "electron-builder": "^22.9.1",
     "electron-rebuild": "^2.3.2",

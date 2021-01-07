@@ -13,7 +13,7 @@ const AppEvents = require('../events/AppEvents');
 const MenuEvents = require('../events/MenuEvents');
 const { migrate } = require('../db/migrate');
 
-migrate()
+migrate();
 
 // try {
 //   require('electron-reloader')(module);
@@ -33,7 +33,16 @@ const createMainWindow = () => {
       nodeIntegration: true,
     },
   });
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  mainWindow.loadURL(
+    isDev
+      ? 'http://localhost:3000'
+      : `
+  ${url.format({
+    pathname: path.join(__dirname, '../build/index.html'),
+    protocol: 'file',
+    slashes: true,
+  })}`
+  );
   mainWindow.on('closed', () => (mainWindow = null));
 };
 const queueEventToRegister = () => {
@@ -75,11 +84,21 @@ const addWindowFunc = (menuEvents) => {
     // addWindow.setMenu(null);
     // LOAD THE HTML FILE
     addWindow.loadURL(
-      url.format({
-        pathname: path.join(__dirname, '../public/templates/addProjectWindow/addWindow.html'),
+      isDev
+        ? `
+        ${url.format({
+          pathname: path.join(__dirname, './templates/addProjectWindow/addWindow.html'),
+          protocol: 'file',
+          slashes: true,
+        })}
+      `
+        : `
+      ${url.format({
+        pathname: path.join(__dirname, '../build/templates/addProjectWindow/addWindow.html'),
         protocol: 'file',
         slashes: true,
-      })
+      })}
+      `
     );
 
     addWindow.on('closed', function () {
@@ -98,3 +117,5 @@ const addWindowFunc = (menuEvents) => {
     });
   }
 };
+
+// module.exports.db = db

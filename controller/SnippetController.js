@@ -31,16 +31,19 @@ class SnippetController {
   }
 
   async editSnippet(snippet) {
-    const stmt = db.prepare(`UPDATE snippets
-    SET
-    title='${snippet.title}',
-    code='${snippet.code}',
-    description='${snippet.description}',
-    language_id=${snippet.language_id ? `'${snippet.language_id}'` : null},
-    framework_id=${snippet.framework_id ? `'${snippet.framework_id}'` : null}
-    WHERE id = ${snippet.id}`);
+    const insert = [snippet.title, snippet.code, snippet.description, snippet.language_id ? snippet.language_id : null, snippet.framework_id ? snippet.framework_id : null];
+
+    const stmt = db.prepare(`UPDATE snippets SET
+      title = ?,
+      code = ?,
+      description = ?,
+      language_id = ?,
+      framework_id = ?
+      WHERE id = ${snippet.id};`);
+
     try {
-      stmt.run();
+      const info = stmt.run(insert);
+      console.log(info);
     } catch (error) {
       console.log(error);
     }
