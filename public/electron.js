@@ -37,6 +37,7 @@ autoUpdater.on('error', (error) => {
   console.error(error);
 });
 
+
 migrate();
 // try {
 //   require('electron-reloader')(module);

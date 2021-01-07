@@ -1,6 +1,6 @@
 {
   "name": "snippster",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "author": "Fabio Batti",
   "description": "Snippster helps to organize your code!",
   "private": true,
@@ -50,8 +50,14 @@
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "build": {
-    "appId": "com.electron.Snippster",
     "productName": "Snippster",
+    "appId": "com.electron.Snippster",
+    "publish": {
+      "provider": "spaces",
+      "name": "snippster",
+      "region": "fra1",
+      "acl": "public-read"
+    },
     "directories": {
       "buildResources": "C:/Users/vabis/Desktop/Playground/projects/snippster",
       "output": "C:/Users/vabis/Desktop/Playground/projects/snippster/dist",
@@ -70,6 +76,10 @@
     "win": {
       "icon": "assets/win/icon.ico"
     },
+    "files": [
+      "!electron-builder.env",
+      "!/test"
+    ],
     "extends": null
   },
   "eslintConfig": {
