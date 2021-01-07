@@ -4,7 +4,6 @@ const path = require('path');
 const url = require('url');
 
 const isDev = require('electron-is-dev');
-
 const makeMenuTemplate = require('../Utility/MenuCreator');
 const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
@@ -13,8 +12,32 @@ const AppEvents = require('../events/AppEvents');
 const MenuEvents = require('../events/MenuEvents');
 const { migrate } = require('../db/migrate');
 
-migrate();
+const { autoUpdater } = require('electron-updater');
+autoUpdater.logger = require('electron-log');
+autoUpdater.logger.transports.file.level = 'info';
+autoUpdater.on('checking-for-update', () => {
+  console.log('Checking for updates');
+});
+autoUpdater.on('update-available', (info) => {
+  console.log('Update Available');
+  console.log('Version', info.version);
+  console.log('Release Date', info.releaseDate);
+});
+autoUpdater.on('update-not-available', () => {
+  console.log('Update Not Available');
+});
+autoUpdater.on('download-progress', (progress) => {
+  console.log(`Progress ${Math.floor(progress.perecent)}`);
+});
+autoUpdater.on('update-downloaded', (info) => {
+  console.log('Update downloaded');
+  autoUpdater.quitAndInstall();
+});
+autoUpdater.on('error', (error) => {
+  console.error(error);
+});
 
+migrate();
 // try {
 //   require('electron-reloader')(module);
 // } catch (_) {}
@@ -52,6 +75,9 @@ const queueEventToRegister = () => {
   createMainWindow();
   mainMenu = Menu.buildFromTemplate(makeMenuTemplate(mainWindow, addWindowFunc, new MenuEvents()));
   Menu.setApplicationMenu(mainMenu);
+  if (!isDev) {
+    autoUpdater.checkForUpdates();
+  }
 };
 
 app.on('ready', queueEventToRegister);

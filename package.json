@@ -5,6 +5,7 @@
   "description": "Snippster helps to organize your code!",
   "private": true,
   "main": "public/electron.js",
+  "repository": "git@github.com:snake-py/snippster.git",
   "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
@@ -15,6 +16,8 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "electron-is-dev": "^1.2.0",
+    "electron-log": "^4.3.1",
+    "electron-updater": "^4.3.5",
     "image-size": "^0.9.3",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
@@ -55,6 +58,10 @@
       "app": "C:/Users/vabis/Desktop/Playground/projects/snippster"
     },
     "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "icon": "assets/mac/icon.icns"
     },
     "linux": {

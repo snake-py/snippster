@@ -1,13 +1,12 @@
 const Database = require('better-sqlite3');
 const { languages, frameworks, snippets, projects } = require('./db_seeder');
 const path = require('path');
-const {app} = require('electron');
-
+const { app } = require('electron');
+const isDev = require('electron-is-dev');
 
 const CREATE_DB = () => {
   console.log(app.getPath('userData'));
-  return new Database(path.join(app.getPath('userData'), 'snippster.db'));
-  // return new Database('db/snippster.db');
+  return isDev ? new Database('db/snippster.db') : new Database(path.join(app.getPath('userData'), 'snippster.db'));
 };
 
 // Language
