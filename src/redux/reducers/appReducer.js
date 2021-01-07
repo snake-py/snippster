@@ -1,11 +1,4 @@
-import { 
-  appReducerAppReady,
-  appReducerGetLang,
-  appReducerInitialProjects,
-  appReducerSwitchProject,
-  appReducerQuerySnippet,
-  appReducerOpenQueryView
-     } from './../_actions';
+import { appReducerAppReady, appReducerGetLang, appReducerInitialProjects, appReducerSwitchProject, appReducerQuerySnippet, appReducerOpenQueryView } from './../_actions';
 
 export function appReducer(state = { ready: false }, action) {
   console.log(action);
@@ -17,9 +10,14 @@ export function appReducer(state = { ready: false }, action) {
         queriedView: false,
         ready: true,
       };
+    case 'SET_DIR':
+      return {
+        ...state,
+        dir: action.payload,
+      };
     case appReducerGetLang:
       console.log(`reducer gets projects ${action}`);
-      console.log(state)
+      console.log(state);
       return {
         ...state,
         languages: [...action.payload],
@@ -61,8 +59,8 @@ export function appReducer(state = { ready: false }, action) {
     case 'addProjectMain':
       return {
         ...state,
-        projects: [...state.projects.map((project) => ({ ...project, active: false })), {... action.payload, active: true }],
-        activeProject: {... action.payload, active: true}
+        projects: [...state.projects.map((project) => ({ ...project, active: false })), { ...action.payload, active: true }],
+        activeProject: { ...action.payload, active: true },
       };
 
     default:

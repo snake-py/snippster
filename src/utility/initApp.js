@@ -4,6 +4,7 @@ const { ipcRenderer } = window.require('electron');
 
 export default () => {
   getLanguages();
+  getDir();
   getProjectsAndSnippets();
   registerIPCListners();
   setTimeout(() => {
@@ -11,6 +12,12 @@ export default () => {
   }, 1000);
   return { msg: 'test', store: store };
 };
+
+const getDir = () => {
+  ipcRenderer.invoke('getDir').then((res) => {
+    store.dispatch({type: "SET_DIR", payload: res})
+  })
+}
 
 const getProjectsAndSnippets = () => {
   ipcRenderer.invoke('getProjects').then((res) => {

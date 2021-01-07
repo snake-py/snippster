@@ -13,6 +13,7 @@ export default function SideMenu() {
   const appState = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
+
   return (
     <div className="side-menu-wrapper">
       <div className="top-list">

@@ -37,7 +37,6 @@ autoUpdater.on('error', (error) => {
   console.error(error);
 });
 
-
 migrate();
 // try {
 //   require('electron-reloader')(module);
@@ -144,5 +143,9 @@ const addWindowFunc = (menuEvents) => {
     });
   }
 };
+
+ipcMain.handle('getDir', () => {
+  return __dirname
+});
 
 // module.exports.db = db
