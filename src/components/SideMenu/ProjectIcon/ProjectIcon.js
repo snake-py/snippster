@@ -3,36 +3,30 @@ import { ReactSVG } from 'react-svg';
 import SvgCode from '../../../static/icons/menu/code.svg';
 import { switchProject } from '../../../redux/actions/appActions';
 import { useDispatch, useSelector } from 'react-redux';
-console.log(SvgCode);
-const path = require('path');
+import Parser from 'html-react-parser';
 
 export default function ProjectIcon(props) {
   const dispatch = useDispatch();
-  const [projectIcon, setProjectIcon] = useState('');
-  const appState = useSelector((state) => state.app);
 
-  useEffect(() => {
-    console.log(props.project.icon);
-    if (props.project.icon) {
-      setProjectIcon(props.project.icon);
-    }
-  }, [props.project.icon]);
-
-  return (
-    <>
-
-    <li  dangerouslySetInnerHTML={{ __html: props.project.icon }}>
-
-    </li>
-    <li>
-      <ReactSVG
-        onClick={() => dispatch(switchProject(props.project))}
-        src={projectIcon || SvgCode}
-        beforeInjection={(svg) => {
-          props.project.active ? svg.classList.add('side-menu-icon', 'active') : svg.classList.add('side-menu-icon');
-        }}
-      />
-    </li>
-    </>
-  );
+  if (props.project.icon) {
+    return (
+      <li className={props.project.active ? 'side-menu-icon--users active--users' : 'side-menu-icon--users'} onClick={() => dispatch(switchProject(props.project))} >
+        {Parser(props.project.icon)}
+        {/* 
+        className={props.project.active ? 'side-menu-icon active' : 'side-menu-icon'} */}
+      </li>
+    );
+  } else {
+    return (
+      <li onClick={() => dispatch(switchProject(props.project))}>
+        <ReactSVG
+          src={SvgCode}
+          onClick={() => dispatch(switchProject(props.project))}
+          beforeInjection={(svg) => {
+            props.project.active ? svg.classList.add('side-menu-icon', 'active') : svg.classList.add('side-menu-icon');
+          }}
+        />
+      </li>
+    );
+  }
 }

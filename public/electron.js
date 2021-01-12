@@ -1,9 +1,10 @@
+require('dotenv').config()
 const electron = require('electron');
 const { app, BrowserWindow, Menu, ipcMain, protocol } = electron;
 const path = require('path');
 const url = require('url');
 
-const isDev = require('electron-is-dev');
+let isDev = require('electron-is-dev');
 const makeMenuTemplate = require('../Utility/MenuCreator');
 const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
@@ -11,8 +12,8 @@ const ProjectEvents = require('../events/ProjectEvents');
 const AppEvents = require('../events/AppEvents');
 const MenuEvents = require('../events/MenuEvents');
 const { migrate } = require('../db/migrate');
-
 const { autoUpdater } = require('electron-updater');
+
 autoUpdater.logger = require('electron-log');
 autoUpdater.logger.transports.file.level = 'info';
 autoUpdater.on('checking-for-update', () => {

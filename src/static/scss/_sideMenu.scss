@@ -34,7 +34,7 @@
   display: table;
   padding: 10px 20px;
 }
-
+.side-menu .side-menu-icon--users svg,
 .side-menu .side-menu-icon {
   display: table-cell;
   vertical-align: middle;
@@ -43,11 +43,11 @@
   color: grey;
   transition: all 150ms;
 }
-
+.side-menu .active--users,
 .side-menu .active {
   color: $card-bg-color;
 }
-
+.side-menu .side-menu-icon--users:hover,
 .side-menu .side-menu-icon:hover {
   color: $card-bg-color;
   cursor: pointer;

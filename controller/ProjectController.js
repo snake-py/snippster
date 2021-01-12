@@ -1,6 +1,7 @@
 const { app } = require('electron');
 const { db } = require('../db/migrate');
 const { readSvg } = require('../Utility/Helpers');
+const isDev = require('electron-is-dev');
 
 class ProjectController {
   getProjects() {
@@ -8,8 +9,8 @@ class ProjectController {
     const stmt = db.prepare('SELECT * FROM Projects');
     const projects = stmt.all();
     projects.forEach((project) => {
-      project.icon = readSvg(app.getPath('userData'), project.icon);
-      console.log("saved in var");
+      project.icon = readSvg(process.env.IS_PUBLISHED ? app.getPath('userData') : process.env.DEV_APP_PATH , project.icon);
+      console.log('saved in var');
       console.log(project.icon);
       return project;
     });
@@ -39,8 +40,7 @@ class ProjectController {
     }
     const returnStmt = db.prepare(`SELECT * FROM projects ORDER BY id DESC LIMIT 1;`);
     const project = returnStmt.get();
-    project.icon = readSvg(app.getPath('userData'), project.icon);
-    console.log(project.icon);
+    project.icon = readSvg(process.env.IS_PUBLISHED ? app.getPath('userData') : process.env.DEV_APP_PATH , project.icon);
     return project;
   }
 
@@ -72,7 +72,7 @@ class ProjectController {
     const returnStmt = db.prepare(`SELECT * FROM projects ORDER BY id DESC LIMIT 1;`);
     try {
       const project = returnStmt.get();
-      project.icon = readSvg(app.getPath('userData'), project.icon);
+      project.icon = readSvg(process.env.IS_PUBLISHED ? app.getPath('userData') : process.env.DEV_APP_PATH , project.icon);
       return project;
     } catch (error) {
       return false;

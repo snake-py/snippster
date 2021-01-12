@@ -36,9 +36,12 @@ const registerEvents = (obj) => {
 };
 
 const readSvg = (pathToFile, filename) => {
-  const file = fs.readFileSync(path.join(pathToFile, filename), {encoding: 'utf-8'}, (e) => {
-    console.log(e);
-  });
+  let file;
+  try {
+    file = fs.readFileSync(path.join(pathToFile, filename), { encoding: 'utf-8' }, (e) => {
+      console.log(e);
+    });
+  } catch (error) {}
   return file || false;
 };
 
