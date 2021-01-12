@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { app, BrowserWindow, Menu, ipcMain } = electron;
+const { app, BrowserWindow, Menu, ipcMain, protocol } = electron;
 const path = require('path');
 const url = require('url');
 
@@ -53,6 +53,7 @@ const createMainWindow = () => {
     width: 1400,
     height: 700,
     webPreferences: {
+      webSecurity: false,
       nodeIntegration: true,
     },
   });
@@ -144,8 +145,14 @@ const addWindowFunc = (menuEvents) => {
   }
 };
 
-ipcMain.handle('getDir', () => {
-  return __dirname
+ipcMain.handle('isDev', () => {
+  return { isDev: isDev, userData: app.getPath('userData') };
 });
 
-// module.exports.db = db
+app.whenReady().then(() => {
+  protocol.registerFileProtocol('root', (request, callback) => {
+    const url = request.url.substr(7);
+    callback({ path: app.getPath('userData') });
+  });
+});
+

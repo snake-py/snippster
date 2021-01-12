@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import SnippetCodeEditor from './SnippetCodeEditor';
 import SnippetResults from './SnippetResults';
 import SnippetView from './SnippetView';

@@ -12,12 +12,16 @@ export default function SnippetCodeEditor() {
   const dispatch = useDispatch();
 
   const [currentMode, setcurrentMode] = useState('');
-  useEffect(async () => {
+  useEffect(() => {
     if (activeSnippet && activeSnippet.language) {
-      await import(`ace-builds/src-noconflict/mode-${activeSnippet.language_short}`);
-      setcurrentMode(activeSnippet.language_short);
+      try {
+        require(`ace-builds/src-noconflict/mode-${activeSnippet.language_short}`);
+        setcurrentMode(activeSnippet.language_short);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  });
+  }, [activeSnippet]);
   const myStyle = {
     minWidth: '500px',
   };
@@ -27,7 +31,6 @@ export default function SnippetCodeEditor() {
   }
 
   return (
-    
     <div style={myStyle} className="window wrapper-editor">
       <AceEditor
         mode={`${currentMode ? currentMode : 'javascript'}`}

@@ -1,6 +1,8 @@
 'use strict';
 
 const { ipcMain } = require('electron/main');
+const fs = require('fs');
+const path = require('path');
 
 const inheritedMethods = [
   'constructor',
@@ -17,7 +19,7 @@ const inheritedMethods = [
   'toLocaleString',
 ];
 
-function registerEvents(obj) {
+const registerEvents = (obj) => {
   let methods = [];
   const EventObject = obj;
   while ((obj = Reflect.getPrototypeOf(obj))) {
@@ -31,9 +33,16 @@ function registerEvents(obj) {
       }
     });
   }
-}
+};
 
+const readSvg = (pathToFile, filename) => {
+  const file = fs.readFileSync(path.join(pathToFile, filename), {encoding: 'utf-8'}, (e) => {
+    console.log(e);
+  });
+  return file || false;
+};
 
 module.exports = {
   registerEvents,
+  readSvg,
 };

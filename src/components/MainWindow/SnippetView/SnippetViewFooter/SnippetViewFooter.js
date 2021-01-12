@@ -15,7 +15,7 @@ export default function SnippetViewFooter() {
     if (currentLang) {
       setCurrentFrameworks(currentLang.framework);
     }
-  });
+  }, [appState.languages, activeSnippet.language, activeSnippet.framework]);
 
   const selectStyles = {
     option: (provided, state) => ({
@@ -93,13 +93,13 @@ export default function SnippetViewFooter() {
             ''
           )}
         </div>
-        <div style={{marginTop: '20px'}} >
-          <a className="form-btn save-btn" onClick={() => dispatch(saveSnippet())}>
+        <div style={{ marginTop: '20px' }}>
+          <button className="form-btn save-btn" onClick={() => dispatch(saveSnippet())}>
             Save
-          </a>
-          <a className="form-btn save-btn" onClick={() => dispatch(deleteSnippet())}>
+          </button>
+          <button className="form-btn save-btn" onClick={() => dispatch(deleteSnippet())}>
             Delete
-          </a>
+          </button>
         </div>
       </div>
     </>

@@ -7,32 +7,37 @@ export default function Card(props) {
   const snippets = useSelector((state) => state.snippets);
   const [langaugeIcon, setLangaugeIcon] = useState('');
   const [frameworkIcon, setFrameworkIcon] = useState('');
-  useEffect(async () => {
+  useEffect(() => {
     if (props.snippet.frameworkIcon) {
-      let frameworkIcon = await import(`../../static/${props.snippet.frameworkIcon}`);
-      setFrameworkIcon(frameworkIcon.default);
+      try {
+        let frameworkIcon = require(`../../static/${props.snippet.frameworkIcon}`);
+        setFrameworkIcon(frameworkIcon.default);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       setFrameworkIcon('');
     }
     if (props.snippet.languageIcon) {
-      let languageIcon = await import(`../../static/${props.snippet.languageIcon}`);
-      setLangaugeIcon(languageIcon.default);
+      try {
+        let languageIcon = require(`../../static/${props.snippet.languageIcon}`);
+        setLangaugeIcon(languageIcon.default);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       setLangaugeIcon('');
     }
   }, [snippets, langaugeIcon, frameworkIcon, props]);
 
   const dispatch = useDispatch();
-  
-  if (!props.snippet){
-    return null
+
+  if (!props.snippet) {
+    return null;
   }
   return (
     <div className="card-wrapper">
-      <div
-        onClick={() => dispatch(activateSnippet(props.snippet))}
-        className={`card ${props.snippet.active ? 'card-active' : ''} ${props.snippet.isSaved ? '' : 'unsaved'}`}
-      >
+      <div onClick={() => dispatch(activateSnippet(props.snippet))} className={`card ${props.snippet.active ? 'card-active' : ''} ${props.snippet.isSaved ? '' : 'unsaved'}`}>
         <div className="card-head">
           <h2 className="card-title">{props.snippet.title}</h2>
         </div>

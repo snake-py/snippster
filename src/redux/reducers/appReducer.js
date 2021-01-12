@@ -10,10 +10,11 @@ export function appReducer(state = { ready: false }, action) {
         queriedView: false,
         ready: true,
       };
-    case 'SET_DIR':
+    case 'SET_IS_DEV':
       return {
         ...state,
-        dir: action.payload,
+        isDev: action.payload.isDev,
+        userData: action.payload.userData,
       };
     case appReducerGetLang:
       console.log(`reducer gets projects ${action}`);

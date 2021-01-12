@@ -14,8 +14,8 @@ export default () => {
 };
 
 const getDir = () => {
-  ipcRenderer.invoke('getDir').then((res) => {
-    store.dispatch({type: "SET_DIR", payload: res})
+  ipcRenderer.invoke('isDev').then((res) => {
+    store.dispatch({type: "SET_IS_DEV", payload: res})
   })
 }
 

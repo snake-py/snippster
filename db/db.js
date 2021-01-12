@@ -6,7 +6,7 @@ const isDev = require('electron-is-dev');
 
 const CREATE_DB = () => {
   console.log(app.getPath('userData'));
-  return isDev ? new Database('db/snippster.db') : new Database(path.join(app.getPath('userData'), 'snippster.db'));
+  return isDev ? new Database('db/snippster.db') : new Database(path.join(app.getPath('userData'), '/snippster' ,'snippster.db'));
 };
 
 // Language

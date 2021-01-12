@@ -52,6 +52,7 @@
   "build": {
     "productName": "Snippster",
     "appId": "com.electron.Snippster",
+    "extends": null,
     "publish": {
       "provider": "spaces",
       "name": "snippster",
@@ -78,9 +79,11 @@
     },
     "files": [
       "!electron-builder.env",
-      "!/test"
-    ],
-    "extends": null
+      "!test/**/*",
+      "!db/snippster.db",
+      "!doc/**/*",
+      "!src/**/*"
+    ]
   },
   "eslintConfig": {
     "extends": [

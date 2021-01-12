@@ -1,10 +1,18 @@
-const fs = require('fs'); // reads json file
+const { app } = require('electron');
 const { db } = require('../db/migrate');
+const { readSvg } = require('../Utility/Helpers');
 
 class ProjectController {
   getProjects() {
+    console.log('call');
     const stmt = db.prepare('SELECT * FROM Projects');
     const projects = stmt.all();
+    projects.forEach((project) => {
+      project.icon = readSvg(app.getPath('userData'), project.icon);
+      console.log("saved in var");
+      console.log(project.icon);
+      return project;
+    });
     return { projects: projects };
   }
 
@@ -31,6 +39,8 @@ class ProjectController {
     }
     const returnStmt = db.prepare(`SELECT * FROM projects ORDER BY id DESC LIMIT 1;`);
     const project = returnStmt.get();
+    project.icon = readSvg(app.getPath('userData'), project.icon);
+    console.log(project.icon);
     return project;
   }
 
@@ -40,10 +50,8 @@ class ProjectController {
     `);
     try {
       const res = stmt.run();
-      console.log(res);
       return true;
     } catch (error) {
-      console.log(error);
       return false;
     }
   }
@@ -64,6 +72,7 @@ class ProjectController {
     const returnStmt = db.prepare(`SELECT * FROM projects ORDER BY id DESC LIMIT 1;`);
     try {
       const project = returnStmt.get();
+      project.icon = readSvg(app.getPath('userData'), project.icon);
       return project;
     } catch (error) {
       return false;
