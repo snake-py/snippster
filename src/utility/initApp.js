@@ -7,6 +7,7 @@ export default () => {
   getDir();
   getProjectsAndSnippets();
   registerIPCListners();
+  getAppVersion()
   setTimeout(() => {
     makeAppReady();
   }, 1000);
@@ -15,9 +16,9 @@ export default () => {
 
 const getDir = () => {
   ipcRenderer.invoke('isDev').then((res) => {
-    store.dispatch({type: "SET_IS_DEV", payload: res})
-  })
-}
+    store.dispatch({ type: 'SET_IS_DEV', payload: res });
+  });
+};
 
 const getProjectsAndSnippets = () => {
   ipcRenderer.invoke('getProjects').then((res) => {
@@ -58,6 +59,12 @@ const setInitialSnippets = () => {
 const getLanguages = () => {
   ipcRenderer.invoke('getAppLanguages').then((res) => {
     store.dispatch({ type: 'GET_LANGUAGES', payload: res.languages });
+  });
+};
+
+const getAppVersion = () => {
+  ipcRenderer.invoke('getAppVersion').then((res) => {
+    store.dispatch({ type: 'GET_VERSION', payload: res });
   });
 };
 

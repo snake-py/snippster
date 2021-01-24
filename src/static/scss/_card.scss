@@ -6,6 +6,11 @@
 }
 
 .card {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
   background-color: $secondary-bg-color;
   padding: 10px 20px;
   border-radius: 20px;
@@ -14,22 +19,24 @@
   flex-grow: 0;
   overflow: hidden;
   height: 140px;
+  border: 3px solid $secondary-bg-color;
   transition: all ease-in-out 150ms;
 }
 
-.unsaved {
-  border: 3px solid white;
-}
 
 .card-active {
   background-color: $card-bg-color;
+  border: 3px solid $card-bg-color;
 }
 
 .card:hover {
+  border: 3px solid $card-bg-color;
   background-color: $card-bg-color;
   transform: translateY(-5px);
 }
-
+.unsaved {
+  border: 3px solid white;
+}
 .card .card-foot {
   display: flex;
   justify-content: space-between;
@@ -41,6 +48,12 @@
 
 .card .card-body {
   height: 50px;
+  padding: 2px;
+  line-break: auto;
+}
+.card .card-body p {
+  padding: 2px;
+  line-break: auto;
 }
 
 .card .card-foot .right-foot,

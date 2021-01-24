@@ -63,6 +63,11 @@ export function appReducer(state = { ready: false }, action) {
         projects: [...state.projects.map((project) => ({ ...project, active: false })), { ...action.payload, active: true }],
         activeProject: { ...action.payload, active: true },
       };
+      case 'GET_VERSION':
+        return {
+          ...state,
+          version: action.payload
+        };
 
     default:
       return state;

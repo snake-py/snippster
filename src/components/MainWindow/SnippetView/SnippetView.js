@@ -14,7 +14,7 @@ export default function SnippetView() {
       <div className="current-snippet">
         <div>
           <input placeholder="Snippet Title" className="form-input title" onChange={(e) => dispatch(editTitle(activeSnippet, e.target.value))} value={activeSnippet.title} />
-          <TextareaAutosize value={activeSnippet.description} className="form-input description" onChange={(e) => dispatch(editDescription(activeSnippet, e.target.value))} />
+          <TextareaAutosize placeholder="Your Snippet Description" value={activeSnippet.description} className="form-input description" onChange={(e) => dispatch(editDescription(activeSnippet, e.target.value))} />
           <SnippetViewFooter />
         </div>
       </div>

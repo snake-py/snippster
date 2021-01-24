@@ -1,5 +1,4 @@
-
-require('../configs/configs')
+require('../configs/configs');
 const electron = require('electron');
 const { app, BrowserWindow, Menu, ipcMain, protocol } = electron;
 const path = require('path');
@@ -39,11 +38,12 @@ autoUpdater.on('error', (error) => {
 });
 
 migrate();
-// try {
-//   require('electron-reloader')(module);
-// } catch (_) {}
 
-process.env.NODE_ENV = '';
+
+try {
+  require('electron-reloader')(module);
+} catch (_) {}
+
 
 let mainWindow;
 let mainMenu;
@@ -77,7 +77,7 @@ const queueEventToRegister = () => {
   createMainWindow();
   mainMenu = Menu.buildFromTemplate(makeMenuTemplate(mainWindow, addWindowFunc, new MenuEvents()));
   Menu.setApplicationMenu(mainMenu);
-  if (!isDev) {
+  if (process.env.IS_PUBLISHED) {
     autoUpdater.checkForUpdates();
   }
 };
@@ -156,4 +156,3 @@ app.whenReady().then(() => {
     callback({ path: app.getPath('userData') });
   });
 });
-

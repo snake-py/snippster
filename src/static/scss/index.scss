@@ -3,6 +3,13 @@
   font-family: 'Raleway';
   src: url('../fonts/raleway/static/Raleway-Regular.ttf');
 }
+
+@font-face {
+  font-family: 'Inconsola';
+  src: url('../fonts/inconsola/static/Inconsolata-Regular.ttf');
+}
+
+
 body {
   font-family: 'Raleway';
   letter-spacing: 2px;
@@ -12,6 +19,24 @@ body {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  &::selection {
+    background: $card-bg-color;
+    color: white;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+  }
+  &::-moz-selection {
+    color: white;
+    background: $card-bg-color;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+  }
 }
 .flex {
   display: flex;
@@ -78,3 +103,4 @@ body {
 @import './editor.scss';
 @import './mainWindow.scss';
 @import './snippetView.scss';
+@import './bottomBar'
