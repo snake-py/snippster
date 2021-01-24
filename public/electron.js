@@ -1,9 +1,9 @@
-require('dotenv').config()
+
+require('../configs/configs')
 const electron = require('electron');
 const { app, BrowserWindow, Menu, ipcMain, protocol } = electron;
 const path = require('path');
 const url = require('url');
-
 let isDev = require('electron-is-dev');
 const makeMenuTemplate = require('../Utility/MenuCreator');
 const { registerEvents } = require('../Utility/Helpers');

@@ -10,8 +10,6 @@ class ProjectController {
     const projects = stmt.all();
     projects.forEach((project) => {
       project.icon = readSvg(process.env.IS_PUBLISHED ? app.getPath('userData') : process.env.DEV_APP_PATH , project.icon);
-      console.log('saved in var');
-      console.log(project.icon);
       return project;
     });
     return { projects: projects };
