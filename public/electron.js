@@ -52,10 +52,11 @@ const isMac = process.platform === 'darwin';
 const createMainWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1400,
-    height: 700,
+    height: 750,
     webPreferences: {
-      webSecurity: false,
+      // webSecurity: false,
       nodeIntegration: true,
+      enableRemoteModule: isDev  // Need that spectron will work
     },
   });
   mainWindow.loadURL(
