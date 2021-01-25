@@ -1,0 +1,81 @@
+> npm run react-build && npm run electron-build -mwl
+
+
+> app@0.1.5 react-build C:\Users\vabis\Desktop\Playground\projects\app
+> react-scripts build
+
+Creating an optimized production build...
+Compiled with warnings.
+
+src\components\MainWindow\SnippetQuerier\SnippetQuerier.js
+  Line 21:6:  React Hook useEffect has missing dependencies: 'appState.activeProject', 'appState.queriedView', 'appState.query', and 'dispatch'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\SideMenu\ProjectIcon\ProjectIcon.js
+  Line 1:17:  'useState' is defined but never used     no-unused-vars
+  Line 1:27:  'useEffect' is defined but never used    no-unused-vars
+  Line 5:23:  'useSelector' is defined but never used  no-unused-vars
+
+src\redux\actions\appActions.js
+  Line 44:58:  Array.prototype.map() expects a value to be returned at the end of arrow function     array-callback-return
+  Line 58:44:  Array.prototype.filter() expects a value to be returned at the end of arrow function  array-callback-return
+  Line 86:44:  Array.prototype.filter() expects a value to be returned at the end of arrow function  array-callback-return
+
+src\redux\reducers\snippetsReducer.js
+  Line 112:56:  Array.prototype.filter() expects a value to be returned at the end of arrow function  array-callback-return
+  Line 121:37:  Array.prototype.map() expects a value to be returned at the end of arrow function     array-callback-return
+
+src\utility\initApp.js
+  Line 5:1:  Assign arrow function to a variable before exporting as module default  import/no-anonymous-default-export
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  1.27 MB  build\static\js\2.f4ea5de9.chunk.js
+  8.95 KB  build\static\js\main.06f8e5a8.chunk.js
+  1.48 KB  build\static\css\main.18d12066.chunk.css
+  774 B    build\static\js\runtime-main.93081d68.js
+
+The bundle size is significantly larger than recommended.
+Consider reducing it with code splitting: https://goo.gl/9VhYWB
+You can also analyze the project dependencies: https://goo.gl/LeUzfb
+
+The project was built assuming it is hosted at ./.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
+
+> app@0.1.5 electron-build C:\Users\vabis\Desktop\Playground\projects\app
+> electron-builder
+
+  • electron-builder  version=22.9.1 os=10.0.19041
+  • loaded configuration  file=package.json ("build" field)
+  • Specified application directory equals to project dir — superfluous or wrong configuration  appDirectory=C:/Users/vabis/Desktop/Playground/projects/app
+  • electron-rebuild not required if you use electron-builder, please consider to remove excess dependency from devDependencies
+
+To ensure your native dependencies are always matched electron version, simply add script `"postinstall": "electron-builder install-app-deps" to your `package.json`
+  • writing effective config  file=dist\builder-effective-config.yaml
+  • rebuilding native dependencies  dependencies=better-sqlite3@7.1.1, node-sass@4.14.1 platform=win32 arch=x64
+  • install prebuilt binary  name=better-sqlite3 version=7.1.1 platform=win32 arch=x64
+  • build native dependency from sources  name=better-sqlite3
+                                          version=7.1.1
+                                          platform=win32
+                                          arch=x64
+                                          reason=prebuild-install failed with error (run with env DEBUG=electron-builder to get more information)
+                                          error=prebuild-install info begin Prebuild-install version 5.3.6
+    prebuild-install WARN install prebuilt binaries enforced with --force!
+    prebuild-install WARN install prebuilt binaries may be out of date!
+    prebuild-install info looking for cached prebuild @ C:\Users\vabis\AppData\Roaming\npm-cache\_prebuilds\08a9a0-better-sqlite3-v7.1.1-electron-v82-win32-x64.tar.gz
+    prebuild-install http request GET https://github.com/JoshuaWise/better-sqlite3/releases/download/v7.1.1/better-sqlite3-v7.1.1-electron-v82-win32-x64.tar.gz
+    prebuild-install http 404 https://github.com/JoshuaWise/better-sqlite3/releases/download/v7.1.1/better-sqlite3-v7.1.1-electron-v82-win32-x64.tar.gz
+    prebuild-install WARN install No prebuilt binaries found (target=10.1.5 runtime=electron arch=x64 libc= platform=win32)
+
+  • packaging       platform=win32 arch=x64 electron=10.1.5 appOutDir=dist\win-unpacked
+  • building        target=nsis file=dist\app Setup 0.1.5.exe archs=x64 oneClick=true perMachine=false
+  • building block map  blockMapFile=dist\app Setup 0.1.5.exe.blockmap

@@ -1,6 +1,6 @@
 {
   "name": "snippster",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Fabio Batti",
   "description": "Snippster helps to organize your code!",
   "private": true,
@@ -39,7 +39,7 @@
   },
   "scripts": {
     "test": "react-scripts test",
-    "test-spectron": "mocha --watch --timeout 10000",
+    "test-spectron": "mocha --watch",
     "react-start": "react-scripts start",
     "rebuild": "electron-rebuild -f -w better-sqlit3",
     "postinstall": "electron-builder install-app-deps",
@@ -48,7 +48,7 @@
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
     "release": "npm run react-build && electron-builder --publish=always",
-    "build": "npm run react-build && npm run electron-build",
+    "build": "npm run react-build && npm run electron-build -mwl",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "build": {

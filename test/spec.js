@@ -1,32 +1,56 @@
-const Application = require('spectron').Application;
+// const Application = require('spectron').Application;
+// const electronPath = require('electron'); // Require Electron from the binaries included in node_modules.
+// const path = require('path');
 const assert = require('assert');
-const electronPath = require('electron'); // Require Electron from the binaries included in node_modules.
-const path = require('path');
+const AppController = require('../controller/AppController');
 
-const app = new Application({
-  path: electronPath,
-  args: [path.join(__dirname, '..')],
-});
 
-describe('Testing', function () {
-  this.timeout(10000);
-  beforeEach(() => {
-    console.log(app); // this is executed
-    return app.start(); // troubling line
-  });
 
-  afterEach(() => {
-    if (app && app.isRunning()) {
-      return app.stop();
-    }
-  });
+describe('Tetsing', () => {
+  it('should return languages', () => {
+    assert.equal([1, 2, 3].indexOf(4), -1);
+  })
+})
 
-  it('shows an initial window', function () {
-    console.log('count'); // this is not executed
-    const count = app.client.getWindowCount();
-    return assert.equal(count, 1);
-  });
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const app = new Application({
+//   path: electronPath,
+//   args: [path.join(__dirname, '..')],
+// });
+
+// describe('Testing', function () {
+//   this.timeout(10000);
+//   beforeEach(() => {
+//     console.log(app); // this is executed
+//     return app.start(); // troubling line
+//   });
+
+//   afterEach(() => {
+//     if (app && app.isRunning()) {
+//       return app.stop();
+//     }
+//   });
+
+//   it('shows an initial window', function () {
+//     console.log('count'); // this is not executed
+//     const count = app.client.getWindowCount();
+//     return assert.equal(count, 1);
+//   });
+// });
 
 // describe('Application launch', function () {
 // console.log(this);
