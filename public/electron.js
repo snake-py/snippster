@@ -39,11 +39,11 @@ autoUpdater.on('error', (error) => {
 
 migrate();
 
-
-try {
-  require('electron-reloader')(module);
-} catch (_) {}
-
+if (isDev) {
+  try {
+    require('electron-reloader')(module);
+  } catch (_) {}
+}
 
 let mainWindow;
 let mainMenu;
@@ -56,7 +56,7 @@ const createMainWindow = () => {
     webPreferences: {
       // webSecurity: false,
       nodeIntegration: true,
-      enableRemoteModule: isDev  // Need that spectron will work
+      enableRemoteModule: isDev, // Need that spectron will work
     },
   });
   mainWindow.loadURL(

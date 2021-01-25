@@ -10,7 +10,7 @@ export default () => {
   getAppVersion()
   setTimeout(() => {
     makeAppReady();
-  }, 1000);
+  }, 1500);
   return { msg: 'test', store: store };
 };
 
