@@ -1,6 +1,6 @@
 import store from './createStore';
 import registerIPCListners from './ipcListeners';
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window;
 
 export default () => {
   getLanguages();

@@ -1,6 +1,3 @@
-const electron = require('electron');
-const { ipcRenderer } = electron;
-
 const input = document.querySelector('#project-input');
 const file = document.querySelector('#icon');
 const btn = document.querySelector('button');
