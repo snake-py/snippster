@@ -1,7 +1,6 @@
 import { appReducerAppReady, appReducerGetLang, appReducerInitialProjects, appReducerSwitchProject, appReducerQuerySnippet, appReducerOpenQueryView } from './../_actions';
 
 export function appReducer(state = { ready: false }, action) {
-  console.log(action);
   switch (action.type) {
     case appReducerAppReady:
       return {
@@ -28,7 +27,7 @@ export function appReducer(state = { ready: false }, action) {
       return {
         ...state,
         projects: [...action.payload],
-        activeProject: action.payload.filter((project) => project.active === true)[0],
+        activeProject: {...action.payload[0], active: true},
       };
 
     case appReducerSwitchProject:
@@ -63,11 +62,11 @@ export function appReducer(state = { ready: false }, action) {
         projects: [...state.projects.map((project) => ({ ...project, active: false })), { ...action.payload, active: true }],
         activeProject: { ...action.payload, active: true },
       };
-      case 'GET_VERSION':
-        return {
-          ...state,
-          version: action.payload
-        };
+    case 'GET_VERSION':
+      return {
+        ...state,
+        version: action.payload,
+      };
 
     default:
       return state;
