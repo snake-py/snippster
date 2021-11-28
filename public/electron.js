@@ -1,6 +1,6 @@
 require('../configs/configs');
 const electron = require('electron');
-const { app, BrowserWindow, Menu, ipcMain, protocol } = electron;
+const { app, BrowserWindow, Menu, ipcMain, protocol, ipcRenderer } = electron;
 const path = require('path');
 const url = require('url');
 let isDev = require('electron-is-dev');
@@ -12,7 +12,7 @@ const AppEvents = require('../events/AppEvents');
 const MenuEvents = require('../events/MenuEvents');
 const { migrate } = require('../db/migrate');
 const { autoUpdater } = require('electron-updater');
-
+console.log(ipcRenderer);
 autoUpdater.logger = require('electron-log');
 autoUpdater.logger.transports.file.level = 'info';
 autoUpdater.on('checking-for-update', () => {
@@ -54,8 +54,8 @@ const createMainWindow = () => {
     width: 1400,
     height: 750,
     webPreferences: {
-      // webSecurity: false,
-      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
+      // nodeIntegration: true,
       enableRemoteModule: isDev, // Need that spectron will work
     },
   });
@@ -106,7 +106,7 @@ const addWindowFunc = (menuEvents) => {
       height: 400,
       title: 'Add Item',
       webPreferences: {
-        nodeIntegration: true,
+        preload: path.join(__dirname, 'preload.js'),
       },
     });
     addWindow.name = 'PROJECT_ADD_WINDOW';

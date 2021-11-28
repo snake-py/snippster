@@ -1,5 +1,5 @@
 import store from '../../utility/createStore';
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window;
 
 export const activateSnippet = (snippet) => (dispatch) => {
   dispatch({

@@ -1,7 +1,7 @@
 import store from './createStore';
 import { addSnippet, saveSnippet, deleteSnippet } from './../redux/actions/snippetsActions';
 import { openQueryViewOnClick, deleteProject, switchProject } from '../redux/actions/appActions';
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window;
 
 export default function registerIPCListners() {
   // Listen from backend calls
@@ -12,7 +12,7 @@ export default function registerIPCListners() {
     store.dispatch({ type: 'addProjectMain', payload: input });
     store.dispatch(switchProject(input));
   });
-  
+
   //delete
   ipcRenderer.on('menuDeleteProject', (e) => {
     store.dispatch(deleteProject());
