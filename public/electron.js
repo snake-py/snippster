@@ -1,9 +1,17 @@
-require('../configs/configs');
+const loadConfigs  = require('../configs/configs');
 const electron = require('electron');
-const { app, BrowserWindow, Menu, ipcMain, protocol, ipcRenderer } = electron;
 const path = require('path');
-const url = require('url');
 let isDev = require('electron-is-dev');
+
+// Load configs:
+if (isDev) {
+  loadConfigs('dev');
+} else {
+  loadConfigs('prod');
+}
+
+const { app, BrowserWindow, Menu, ipcMain, protocol } = electron;
+const url = require('url');
 const makeMenuTemplate = require('../Utility/MenuCreator');
 const { registerEvents } = require('../Utility/Helpers');
 const SnippetEvents = require('../events/SnippetEvents');
@@ -12,7 +20,6 @@ const AppEvents = require('../events/AppEvents');
 const MenuEvents = require('../events/MenuEvents');
 const { migrate } = require('../db/migrate');
 const { autoUpdater } = require('electron-updater');
-console.log(ipcRenderer);
 autoUpdater.logger = require('electron-log');
 autoUpdater.logger.transports.file.level = 'info';
 autoUpdater.on('checking-for-update', () => {

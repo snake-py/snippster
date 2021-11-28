@@ -5,9 +5,13 @@ const { app } = require('electron');
 const isDev = require('electron-is-dev');
 
 const CREATE_DB = () => {
-  console.log(path.join(app.getPath('userData'), '/snippster' ,'snippster.db'));
-  console.log(path.join(process.env.DEV_APP_PATH,'snippster.db'));
-  return process.env.IS_PUBLISHED ? new Database(path.join(app.getPath('userData'), '/snippster' ,'snippster.db')) : new Database(path.join(process.env.DEV_APP_PATH,'snippster.db'));
+  if (process.env.IS_PUBLISHED !== 'false') {
+    console.log("USES PROD DATABASE");
+    return new Database(path.join(app.getPath('userData'), '/snippster' ,'snippster.db')) 
+  } else {
+    console.log("USES DEV DATABASE");
+    return new Database(path.join(process.env.DEV_APP_PATH,'snippster.db'))
+  }
 };
 
 // Language
