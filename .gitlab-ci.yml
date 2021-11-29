@@ -4,7 +4,6 @@ stages:
 default:
   tags:
     - snippster
-    - snippster-1
 
 
 test:
