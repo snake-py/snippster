@@ -3,7 +3,7 @@ stages:
 
 
 test:
-  stage: tests_e2e
+  stage: test
   image: node
   stage: test_unit
   when: always
