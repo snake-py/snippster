@@ -17,6 +17,8 @@ devEnv = {
 
 prodEnv = {
   CONFIGS_LOADED: 'PROD',
+  IS_PUBLISHED: '1',
+
 };
 
 const loadConfigs = (mode) => {
