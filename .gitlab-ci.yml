@@ -5,7 +5,6 @@ stages:
 test:
   stage: test
   image: node
-  stage: test_unit
   when: always
   script:
     - echo first pipeline
