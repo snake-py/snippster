@@ -5,7 +5,7 @@ const { app } = require('electron');
 const isDev = require('electron-is-dev');
 
 const CREATE_DB = () => {
-  if (process.env.IS_PUBLISHED !== 'false') {
+  if (process.env.IS_PUBLISHED) {
     console.log("USES PROD DATABASE");
     return new Database(path.join(app.getPath('userData'), '/snippster' ,'snippster.db')) 
   } else {

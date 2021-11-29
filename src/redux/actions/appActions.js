@@ -24,6 +24,7 @@ export const makeAppReady = () => (dispatch) => {
 };
 
 export const switchProject = (project) => (dispatch) => {
+  console.log(project);
   ipcRenderer.invoke('getSnippets', project.id).then((res) => {
     const snippets = res.snippets.map((snippet, index) => {
       return index === 0 ? { ...snippet, active: true, isSaved: true } : { ...snippet, active: false, isSaved: true };
@@ -115,18 +116,17 @@ export const openQueryViewOnClick = () => (dispatch) => {
   dispatch({ type: 'REMOVE_QUERIED_SNIPPET', payload: '' });
 };
 
-// export const addProject = () => (dispatch) => {
-//   console.log('adding project');
-//   ipcRenderer.invoke('addProject').then((res) => {
-//     console.log(res);
-//   });
-// };
-
 export const deleteProject = () => (dispatch) => {
   ipcRenderer.invoke('deleteProject', store.getState().app.activeProject).then((res) => {
     dispatch({ type: 'INITIAL_PROJECTS', payload: res.remaining.projects });
+    console.log(res.toActivate);
     if (res.toActivate) {
+      console.log(res.toActivate);
       dispatch(switchProject(res.toActivate));
     }
   });
 };
+
+export const openSnippsterMarket = () => (dispatch) => {
+  dispatch({ type: 'OPEN_SNIPPSTER_MARKET', payload: '' });
+}

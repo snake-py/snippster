@@ -31,7 +31,8 @@ export default function SnippetCodeEditor() {
   }
 
   return (
-    <div style={myStyle} className="window wrapper-editor">
+    // <div style={myStyle} className="window wrapper-editor rightPanel">
+    <div style={myStyle} className="window wrapper-editor rightPanel">
       <AceEditor
         mode={`${currentMode ? currentMode : 'javascript'}`}
         theme="monokai"

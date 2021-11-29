@@ -6,8 +6,8 @@ export const appReducerSwitchProject = 'SWITCH_PROJECT' // one part of clcik eve
 export const appReducerQuerySnippet = 'QUERY_SNIPPET' // saves the typed query into the state to update the input  
 export const appReducerOpenQueryView = 'OPEN_QUERY_VIEW' // open the query view (when clicked or query with /g was typed), deactivates all projects
 export const appReducerResetQuery = 'RESET_QUERY' // deletes the query from the state
-
-// Exoerimental
+export const openSnippsterMarket = 'OPEN_SNIPPSTER_MARKET'
+// Experimental
 export const appReducerAddProjectMain = 'addProjectMain' // first attemp to communicate from another page with my react redux state
 
 

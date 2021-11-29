@@ -3,7 +3,6 @@ import MainWindow from '../../MainWindow';
 import { useSelector } from 'react-redux';
 import SideMenu from '../../SideMenu';
 import BottomBar from '../../BottomBar';
-
 export default function LoadedApp() {
   const appState = useSelector((state) => state.app);
 

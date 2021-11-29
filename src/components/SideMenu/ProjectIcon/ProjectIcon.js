@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ReactSVG } from 'react-svg';
 import SvgCode from '../../../static/icons/menu/code.svg';
 import { switchProject } from '../../../redux/actions/appActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Parser from 'html-react-parser';
 
 export default function ProjectIcon(props) {

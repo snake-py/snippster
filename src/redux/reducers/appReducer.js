@@ -1,7 +1,6 @@
-import { appReducerAppReady, appReducerGetLang, appReducerInitialProjects, appReducerSwitchProject, appReducerQuerySnippet, appReducerOpenQueryView } from './../_actions';
+import { appReducerAppReady, appReducerGetLang, appReducerInitialProjects, appReducerSwitchProject, appReducerQuerySnippet, appReducerOpenQueryView, openSnippsterMarket } from './../_actions';
 
 export function appReducer(state = { ready: false }, action) {
-  console.log(action);
   switch (action.type) {
     case appReducerAppReady:
       return {
@@ -9,6 +8,7 @@ export function appReducer(state = { ready: false }, action) {
         query: '',
         queriedView: false,
         ready: true,
+        openSnippsterMarket: false,
       };
     case 'SET_IS_DEV':
       return {
@@ -23,12 +23,17 @@ export function appReducer(state = { ready: false }, action) {
         ...state,
         languages: [...action.payload],
       };
-
+    case openSnippsterMarket:
+      return {
+        ...state,
+        queriedView: false,
+        openSnippsterMarket: true,
+      };
     case appReducerInitialProjects:
       return {
         ...state,
         projects: [...action.payload],
-        activeProject: action.payload.filter((project) => project.active === true)[0],
+        activeProject: { ...action.payload[0], active: true },
       };
 
     case appReducerSwitchProject:
@@ -36,6 +41,7 @@ export function appReducer(state = { ready: false }, action) {
       return {
         ...state,
         queriedView: false,
+        openSnippsterMarket: false,
         activeProject: { ...action.payload },
         projects: [...state.projects.map((project) => (project.id === action.payload.id ? { ...project, active: true } : { ...project, active: false }))],
       };
@@ -48,6 +54,7 @@ export function appReducer(state = { ready: false }, action) {
       return {
         ...state,
         activeProject: {},
+        openSnippsterMarket: false,
         projects: [...state.projects.map((project) => ({ ...project, active: false }))],
         queriedView: true,
       };
@@ -63,11 +70,11 @@ export function appReducer(state = { ready: false }, action) {
         projects: [...state.projects.map((project) => ({ ...project, active: false })), { ...action.payload, active: true }],
         activeProject: { ...action.payload, active: true },
       };
-      case 'GET_VERSION':
-        return {
-          ...state,
-          version: action.payload
-        };
+    case 'GET_VERSION':
+      return {
+        ...state,
+        version: action.payload,
+      };
 
     default:
       return state;

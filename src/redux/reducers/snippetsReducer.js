@@ -11,6 +11,7 @@ import {
   snippetsReducerQueryProject,
   snippetsReducerProjectSwitch,
   snippetsReducerQueryGlobal,
+  openSnippsterMarket,
 } from './../_actions';
 
 export function snippetReducer(state = {}, action) {
@@ -22,6 +23,12 @@ export function snippetReducer(state = {}, action) {
         snippets: [...action.payload],
         activeSnippet: action.payload.filter((snippet) => snippet.active === true)[0],
       };
+    case openSnippsterMarket:
+        return {
+          ...state,
+          snippets: [],
+          snippets: {},
+        };
     case snippetsReducerActivate:
       return {
         ...state,

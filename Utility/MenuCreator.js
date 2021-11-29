@@ -35,49 +35,6 @@ function makeMenuTemplate(mainWindow, addWindowFunc, menuEvents) {
           label: 'Add Project',
           click() {
             addWindowFunc(menuEvents)
-            // let addWindowIsOpen = false;
-            // const wins = BrowserWindow.getAllWindows();
-            // for (const key in wins) {
-            //   if (wins[key].name === 'PROJECT_ADD_WINDOW') {
-            //     addWindowIsOpen = true;
-            //     wins[key].focus();
-            //   }
-            // }
-            // if (!addWindowIsOpen) {
-            //   addWindow = new BrowserWindow({
-            //     width: 500,
-            //     height: 400,
-            //     title: 'Add Item',
-            //     webPreferences: {
-            //       nodeIntegration: true,
-            //     },
-            //   });
-            //   addWindow.name = 'PROJECT_ADD_WINDOW';
-            //   // addWindow.setMenu(null);
-            //   // LOAD THE HTML FILE
-            //   addWindow.loadURL(
-            //     url.format({
-            //       pathname: path.join(__dirname, '../public/templates/addProjectWindow/addWindow.html'),
-            //       protocol: 'file',
-            //       slashes: true,
-            //     })
-            //   );
-
-            //   addWindow.on('closed', function () {
-            //     ipcMain.removeHandler('addProjectToMain');
-            //     addWindow = null;
-            //   });
-
-            //   ipcMain.handle('addProjectToMain', (e, input) => {
-            //     let project = menuEvents.addProject(input);
-            //     if (project) {
-            //       mainWindow.webContents.send('addProjectMain', project);
-            //       addWindow.close();
-            //     } else {
-            //       addWindow.webContents.send('projectTitleIsNotUnique')
-            //     }
-            //   });
-            // } 
           },
         },
         {

@@ -7,7 +7,7 @@ const path = require('path');
 // ----------------
 defaultEnv = {
   DEV_APP_PATH: path.join(__dirname, '../../', 'snippster-devData'),
-  IS_PUBLISHED: false,
+  IS_PUBLISHED: '',
   CONFIGS_LOADED: 'DEV_DEFAULT',
 };
 
@@ -17,6 +17,8 @@ devEnv = {
 
 prodEnv = {
   CONFIGS_LOADED: 'PROD',
+  IS_PUBLISHED: '1',
+
 };
 
 const loadConfigs = (mode) => {
