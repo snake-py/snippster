@@ -126,3 +126,7 @@ export const deleteProject = () => (dispatch) => {
     }
   });
 };
+
+export const openSnippsterMarket = () => (dispatch) => {
+  dispatch({ type: 'OPEN_SNIPPSTER_MARKET', payload: '' });
+}

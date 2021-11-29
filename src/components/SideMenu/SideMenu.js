@@ -32,7 +32,7 @@ export default function SideMenu() {
             ? appState.projects.map((project) => {
                 return <Project project={project} key={project.id} />;
               })
-            : ''}
+            : <></>}
 
           <Market />
         </ul>
