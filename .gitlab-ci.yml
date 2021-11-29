@@ -1,6 +1,11 @@
 stages:
   - test
 
+default:
+  tags:
+    - snippster
+    - snippster-1
+
 
 test:
   stage: test
