@@ -1,0 +1,14 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  stage: tests_e2e
+  image: node
+  stage: test_unit
+  when: always
+  script:
+    - echo first pipeline
+
+
