@@ -27,7 +27,7 @@ export function snippetReducer(state = {}, action) {
         return {
           ...state,
           snippets: [],
-          snippets: {},
+          snippets: {}, // bug??
         };
     case snippetsReducerActivate:
       return {
